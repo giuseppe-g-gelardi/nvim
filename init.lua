@@ -47,6 +47,9 @@ P.S. You can delete this when you're done too. It's your config now :)
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
+vim.opt.relativenumber = true
+vim.keymap.set('n', '<leader>w', '<cmd>set wrap!<cr>')
+
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -245,6 +248,16 @@ require('lazy').setup({
 
 -- [[ Setting options ]]
 -- See `:help vim.o`
+
+
+-- set color column
+vim.opt.colorcolumn = "80"
+
+-- terminal gui colors!
+vim.opt.termguicolors = true
+
+-- i think this is text wrap
+vim.opt.wrap = false
 
 -- Set highlight on search
 vim.o.hlsearch = false

@@ -133,8 +133,8 @@ require('lazy').setup({
     config = function()
       require("nvim-autopairs").setup {}
     end
-  },
-  { 'mbbill/undotree' },
+  }, -- auto pairs
+  { 'mbbill/undotree' }, -- undo tree
 
 
   -- Material Theme
@@ -258,8 +258,10 @@ require('lazy').setup({
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   },
-  { 'xiyaowong/nvim-transparent' },
-  { 'github/copilot.vim' },
+  { 'xiyaowong/nvim-transparent' }, -- makes bg transparent
+  { 'github/copilot.vim' }, -- github copilot
+  { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }, -- bufferline/tabs
+  { 'onsails/lspkind-nvim' },
 
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -377,7 +379,6 @@ vim.keymap.set('n', '<leader>/', function()
   })
 end, { desc = '[/] Fuzzily search in current buffer' })
 
--- vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>pf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<C-p>', require('telescope.builtin').git_files, { desc = 'Git Files' })
 vim.keymap.set('n', '<leader>ps',
@@ -640,13 +641,8 @@ cmp.setup {
 -- Toggle Term
 -- Toggle Term
 -- Toggle Term
--- ! Toggle Term
-local status_ok, toggleterm = pcall(require, "toggleterm")
-if not status_ok then
-  return
-end
-
-toggleterm.setup {
+-- Toggle Term
+require('toggleterm').setup {
   size = 20,
   open_mapping = [[<c-\>]],
   hide_numbers = true,
@@ -870,13 +866,7 @@ vim.api.nvim_set_keymap("i", "<m-3>", "<cmd>lua _HORIZONTAL_TERM()<CR>", { norem
 -- auto pairs
 -- auto pairs
 -- auto pairs
--- Setup nvim-cmp.
-local status_ok, npairs = pcall(require, "nvim-autopairs")
-if not status_ok then
-  return
-end
-
-npairs.setup {
+require('nvim-autopairs').setup {
   check_ts = true,
   ts_config = {
     lua = { "string", "source" },
@@ -909,7 +899,8 @@ cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = 
 -- auto pairs
 -- auto pairs
 
-
+-- transparent
+-- transparent
 require("transparent").setup({
   enable = true, -- boolean: enable transparent
   extra_groups = { -- table/string: additional groups that should be cleared
@@ -926,6 +917,110 @@ require("transparent").setup({
   exclude = {}, -- table: groups you don't want to clear
   ignore_linked_group = true, -- boolean: don't clear a group that links to another group
 })
+-- transparent
+-- transparent
+
+
+
+
+-- bufferline
+-- bufferline
+-- BufferLine
+-- bufferline
+require('bufferline').setup({
+  options = {
+    mode = "tabs",
+    separator_style = 'slant',
+    always_show_bufferline = false,
+    show_buffer_close_icons = false,
+    show_close_icon = false,
+    color_icons = true
+  },
+  highlights = {
+    separator = {
+      fg = '#073642',
+      bg = '#002b36',
+    },
+    separator_selected = {
+      fg = '#073642',
+    },
+    background = {
+      fg = '#657b83',
+      bg = '#002b36'
+    },
+    buffer_selected = {
+      fg = '#fdf6e3',
+      bold = true,
+    },
+    fill = {
+      bg = '#073642'
+    }
+  },
+})
+
+vim.keymap.set('n', '<Tab>', '<Cmd>BufferLineCycleNext<CR>', {})
+vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', {})
+-- bufferline
+-- bufferline
+-- bufferline
+-- bufferline
+--
+--
+--
+-- lspkind 
+-- lspkind
+-- lspkind
+-- lspkind
+
+require('lspkind').init({
+  -- enables text annotations
+  --
+  -- default: true
+  mode = 'symbol',
+
+  -- default symbol map
+  -- can be either 'default' (requires nerd-fonts font) or
+  -- 'codicons' for codicon preset (requires vscode-codicons font)
+  --
+  -- default: 'default'
+  preset = 'codicons',
+
+  -- override preset symbols
+  --
+  -- default: {}
+  symbol_map = {
+    Text = "",
+    Method = "",
+    Function = "",
+    Constructor = "",
+    Field = "ﰠ",
+    Variable = "",
+    Class = "ﴯ",
+    Interface = "",
+    Module = "",
+    Property = "ﰠ",
+    Unit = "塞",
+    Value = "",
+    Enum = "",
+    Keyword = "",
+    Snippet = "",
+    Color = "",
+    File = "",
+    Reference = "",
+    Folder = "",
+    EnumMember = "",
+    Constant = "",
+    Struct = "פּ",
+    Event = "",
+    Operator = "",
+    TypeParameter = ""
+  },
+})
+
+-- lspkind
+-- lspkind
+-- lspkind
+-- lspkind
 
 
 -- The line beneath this is called `modeline`. See `:help modeline`

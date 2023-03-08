@@ -258,11 +258,20 @@ require('lazy').setup({
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   },
+  { 'nvim-tree/nvim-web-devicons' },
   { 'xiyaowong/nvim-transparent' }, -- makes bg transparent
   { 'github/copilot.vim' }, -- github copilot
   { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }, -- bufferline/tabs
-  { 'onsails/lspkind-nvim' },
-
+  { 'onsails/lspkind-nvim' }, -- vscode style ui icons in hints
+  { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' },
+  { 'Djancyp/better-comments.nvim' },
+  { 'dinhhuy258/git.nvim' },
+  { 'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+    tag = 'nightly' -- optional, updated every week. (see issue #1193)i},
+  }
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -609,29 +618,40 @@ cmp.setup {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
-    ['<Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_next_item()
-      elseif luasnip.expand_or_jumpable() then
-        luasnip.expand_or_jump()
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
-    ['<S-Tab>'] = cmp.mapping(function(fallback)
-      if cmp.visible() then
-        cmp.select_prev_item()
-      elseif luasnip.jumpable(-1) then
-        luasnip.jump(-1)
-      else
-        fallback()
-      end
-    end, { 'i', 's' }),
+    -- ['<Tab>'] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_next_item()
+    --   elseif luasnip.expand_or_jumpable() then
+    --     luasnip.expand_or_jump()
+    --   else
+    --     fallback()
+    --   end
+    -- end, { 'i', 's' }),
+    -- ['<S-Tab>'] = cmp.mapping(function(fallback)
+    --   if cmp.visible() then
+    --     cmp.select_prev_item()
+    --   elseif luasnip.jumpable(-1) then
+    --     luasnip.jump(-1)
+    --   else
+    --     fallback()
+    --   end
+    -- end, { 'i', 's' }),
   },
   sources = {
     { name = 'nvim_lsp' },
     { name = 'luasnip' },
   },
+  formatting = {
+    format = require('lspkind').cmp_format({
+      -- mode = 'symbol',
+      maxwidth = 50,
+      ellipsis_char = '...',
+      -- before = function(entry, vim_item)
+      --   vim_item = formatForTailwindCSS(entry, vim_item)
+      --   return vim_item
+      -- end
+    })
+  }
 }
 
 
@@ -967,7 +987,7 @@ vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferLineCyclePrev<CR>', {})
 --
 --
 --
--- lspkind 
+-- lspkind
 -- lspkind
 -- lspkind
 -- lspkind
@@ -1016,11 +1036,118 @@ require('lspkind').init({
     TypeParameter = ""
   },
 })
+-- lspkind
+-- lspkind
+-- lspkind
+-- lspkind
 
--- lspkind
--- lspkind
--- lspkind
--- lspkind
+
+
+-- webdevicons
+-- webdevicons
+-- webdevicons
+require 'nvim-web-devicons'.setup {
+  -- your personnal icons can go here (to override)
+  -- you can specify color or cterm_color instead of specifying both of them
+  -- DevIcon will be appended to `name`
+  override = {
+    zsh = {
+      icon = "",
+      color = "#428850",
+      cterm_color = "65",
+      name = "Zsh"
+    }
+  };
+  -- globally enable different highlight colors per icon (default to true)
+  -- if set to false all icons will have the default icon's color
+  color_icons = true;
+  -- globally enable default icons (default to false)
+  -- will get overriden by `get_icons` option
+  default = true;
+  -- globally enable "strict" selection of icons - icon will be looked up in
+  -- different tables, first by filename, and if not found by extension; this
+  -- prevents cases when file doesn't have any extension but still gets some icon
+  -- because its name happened to match some extension (default to false)
+  strict = true;
+  -- same as `override` but specifically for overrides by filename
+  -- takes effect when `strict` is true
+  override_by_filename = {
+    [".gitignore"] = {
+      icon = "",
+      color = "#f1502f",
+      name = "Gitignore"
+    }
+  };
+  -- same as `override` but specifically for overrides by extension
+  -- takes effect when `strict` is true
+  override_by_extension = {
+    ["log"] = {
+      icon = "",
+      color = "#81e043",
+      name = "Log"
+    }
+  };
+}
+-- webdevicons
+-- webdevicons
+-- webdevicons
+
+
+-- bettercomments
+require('better-comment').Setup()
+-- bettercomments
+
+-- git
+-- git
+-- git
+-- git
+require('git').setup({
+  default_mappings = true, -- NOTE: `quit_blame` and `blame_commit` are still merged to the keymaps even if `default_mappings = false`
+
+  keymaps = {
+    -- Open blame window
+    blame = "<Leader>gb",
+    -- Close blame window
+    quit_blame = "q",
+    -- Open blame commit
+    blame_commit = "<CR>",
+    -- Open file/folder in git repository
+    browse = "<Leader>go",
+    -- Open pull request of the current branch
+    open_pull_request = "<Leader>gp",
+    -- Create a pull request with the target branch is set in the `target_branch` option
+    create_pull_request = "<Leader>gn",
+    -- Opens a new diff that compares against the current index
+    diff = "<Leader>GD",
+    -- Close git diff
+    diff_close = "<Leader>gD",
+    -- Revert to the specific commit
+    revert = "<Leader>gr",
+    -- Revert the current file to the specific commit
+    revert_file = "<Leader>gR",
+  },
+})
+-- git
+-- git
+-- git
+-- git
+
+-- nvimtree
+-- nvimtree
+-- nvimtree
+require("nvim-tree").setup({
+  sort_by = "case_sensitive",
+  renderer = {
+    group_empty = true,
+  },
+  filters = {
+    dotfiles = true,
+  },
+})
+-- nvimtree
+-- nvimtree
+-- nvimtree
+
 
 
 -- The line beneath this is called `modeline`. See `:help modeline`

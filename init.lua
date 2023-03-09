@@ -1,11 +1,10 @@
 --[[
-
 *=====================================================================
 *==================== READ THIS BEFORE CONTINUING ====================
 *=====================================================================
 
 
-!====================================================================
+:h bufferline-stylin
 !====================         NOTE TO SELF         ==================
 !====================================================================
 -- ! break this up to separate files, its so much easier to work with.
@@ -111,7 +110,7 @@ require('lazy').setup({
   },
 
   -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim', opts = {} },
+  { 'folke/which-key.nvim',  opts = {} },
   {
     -- Adds git releated signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
@@ -133,7 +132,7 @@ require('lazy').setup({
     config = function()
       require("nvim-autopairs").setup {}
     end
-  }, -- auto pairs
+  },                     -- auto pairs
   { 'mbbill/undotree' }, -- undo tree
 
 
@@ -188,11 +187,19 @@ require('lazy').setup({
         lualine_c = { {
           'filename',
           file_status = true, -- displays file status (readonly status, modified status)
-          path = 0 -- 0 = just filename, 1 = relative path, 2 = absolute path
+          path = 0            -- 0 = just filename, 1 = relative path, 2 = absolute path
         } },
         lualine_x = {
-          { 'diagnostics', sources = { "nvim_diagnostic" }, symbols = { error = ' ', warn = ' ', info = ' ',
-            hint = ' ' } },
+          {
+            'diagnostics',
+            sources = { "nvim_diagnostic" },
+            symbols = {
+              error = ' ',
+              warn = ' ',
+              info = ' ',
+              hint = ' '
+            }
+          },
           'encoding',
           'filetype'
         },
@@ -205,7 +212,7 @@ require('lazy').setup({
         lualine_c = { {
           'filename',
           file_status = true, -- displays file status (readonly status, modified status)
-          path = 1 -- 0 = just filename, 1 = relative path, 2 = absolute path
+          path = 1            -- 0 = just filename, 1 = relative path, 2 = absolute path
         } },
         lualine_x = { 'location' },
         lualine_y = {},
@@ -228,9 +235,9 @@ require('lazy').setup({
   },
 
   -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
+  { 'numToStr/Comment.nvim',         opts = {} },
   -- terminal!
-  { 'akinsho/nvim-toggleterm.lua', opts = {} },
+  { 'akinsho/nvim-toggleterm.lua',   opts = {} },
 
   -- Fuzzy Finder (files, lsp, etc)
   { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
@@ -259,18 +266,19 @@ require('lazy').setup({
     end,
   },
   { 'nvim-tree/nvim-web-devicons' },
-  { 'xiyaowong/nvim-transparent' }, -- makes bg transparent
-  { 'github/copilot.vim' }, -- github copilot
-  { 'akinsho/bufferline.nvim', tag = "v3.*", requires = 'nvim-tree/nvim-web-devicons' }, -- bufferline/tabs
-  { 'onsails/lspkind-nvim' }, -- vscode style ui icons in hints
-  { 'sindrets/diffview.nvim', requires = 'nvim-lua/plenary.nvim' },
+  { 'xiyaowong/nvim-transparent' },                                                                               -- makes bg transparent
+  { 'github/copilot.vim' },                                                                                       -- github copilot
+  { 'akinsho/bufferline.nvim',     tag = "v3.*",                      requires = 'nvim-tree/nvim-web-devicons' }, -- bufferline/tabs
+  { 'onsails/lspkind-nvim' },                                                                                     -- vscode style ui icons in hints
+  { 'sindrets/diffview.nvim',      requires = 'nvim-lua/plenary.nvim' },
   { 'Djancyp/better-comments.nvim' },
   { 'dinhhuy258/git.nvim' },
-  { 'nvim-tree/nvim-tree.lua',
+  {
+    'nvim-tree/nvim-tree.lua',
     requires = {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
-    tag = 'nightly' -- optional, updated every week. (see issue #1193)i},
+    tag = 'nightly'                  -- optional, updated every week. (see issue #1193)i},
   }
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -367,8 +375,8 @@ require('telescope').setup {
   defaults = {
     mappings = {
       i = {
-        ['<C-u>'] = false,
-        ['<C-d>'] = false,
+            ['<C-u>'] = false,
+            ['<C-d>'] = false,
       },
     },
   },
@@ -407,6 +415,16 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 -- git status
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git);
 
+-- new tab
+-- open new buffer in bufferline
+vim.keymap.set("n", "<leader>nt", vim.cmd.BufferLinePick)
+vim.keymap.set('n', "JK",
+  function()
+    vim.cmd('BufferLinePick')
+    vim.cmd('tabnew')
+  end,
+  { desc = 'Edit file in new tab' })
+
 
 -- [[ Configure Treesitter ]]
 -- See `:help nvim-treesitter`
@@ -441,41 +459,41 @@ require('nvim-treesitter.configs').setup {
       lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
-        ['aa'] = '@parameter.outer',
-        ['ia'] = '@parameter.inner',
-        ['af'] = '@function.outer',
-        ['if'] = '@function.inner',
-        ['ac'] = '@class.outer',
-        ['ic'] = '@class.inner',
+            ['aa'] = '@parameter.outer',
+            ['ia'] = '@parameter.inner',
+            ['af'] = '@function.outer',
+            ['if'] = '@function.inner',
+            ['ac'] = '@class.outer',
+            ['ic'] = '@class.inner',
       },
     },
     move = {
       enable = true,
       set_jumps = true, -- whether to set jumps in the jumplist
       goto_next_start = {
-        [']m'] = '@function.outer',
-        [']]'] = '@class.outer',
+            [']m'] = '@function.outer',
+            [']]'] = '@class.outer',
       },
       goto_next_end = {
-        [']M'] = '@function.outer',
-        [']['] = '@class.outer',
+            [']M'] = '@function.outer',
+            [']['] = '@class.outer',
       },
       goto_previous_start = {
-        ['[m'] = '@function.outer',
-        ['[['] = '@class.outer',
+            ['[m'] = '@function.outer',
+            ['[['] = '@class.outer',
       },
       goto_previous_end = {
-        ['[M'] = '@function.outer',
-        ['[]'] = '@class.outer',
+            ['[M'] = '@function.outer',
+            ['[]'] = '@class.outer',
       },
     },
     swap = {
       enable = true,
       swap_next = {
-        ['<leader>a'] = '@parameter.inner',
+            ['<leader>a'] = '@parameter.inner',
       },
       swap_previous = {
-        ['<leader>A'] = '@parameter.inner',
+            ['<leader>A'] = '@parameter.inner',
       },
     },
   },
@@ -611,10 +629,10 @@ cmp.setup {
     end,
   },
   mapping = cmp.mapping.preset.insert {
-    ['<C-d>'] = cmp.mapping.scroll_docs(-4),
-    ['<C-f>'] = cmp.mapping.scroll_docs(4),
-    ['<C-Space>'] = cmp.mapping.complete {},
-    ['<CR>'] = cmp.mapping.confirm {
+        ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-f>'] = cmp.mapping.scroll_docs(4),
+        ['<C-Space>'] = cmp.mapping.complete {},
+        ['<CR>'] = cmp.mapping.confirm {
       behavior = cmp.ConfirmBehavior.Replace,
       select = true,
     },
@@ -922,19 +940,19 @@ cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = 
 -- transparent
 -- transparent
 require("transparent").setup({
-  enable = true, -- boolean: enable transparent
+  enable = true,   -- boolean: enable transparent
   extra_groups = { -- table/string: additional groups that should be cleared
     -- In particular, when you set it to 'all', that means all available groups
 
     -- example of akinsho/nvim-bufferline.lua
-    "BufferLineTabClose",
-    "BufferlineBufferSelected",
+    --"BufferLineTabClose",
+    --"BufferlineBufferSelected",
     "BufferLineFill",
     "BufferLineBackground",
-    "BufferLineSeparator",
-    "BufferLineIndicatorSelected",
+    --"BufferLineSeparator",
+    --"BufferLineIndicatorSelected",
   },
-  exclude = {}, -- table: groups you don't want to clear
+  exclude = {},               -- table: groups you don't want to clear
   ignore_linked_group = true, -- boolean: don't clear a group that links to another group
 })
 -- transparent
@@ -950,31 +968,19 @@ require("transparent").setup({
 require('bufferline').setup({
   options = {
     mode = "tabs",
-    separator_style = 'slant',
-    always_show_bufferline = false,
-    show_buffer_close_icons = false,
-    show_close_icon = false,
-    color_icons = true
-  },
-  highlights = {
-    separator = {
-      fg = '#073642',
-      bg = '#002b36',
+    separator_style = 'slope',
+    always_show_bufferline = true,
+    show_buffer_close_icons = true,
+    show_close_icon = true,
+    color_icons = true,
+    offsets = {
+      {
+        filetype = "NvimTree",
+        text = "File Explorer",
+        text_align = "center",
+        separator = true
+      }
     },
-    separator_selected = {
-      fg = '#073642',
-    },
-    background = {
-      fg = '#657b83',
-      bg = '#002b36'
-    },
-    buffer_selected = {
-      fg = '#fdf6e3',
-      bold = true,
-    },
-    fill = {
-      bg = '#073642'
-    }
   },
 })
 
@@ -997,14 +1003,12 @@ require('lspkind').init({
   --
   -- default: true
   mode = 'symbol',
-
   -- default symbol map
   -- can be either 'default' (requires nerd-fonts font) or
   -- 'codicons' for codicon preset (requires vscode-codicons font)
   --
   -- default: 'default'
   preset = 'codicons',
-
   -- override preset symbols
   --
   -- default: {}
@@ -1057,36 +1061,36 @@ require 'nvim-web-devicons'.setup {
       cterm_color = "65",
       name = "Zsh"
     }
-  };
+  },
   -- globally enable different highlight colors per icon (default to true)
   -- if set to false all icons will have the default icon's color
-  color_icons = true;
+  color_icons = true,
   -- globally enable default icons (default to false)
   -- will get overriden by `get_icons` option
-  default = true;
+  default = true,
   -- globally enable "strict" selection of icons - icon will be looked up in
   -- different tables, first by filename, and if not found by extension; this
   -- prevents cases when file doesn't have any extension but still gets some icon
   -- because its name happened to match some extension (default to false)
-  strict = true;
+  strict = true,
   -- same as `override` but specifically for overrides by filename
   -- takes effect when `strict` is true
   override_by_filename = {
-    [".gitignore"] = {
+        [".gitignore"] = {
       icon = "",
       color = "#f1502f",
       name = "Gitignore"
     }
-  };
+  },
   -- same as `override` but specifically for overrides by extension
   -- takes effect when `strict` is true
   override_by_extension = {
-    ["log"] = {
+        ["log"] = {
       icon = "",
       color = "#81e043",
       name = "Log"
     }
-  };
+  },
 }
 -- webdevicons
 -- webdevicons
@@ -1145,8 +1149,8 @@ require("nvim-tree").setup({
   },
 })
 vim.keymap.set('n', '<leader>j', ':NvimTreeToggle<CR>', {
-    noremap = true
-  })
+  noremap = true
+})
 -- nvimtree
 -- nvimtree
 -- nvimtree

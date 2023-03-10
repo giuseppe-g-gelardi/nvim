@@ -3,12 +3,6 @@
 *==================== READ THIS BEFORE CONTINUING ====================
 *=====================================================================
 
-
-:h bufferline-stylin
-!====================         NOTE TO SELF         ==================
-!====================================================================
--- ! break this up to separate files, its so much easier to work with.
-
 Kickstart.nvim is *not* a distribution.
 
 Kickstart.nvim is a template for your own configuration.
@@ -48,7 +42,7 @@ vim.g.maplocalleader = ' '
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
 vim.opt.relativenumber = true
 vim.keymap.set('n', '<leader>w', '<cmd>set wrap!<cr>')
-
+vim.keymap.set('t', 'jk', [[<C-\><C-n>]])
 
 -- Install package manager
 --    https://github.com/folke/lazy.nvim
@@ -135,30 +129,16 @@ require('lazy').setup({
   },                     -- auto pairs
   { 'mbbill/undotree' }, -- undo tree
 
-
-  -- Material Theme
-  --   { -- Theme inspired by Atom
-  --   'marko-cerovac/material.nvim',
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd.colorscheme 'material'
-  --   end,
-  -- },
-
-  -- Lualine Material Theme
-  --   { -- Set lualine as statusline
-  --   'nvim-lualine/lualine.nvim',
-  --   -- See `:help lualine.txt`
-  --   opts = {
-  --     options = {
-  --       icons_enabled = false,
-  --       theme = 'material',
-  --       component_separators = '|',
-  --       section_separators = '',
-  --     },
-  --   },
-  -- },
-
+  --[[
+  Material Theme
+    { -- Theme inspired by Atom
+      marko-cerovac/material.nvim',
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'material'
+    end,
+  },
+--]]
 
   {
     -- Theme inspired by Atom
@@ -177,6 +157,7 @@ require('lazy').setup({
       options = {
         icons_enabled = true,
         theme = 'onedark',
+        -- theme = 'material'
         section_separators = { left = '', right = '' },
         component_separators = { left = '', right = '' },
         disabled_filetypes = {}
@@ -271,7 +252,6 @@ require('lazy').setup({
   { 'akinsho/bufferline.nvim',     tag = "v3.*",                      requires = 'nvim-tree/nvim-web-devicons' }, -- bufferline/tabs
   { 'onsails/lspkind-nvim' },                                                                                     -- vscode style ui icons in hints
   { 'sindrets/diffview.nvim',      requires = 'nvim-lua/plenary.nvim' },
-  { 'Djancyp/better-comments.nvim' },
   { 'dinhhuy258/git.nvim' },
   {
     'nvim-tree/nvim-tree.lua',
@@ -703,6 +683,11 @@ require('toggleterm').setup {
   },
 }
 
+local options = { noremap = true }
+vim.keymap.set("i", "jj", "<Esc>", options)
+vim.keymap.set("i", "jk", "<Esc>", options)
+vim.keymap.set("i", "kj", "<Esc>", options)
+
 function _G.set_terminal_keymaps()
   local opts = { noremap = true }
   -- vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
@@ -1097,9 +1082,6 @@ require 'nvim-web-devicons'.setup {
 -- webdevicons
 
 
--- bettercomments
-require('better-comment').Setup()
--- bettercomments
 
 -- git
 -- git

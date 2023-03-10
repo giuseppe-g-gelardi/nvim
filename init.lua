@@ -136,28 +136,14 @@ require('lazy').setup({
   { 'mbbill/undotree' }, -- undo tree
 
   --[[
-   Material Theme
-     { -- Theme inspired by Atom
-     'marko-cerovac/material.nvim',
-     priority = 1000,
-     config = function()
-       vim.cmd.colorscheme 'material'
-     end,
-   },
-
-   Lualine Material Theme
-     { -- Set lualine as statusline
-     'nvim-lualine/lualine.nvim',
-     -- See `:help lualine.txt`
-     opts = {
-       options = {
-         icons_enabled = false,
-         theme = 'material',
-        component_separators = '|',
-        section_separators = '',
-       },
-     },
-   },
+  Material Theme
+    { -- Theme inspired by Atom
+      marko-cerovac/material.nvim',
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'material'
+    end,
+  },
 --]]
 
   {

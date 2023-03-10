@@ -685,6 +685,8 @@ require('toggleterm').setup {
 
 local options = { noremap = true }
 vim.keymap.set("i", "jj", "<Esc>", options)
+vim.keymap.set("i", "jk", "<Esc>", options)
+vim.keymap.set("i", "kj", "<Esc>", options)
 
 function _G.set_terminal_keymaps()
   local opts = { noremap = true }

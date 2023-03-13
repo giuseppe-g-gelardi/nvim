@@ -2,12 +2,9 @@
 -- See `:help telescope` and `:help telescope.setup()`
 require('telescope').setup {
   defaults = {
-    mappings = {
-      i = {
-            ['<C-u>'] = false,
-            ['<C-d>'] = false,
-      },
-    },
+    file_ignore_patterns = {
+      "node_modules"
+    }
   },
   extensions = {
     file_browser = {
@@ -19,12 +16,13 @@ require('telescope').setup {
 
 
 
-
+-- maybe i should uncomment this?
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
 -- opens the telescope file browser
-vim.keymap.set('n', '<leader>pb', require('telescope').extensions.file_browser.file_browser, { desc = '[F]ile [B]rowser' })
+vim.keymap.set('n', '<leader>pb', require('telescope').extensions.file_browser.file_browser,
+  { desc = '[F]ile [B]rowser' })
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })
@@ -46,4 +44,3 @@ vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })
-

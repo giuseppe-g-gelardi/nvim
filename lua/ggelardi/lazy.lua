@@ -19,6 +19,8 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require('lazy').setup({
+  'nvim-neo-tree/neo-tree.nvim', -- neo tree
+  'MunifTanjim/nui.nvim', -- neovim ui i think.... w/ neotree
   'tpope/vim-fugitive', -- Git related plugins
   'tpope/vim-rhubarb',
   'tpope/vim-sleuth',   -- Detect tabstop and shiftwidth automatically
@@ -94,13 +96,6 @@ require('lazy').setup({
     config = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
-  },
-  {
-    'nvim-tree/nvim-tree.lua',
-    requires = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    },
-    tag = 'nightly'                  -- optional, updated every week. (see issue #1193)i},
   },
   {
     'navarasu/onedark.nvim', -- Theme inspired by Atom

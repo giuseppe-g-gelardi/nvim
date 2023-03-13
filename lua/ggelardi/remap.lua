@@ -38,7 +38,13 @@ vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 -- git status
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git);
 
+-- toggle neo-tree
+local opts = { noremap = true, silent = true }
+local keymap = vim.api.nvim_set_keymap
+keymap('n', '<leader>j', ':Neotree toggle<CR>', opts)
 
+-- just in case i switch back to nvim-tree
+-- vim.keymap.set('n', '<leader>j', ':NvimTreeToggle<CR>', { noremap = true })
 
 
 -- Diagnostic keymaps

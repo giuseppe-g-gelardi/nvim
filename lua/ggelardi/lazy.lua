@@ -30,8 +30,8 @@ require('lazy').setup({
   'glepnir/lspsaga.nvim',
   'ThePrimeagen/harpoon', -- harpoon so lit
   'nvim-lua/plenary.nvim',
-  -- NOTE: This is where your plugins related to LSP can be installed.
-  --  The configuration is done below. Search for lspconfig to find it below.
+  'norcalli/nvim-colorizer.lua',
+  'jose-elias-alvarez/null-ls.nvim', -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
   {
     -- LSP Configuration & Plugins
     'neovim/nvim-lspconfig',
@@ -66,29 +66,7 @@ require('lazy').setup({
     end
   },                     -- auto pairs
   { 'mbbill/undotree' }, -- undo tree
-
-  --[[
-  Material Theme
-    { -- Theme inspired by Atom
-      marko-cerovac/material.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'material'
-    end,
-  },
---]]
-
-  {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'onedark'
-    end,
-  },
-
   { 'nvim-lualine/lualine.nvim' }, -- Set lualine as statusline
-
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
@@ -99,14 +77,9 @@ require('lazy').setup({
       show_trailing_blankline_indent = false,
     },
   },
-
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim',         opts = {} },
-  -- terminal!
-  { 'akinsho/nvim-toggleterm.lua',   opts = {} },
-
-  -- Fuzzy Finder (files, lsp, etc)
-  { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
+  { 'numToStr/Comment.nvim',         opts = {} }, -- "gc" to comment visual regions/lines
+  { 'akinsho/nvim-toggleterm.lua',   opts = {} }, --terminal!
+  { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } }, -- Fuzzy Finder (files, lsp, etc)
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -139,5 +112,30 @@ require('lazy').setup({
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
     tag = 'nightly'                  -- optional, updated every week. (see issue #1193)i},
-  }
+  },
+  {
+    -- Theme inspired by Atom
+    'navarasu/onedark.nvim',
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'onedark'
+    end,
+  },
 }, {})
+
+
+
+
+
+
+
+  --[[
+  Material Theme
+    { -- Theme inspired by Atom
+      marko-cerovac/material.nvim',
+    priority = 1000,
+    config = function()
+      vim.cmd.colorscheme 'material'
+    end,
+  },
+--]]

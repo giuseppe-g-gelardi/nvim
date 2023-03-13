@@ -22,7 +22,7 @@ require('lazy').setup({
   'tpope/vim-fugitive', -- Git related plugins
   'tpope/vim-rhubarb',
   'tpope/vim-sleuth',   -- Detect tabstop and shiftwidth automatically
-  'nvim-tree/nvim-web-devicons',
+  'nvim-tree/nvim-web-devicons', -- file icons
   'xiyaowong/nvim-transparent',                                                                               -- makes bg transparent
   'github/copilot.vim',                                                                                       -- github copilot
   'onsails/lspkind-nvim',                                                                                     -- vscode style ui icons in hints
@@ -31,42 +31,36 @@ require('lazy').setup({
   'ThePrimeagen/harpoon', -- harpoon so lit
   'nvim-lua/plenary.nvim',
   'norcalli/nvim-colorizer.lua',
+  'hrsh7th/cmp-buffer',
+  'mbbill/undotree', -- undo tree
+  'nvim-lualine/lualine.nvim', -- Set lualine as statusline
+  'folke/neodev.nvim',-- Additional lua configuration, makes nvim stuff amazing!
+  'nvim-telescope/telescope-file-browser.nvim',
   'jose-elias-alvarez/null-ls.nvim', -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+  'j-hui/fidget.nvim',-- Useful status updates for LSP
+  'folke/which-key.nvim',-- Useful plugin to show you pending keybinds.
+  'windwp/nvim-ts-autotag',-- autotag for html/tsx
+  'lewis6991/gitsigns.nvim', -- Adds git releated signs to the gutter, as well as utilities for managing changes
+  'akinsho/nvim-toggleterm.lua', --terminal!
+  'nvim-telescope/telescope.nvim', -- Fuzzy Finder (files, lsp, etc)
+  'akinsho/bufferline.nvim',  -- bufferline/tabs
+  -- { 'sindrets/diffview.nvim',     requires = 'nvim-lua/plenary.nvim' },
   {
-    -- LSP Configuration & Plugins
-    'neovim/nvim-lspconfig',
-    dependencies = {
-      -- Automatically install LSPs to stdpath for neovim
-      'williamboman/mason.nvim',
-      'williamboman/mason-lspconfig.nvim',
-
-      -- Useful status updates for LSP
-      -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
-      { 'j-hui/fidget.nvim', opts = {} },
-
-      -- Additional lua configuration, makes nvim stuff amazing!
-      'folke/neodev.nvim',
+    'neovim/nvim-lspconfig', -- LSP Configuration & Plugins
+    dependencies = { -- Automatically install LSPs to stdpath for neovim
+      'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
     },
   },
   {
-    -- Autocompletion
-    'hrsh7th/nvim-cmp',
+    'hrsh7th/nvim-cmp', -- Autocompletion
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
   },
-
-  -- Useful plugin to show you pending keybinds.
-  { 'folke/which-key.nvim',  opts = {} },
-  'lewis6991/gitsigns.nvim', -- Adds git releated signs to the gutter, as well as utilities for managing changes
-  -- autotag for html/jsx
-  { 'windwp/nvim-ts-autotag' },
   {
     "windwp/nvim-autopairs",
     config = function()
       require("nvim-autopairs").setup {}
     end
   },                     -- auto pairs
-  { 'mbbill/undotree' }, -- undo tree
-  { 'nvim-lualine/lualine.nvim' }, -- Set lualine as statusline
   {
     -- Add indentation guides even on blank lines
     'lukas-reineke/indent-blankline.nvim',
@@ -77,9 +71,9 @@ require('lazy').setup({
       show_trailing_blankline_indent = false,
     },
   },
-  { 'numToStr/Comment.nvim',         opts = {} }, -- "gc" to comment visual regions/lines
-  { 'akinsho/nvim-toggleterm.lua',   opts = {} }, --terminal!
-  { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } }, -- Fuzzy Finder (files, lsp, etc)
+  { 'numToStr/Comment.nvim',
+    requires = { 'JoosepAlviste/nvim-ts-context-commentstring' }
+  }, -- "gc" to comment visual regions/lines
 
   -- Fuzzy Finder Algorithm which requires local dependencies to be built.
   -- Only load if `make` is available. Make sure you have the system
@@ -95,17 +89,12 @@ require('lazy').setup({
   },
 
   {
-    -- Highlight, edit, and navigate code
-    'nvim-treesitter/nvim-treesitter',
-    dependencies = {
-      'nvim-treesitter/nvim-treesitter-textobjects',
-    },
+    'nvim-treesitter/nvim-treesitter', -- Highlight, edit, and navigate code
+    dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects', },
     config = function()
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   },
-  { 'akinsho/bufferline.nvim',    tag = "v3.*",                      requires = 'nvim-tree/nvim-web-devicons' },  -- bufferline/tabs
-  { 'sindrets/diffview.nvim',     requires = 'nvim-lua/plenary.nvim' },
   {
     'nvim-tree/nvim-tree.lua',
     requires = {
@@ -114,15 +103,13 @@ require('lazy').setup({
     tag = 'nightly'                  -- optional, updated every week. (see issue #1193)i},
   },
   {
-    -- Theme inspired by Atom
-    'navarasu/onedark.nvim',
+    'navarasu/onedark.nvim', -- Theme inspired by Atom
     priority = 1000,
     config = function()
       vim.cmd.colorscheme 'onedark'
     end,
   },
-}, {})
-
+},{})
 
 
 
@@ -139,3 +126,15 @@ require('lazy').setup({
     end,
   },
 --]]
+
+-- [[
+
+  -- {
+    --   'navarasu/onedark.nvim', -- Theme inspired by Atom
+    --   priority = 1000,
+    --   config = function()
+    --     vim.cmd.colorscheme 'onedark'
+    --   end,
+    -- },
+    --]]
+    

@@ -9,6 +9,12 @@ require('telescope').setup {
       },
     },
   },
+  extensions = {
+    file_browser = {
+      theme = "dropdown",
+      hijack_netrw = true, -- hijack netrw to use telescope file_browser instead
+    }
+  }
 }
 
 
@@ -16,6 +22,9 @@ require('telescope').setup {
 
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
+
+-- opens the telescope file browser
+vim.keymap.set('n', '<leader>pb', require('telescope').extensions.file_browser.file_browser, { desc = '[F]ile [B]rowser' })
 
 -- See `:help telescope.builtin`
 vim.keymap.set('n', '<leader>?', require('telescope.builtin').oldfiles, { desc = '[?] Find recently opened files' })

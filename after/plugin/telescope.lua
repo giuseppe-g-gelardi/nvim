@@ -9,7 +9,7 @@ require('telescope').setup {
   extensions = {
     file_browser = {
       theme = "dropdown",
-      hijack_netrw = true, -- hijack netrw to use telescope file_browser instead
+      hijack_netrw = false, -- hijack netrw to use telescope file_browser instead
     }
   }
 }

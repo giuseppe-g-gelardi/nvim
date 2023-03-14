@@ -1,11 +1,11 @@
 -- [[ Important! ]]
 
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
-vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)
-vim.opt.relativenumber = true
-vim.keymap.set('n', '<leader>w', '<cmd>set wrap!<cr>')
-vim.keymap.set('t', 'jk', [[<C-\><C-n>]])
+vim.g.mapleader = ' ' -- set leader key to space
+vim.g.maplocalleader = ' '  -- set local leader key to space
+vim.opt.relativenumber = true -- show relative line numbers
+vim.keymap.set('n', '<leader>pv', vim.cmd.Ex) -- show directory tree
+vim.keymap.set('n', '<leader>w', '<cmd>set wrap!<cr>') -- toggle line wrapping
+vim.keymap.set('t', 'jk', [[<C-\><C-n>]]) -- escape terminal mode
 
 -- [[ Basic Keymaps ]]
 
@@ -30,26 +30,26 @@ vim.keymap.set('n', "JK",
 
 
 -- undo tree
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle) -- toggle undo tree
 
 -- format
-vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.format) -- format document
 
 -- git status
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git);
+vim.keymap.set("n", "<leader>gs", vim.cmd.Git); -- git status
 
--- toggle neo-tree
-local opts = { noremap = true, silent = true }
-local keymap = vim.api.nvim_set_keymap
-keymap('n', '<leader>j', ':Neotree toggle<CR>', opts)
 
--- just in case i switch back to nvim-tree
--- vim.keymap.set('n', '<leader>j', ':NvimTreeToggle<CR>', { noremap = true })
+-- local keymap = vim.api.nvim_set_keymap
+vim.keymap.set('n', '<leader>j', ':Neotree toggle<CR>', { noremap = true, silent = true }) -- toggle neo-tree
 
 
 -- Diagnostic keymaps
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float)
+vim.keymap.set("","<Leader>l",require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
+-- ! other diagnostic keymaps to try
+-- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+-- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+-- vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+-- vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
+
+
+

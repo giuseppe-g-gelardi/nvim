@@ -53,6 +53,18 @@ require('lazy').setup({
       'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
     },
   },
+
+
+--testing
+{
+  "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+  config = function()
+    require("lsp_lines").setup()
+  end,
+},
+--testing
+
+
   {
     'hrsh7th/nvim-cmp', -- Autocompletion
     dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },

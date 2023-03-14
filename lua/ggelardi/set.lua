@@ -44,3 +44,8 @@ vim.o.completeopt = 'menuone,noselect'
 
 -- -- NOTE: You should make sure your terminal supports this
 -- vim.o.termguicolors = true
+
+
+
+-- Disable virtual_text since it's redundant due to lsp_lines.
+vim.diagnostic.config({ virtual_text = false })

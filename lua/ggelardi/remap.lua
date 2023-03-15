@@ -43,8 +43,7 @@ vim.keymap.set("n", "<leader>gs", vim.cmd.Git); -- git status
 vim.keymap.set('n', '<leader>j', ':Neotree toggle<CR>', { noremap = true, silent = true }) -- toggle neo-tree
 
 
--- Diagnostic keymaps
-vim.keymap.set("","<Leader>l",require("lsp_lines").toggle, { desc = "Toggle lsp_lines" })
+
 -- ! other diagnostic keymaps to try
 -- vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
 -- vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })

@@ -1,5 +1,5 @@
 require('toggleterm').setup {
-  size = 20,
+  size = 10,
   open_mapping = [[<c-\>]],
   hide_numbers = true,
   shade_filetypes = {},
@@ -8,23 +8,35 @@ require('toggleterm').setup {
   start_in_insert = true,
   insert_mappings = true,
   persist_size = true,
-  direction = "float",
+  direction = "horizontal",
   close_on_exit = true,
   shell = vim.o.shell,
-  float_opts = {
-    border = "curved",
-    winblend = 0,
-    highlights = {
-      border = "Normal",
-      background = "Normal",
-    },
+  auto_scroll = true, -- automatically scroll to the bottom on terminal output
+  winbar = {
+    enabled = false,
+    name_formatter = function(term) --  term: Terminal
+      return term.name
+    end
   },
+  
+  
+  
+  
+  
+  -- float_opts = {
+  --   border = "curved",
+  --   winblend = 0,
+  --   highlights = {
+  --     border = "Normal",
+  --     background = "Normal",
+  --   },
+  -- },
 }
 
-local options = { noremap = true }
-vim.keymap.set("i", "jj", "<Esc>", options)
-vim.keymap.set("i", "jk", "<Esc>", options)
-vim.keymap.set("i", "kj", "<Esc>", options)
+
+vim.keymap.set("i", "jj", "<Esc>", { noremap = true })
+vim.keymap.set("i", "jk", "<Esc>", { noremap = true })
+vim.keymap.set("i", "kj", "<Esc>", { noremap = true })
 
 function _G.set_terminal_keymaps()
   local opts = { noremap = true }
@@ -42,7 +54,7 @@ local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new {
   cmd = "lazygit",
   hidden = true,
-  direction = "float",
+  direction = "float", -- "vertical" | "horizontal" | "window" | "float",
   float_opts = {
     border = "none",
     width = 100000,

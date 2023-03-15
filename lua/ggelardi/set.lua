@@ -2,7 +2,7 @@
 vim.opt.colorcolumn = "80"
 
 -- terminal gui colors!
-vim.opt.termguicolors = true
+-- vim.opt.termguicolors = true
 
 -- i think this is text wrap
 vim.opt.wrap = false

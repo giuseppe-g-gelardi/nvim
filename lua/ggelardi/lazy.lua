@@ -25,7 +25,6 @@ require('lazy').setup({
   'tpope/vim-rhubarb',                          -- Git related plugin
   'dinhhuy258/git.nvim',                        -- Git related plugin
   'sindrets/diffview.nvim',                     -- diffview
-  'fgheng/winbar.nvim',                         -- winbar
   'nvim-tree/nvim-web-devicons',                -- file icons
   'xiyaowong/nvim-transparent',                 -- makes window transparent                                                                              -- makes bg transparent
   'github/copilot.vim',                         -- needs no explanation                                                                                      -- github copilot
@@ -90,6 +89,18 @@ require('lazy').setup({
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   },
+  {
+    "utilyre/barbecue.nvim",
+    name = "barbecue",
+    version = "*",
+    dependencies = {
+      "SmiteshP/nvim-navic",
+      "nvim-tree/nvim-web-devicons", -- optional dependency
+    },
+    opts = {
+      -- configurations go here
+    },
+  }
 }, {})
 
 

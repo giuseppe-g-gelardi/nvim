@@ -1,5 +1,5 @@
-vim.opt.termguicolors = true
-vim.opt.winblend = 0
+vim.opt.termguicolors = true -- *** testing *** -- enable 24-bit rgb colorscheme
+vim.opt.winblend = 10 -- *** testing *** -- set transparency of floating windows
 vim.opt.wildoptions = 'pum'
 vim.opt.pumblend = 5
 vim.opt.background = 'dark'

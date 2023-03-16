@@ -2,7 +2,7 @@
 -- See `:help nvim-treesitter`
 require('nvim-treesitter.configs').setup {
 
-  highlight = { enable = true }, -- Highlighting for treesitter
+  highlight = { enable = true },                      -- Highlighting for treesitter
   indent = { enable = true, disable = { 'python' } }, -- Indentation for treesitter
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = {

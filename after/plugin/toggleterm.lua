@@ -1,8 +1,12 @@
+-- ! might switch to nvim-terminal
+-- this one is kinda annoying
+
+
 require('toggleterm').setup {
   size = 10,
   open_mapping = [[<c-\>]],
   hide_numbers = true,
-  shade_filetypes = {},
+  -- shade_filetypes = {},
   shade_terminals = true,
   shading_factor = 2,
   start_in_insert = true,

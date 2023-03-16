@@ -2,7 +2,6 @@
 
 vim.g.mapleader = ' ' -- set leader key to space
 vim.g.maplocalleader = ' '  -- set local leader key to space
-vim.opt.relativenumber = true -- show relative line numbers
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex) -- show directory tree
 vim.keymap.set('n', '<leader>w', '<cmd>set wrap!<cr>') -- toggle line wrapping
 vim.keymap.set('t', 'jk', [[<C-\><C-n>]]) -- escape terminal mode
@@ -28,6 +27,22 @@ vim.keymap.set('n', "JK",
   { desc = 'Edit file in new tab' })
 
 
+  -- [[ VERY USEFUL ]]
+  vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
+  -- [[ when highlighted, move selected lines up or down ]]
+  vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+  
+  vim.keymap.set("n", "<C-d>", "<C-d>zz") 
+  -- [[ keeps cursor center when half page scrolling ]]
+  vim.keymap.set("n", "<C-u>", "<C-u>zz")
+  -- [[ VERY USEFUL ]]
+
+
+-- [[ check these out when i have time
+-- vim.keymap.set({"n", "v"}, "<leader>y", [["+y]]) -- copy to system clipboard
+-- vim.keymap.set("n", "<leader>Y", [["+Y]]) -- copy to system clipboard
+-- vim.keymap.set({"n", "v"}, "<leader>d", [["_d]]) -- cut to system clipboard
+--]]
 
 -- undo tree
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle) -- toggle undo tree

@@ -80,6 +80,14 @@ nvim_lsp.tsserver.setup {
   capabilities = capabilities
 }
 
+nvim_lsp.gopls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "gopls" }, -- "serve"
+  filetypes = { "go", "gomod", "gowork", "gotmpl", "golang" },
+
+}
+
 nvim_lsp.sourcekit.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -112,7 +120,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     signs = true,
     underline = true,
-    update_in_insert = false, -- Update diagnostics insert mode
+    update_in_insert = false, -- Update diagnostics insert mode 
     severity_sort = true,
   }
 )

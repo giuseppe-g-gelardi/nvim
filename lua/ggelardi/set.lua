@@ -1,50 +1,27 @@
--- set color column
-vim.opt.colorcolumn = "80"
-
--- terminal gui colors!
--- vim.opt.termguicolors = true
-
--- i think this is text wrap
-vim.opt.wrap = false
-
--- Set highlight on search
-vim.o.hlsearch = false
-
--- Make line numbers default
-vim.wo.number = true
-
--- Enable mouse mode
-vim.o.mouse = 'a'
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
-vim.o.clipboard = 'unnamedplus'
-
--- Enable break indent
-vim.o.breakindent = true
-
--- Save undo history
-vim.o.undofile = true
-
--- Case insensitive searching UNLESS /C or capital in search
-vim.o.ignorecase = true
-vim.o.smartcase = true
-
--- Keep signcolumn on by default
-vim.wo.signcolumn = 'yes'
-
--- Decrease update time
-vim.o.updatetime = 250
-vim.o.timeout = true
-vim.o.timeoutlen = 300
-
--- Set completeopt to have a better completion experience
-vim.o.completeopt = 'menuone,noselect'
-
--- -- NOTE: You should make sure your terminal supports this
--- vim.o.termguicolors = true
-
+vim.opt.tabstop = 2                    -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
+vim.opt.softtabstop = 2                -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
+vim.opt.shiftwidth = 2                 -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
+vim.opt.expandtab = true               -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
+vim.opt.isfname:append("@-@")          -- allow @ in filenames, i think
+vim.opt.guicursor = ""                 -- fat cursor
+vim.opt.scrolloff = 8                  -- keep 8 lines above and below cursor
+vim.opt.smartindent = true             -- *** testing *** -- auto indent new lines after { } etc
+vim.opt.colorcolumn = "80"             -- set color column
+vim.opt.relativenumber = true          -- show relative line numbers
+vim.opt.wrap = false                   -- i think this is text wrap
+vim.wo.signcolumn = 'yes'              -- Keep signcolumn on by default
+vim.wo.number = true                   -- Make line numbers default
+vim.o.hlsearch = false                 -- Set highlight on search
+vim.o.mouse = 'a'                      -- Enable mouse mode
+vim.o.clipboard = 'unnamedplus'        -- Sync clipboard between OS and Neovim.
+vim.o.breakindent = true               -- Enable break indent
+vim.o.undofile = true                  -- Save undo history
+vim.o.completeopt = 'menuone,noselect' -- Set completeopt to have a better completion experience
+vim.o.updatetime = 250                 -- Decrease update time
+vim.o.timeout = true                   -- Decrease update time
+vim.o.timeoutlen = 300                 -- Decrease update time
+vim.o.ignorecase = true                -- Case insensitive searching UNLESS /C or capital in search
+vim.o.smartcase = true                 -- Case insensitive searching UNLESS /C or capital in search
 
 
 -- Disable virtual_text since it's redundant due to lsp_lines.

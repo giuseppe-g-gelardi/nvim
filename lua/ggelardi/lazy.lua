@@ -19,84 +19,70 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require('lazy').setup({
-  'nvim-neo-tree/neo-tree.nvim', -- neo tree
-  'MunifTanjim/nui.nvim',        -- neovim ui i think.... w/ neotree
-  'tpope/vim-fugitive',          -- Git related plugins
-  'tpope/vim-rhubarb',
-  'sindrets/diffview.nvim',      -- diffview
-  'fgheng/winbar.nvim',          -- winbar
-  'tpope/vim-sleuth',            -- Detect tabstop and shiftwidth automatically
-  'nvim-tree/nvim-web-devicons', -- file icons
-  'xiyaowong/nvim-transparent',  -- makes window transparent                                                                              -- makes bg transparent
-  'github/copilot.vim',          -- needs no explanation                                                                                      -- github copilot
-  'onsails/lspkind-nvim',        -- vscode style ui icons in hints
-  'dinhhuy258/git.nvim',
-  'glepnir/lspsaga.nvim',
-  'ThePrimeagen/harpoon', -- harpoon so lit
-  'nvim-lua/plenary.nvim',
-  'hrsh7th/cmp-buffer',
-  'mbbill/undotree',                 -- undo tree
-  'nvim-lualine/lualine.nvim',       -- Set lualine as statusline
-  'folke/neodev.nvim',               -- Additional lua configuration, makes nvim stuff amazing!
-  'nvim-telescope/telescope-file-browser.nvim',
-  'jose-elias-alvarez/null-ls.nvim', -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
-  'j-hui/fidget.nvim',               -- Useful status updates for LSP
-  'folke/which-key.nvim',            -- Useful plugin to show you pending keybinds.
-  'windwp/nvim-ts-autotag',          -- autotag for html/tsx
-  'lewis6991/gitsigns.nvim',         -- Adds git releated signs to the gutter, as well as utilities for managing changes
-  'akinsho/nvim-toggleterm.lua',     --terminal!
-  'nvim-telescope/telescope.nvim',   -- Fuzzy Finder (files, lsp, etc)
-  'akinsho/bufferline.nvim',         -- bufferline/tabs
+  'nvim-neo-tree/neo-tree.nvim',                -- neo tree
+  'MunifTanjim/nui.nvim',                       -- UI component library for nvim
+  'tpope/vim-fugitive',                         -- Git related plugin
+  'tpope/vim-rhubarb',                          -- Git related plugin
+  'dinhhuy258/git.nvim',                        -- Git related plugin
+  'sindrets/diffview.nvim',                     -- diffview
+  'fgheng/winbar.nvim',                         -- winbar
+  'nvim-tree/nvim-web-devicons',                -- file icons
+  'xiyaowong/nvim-transparent',                 -- makes window transparent                                                                              -- makes bg transparent
+  'github/copilot.vim',                         -- needs no explanation                                                                                      -- github copilot
+  'onsails/lspkind-nvim',                       -- vscode style ui icons in hints
+  'glepnir/lspsaga.nvim',                       -- ui for nvim built in lsp
+  'ThePrimeagen/harpoon',                       -- harpoon so lit
+  'nvim-lua/plenary.nvim',                      -- needed for other things, they say its "All the lua functions I don't want to write twice."
+  'hrsh7th/cmp-buffer',                         -- nvim-cmp source for buffer words
+  'mbbill/undotree',                            -- undo tree
+  'nvim-lualine/lualine.nvim',                  -- Set lualine as statusline
+  'folke/neodev.nvim',                          -- Additional lua configuration, makes nvim stuff amazing!
+  'nvim-telescope/telescope.nvim',              -- Fuzzy Finder (files, lsp, etc)
+  'nvim-telescope/telescope-file-browser.nvim', -- file browser w/ telescope UI and fuzzy finder
+  'jose-elias-alvarez/null-ls.nvim',            -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+  'j-hui/fidget.nvim',                          -- Useful status updates for LSP
+  'folke/which-key.nvim',                       -- Useful plugin to show you pending keybinds.
+  'windwp/nvim-ts-autotag',                     -- autotag for html/tsx
+  'lewis6991/gitsigns.nvim',                    -- Adds git releated signs to the gutter, as well as utilities for managing changes
+  'akinsho/nvim-toggleterm.lua',                -- terminal!
+  'akinsho/bufferline.nvim',                    -- bufferline/tabs
+  'hrsh7th/nvim-cmp',                           -- code completion
+  'hrsh7th/cmp-nvim-lsp',                       -- lsp for nvim-cmp
+  'L3MON4D3/LuaSnip',                           -- snippets that crash sometimes
+  'saadparwaiz1/cmp_luasnip',                   -- snippets for nvim-cmp
+  { 'rose-pine/neovim', name = 'rose-pine' },   -- easy on the eyes
   {
-    'neovim/nvim-lspconfig', -- LSP Configuration & Plugins
-    dependencies = {         -- Automatically install LSPs to stdpath for neovim
+    'neovim/nvim-lspconfig',                    -- LSP Configuration & Plugins
+    dependencies = {                            -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
     },
   },
   {
+    -- https://git.sr.ht/~whynothugo/lsp_lines.nvim
+    -- "ErichDonGubler/lsp_lines.nvim"
+    -- just incase one doesnt work, the other usually does.. depends on the machine
     "https://git.sr.ht/~whynothugo/lsp_lines.nvim", -- diagnostic lines that dont extend off screen
     config = function()
       require("lsp_lines").setup()
     end,
   },
   {
-    'hrsh7th/nvim-cmp', -- Autocompletion
-    dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-  },
-  {
-    "windwp/nvim-autopairs",
+    "windwp/nvim-autopairs", -- auto pairs brackets, ect
     config = function()
       require("nvim-autopairs").setup {}
     end
-  }, -- auto pairs
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    -- Enable `lukas-reineke/indent-blankline.nvim`
-    -- See `:help indent_blankline.txt`
-    opts = {
-      char = '┊',
-      show_trailing_blankline_indent = false,
-    },
   },
   {
-    'numToStr/Comment.nvim',
+    'numToStr/Comment.nvim',                    -- easier way to comment code
     requires = { 'JoosepAlviste/nvim-ts-context-commentstring' }
-  }, -- "gc" to comment visual regions/lines
-
-  -- Fuzzy Finder Algorithm which requires local dependencies to be built.
-  -- Only load if `make` is available. Make sure you have the system
-  -- requirements installed.
+  },                                            -- "gc" to comment visual regions/lines
   {
-    'nvim-telescope/telescope-fzf-native.nvim',
-    -- NOTE: If you are having trouble with this installation,
-    --       refer to the README for telescope-fzf-native for more instructions.
+    'nvim-telescope/telescope-fzf-native.nvim', -- im sure this does something
     build = 'make',
     cond = function()
       return vim.fn.executable 'make' == 1
     end,
   },
-
   {
     'nvim-treesitter/nvim-treesitter', -- Highlight, edit, and navigate code
     dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects', },
@@ -104,14 +90,6 @@ require('lazy').setup({
       pcall(require('nvim-treesitter.install').update { with_sync = true })
     end,
   },
-  -- {
-  --   'navarasu/onedark.nvim', -- Theme inspired by Atom
-  --   priority = 1000,
-  --   config = function()
-  --     vim.cmd.colorscheme 'onedark'
-  --   end,
-  -- },
-  { 'rose-pine/neovim', name = 'rose-pine' }
 }, {})
 
 
@@ -127,9 +105,6 @@ require('lazy').setup({
       vim.cmd.colorscheme 'material'
     end,
   },
---]]
--- [[
-
 -- {
 --   'navarasu/onedark.nvim', -- Theme inspired by Atom
 --   priority = 1000,
@@ -137,4 +112,42 @@ require('lazy').setup({
 --     vim.cmd.colorscheme 'onedark'
 --   end,
 -- },
+  -- {
+  --   "ray-x/go.nvim",
+  --   dependencies = {  -- optional packages
+  --     "ray-x/guihua.lua",
+  --     "neovim/nvim-lspconfig",
+  --     "nvim-treesitter/nvim-treesitter",
+  --   },
+  --   config = function()
+  --     require("go").setup()
+  --   end,
+  --   event = {"CmdlineEnter"},
+  --   ft = {"go", 'gomod'},
+  --   build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
+  -- }
+    --testing
+  -- {
+  --   'hrsh7th/nvim-cmp', -- Autocompletion
+  --   dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
+  -- },
+  -- {
+  --   "L3MON4D3/LuaSnip",
+  --   -- follow latest release.
+  --   version = "<CurrentMajor>.*",
+  --   -- install jsregexp (optional!).
+  --   build = "make install_jsregexp"
+  -- },
+  --testing
+    -- {
+  --   -- Add indentation guides even on blank lines
+  --   'lukas-reineke/indent-blankline.nvim', -- ! set this up??
+  --   -- Enable `lukas-reineke/indent-blankline.nvim`
+  --   -- See `:help indent_blankline.txt`
+  --   opts = {
+  --     char = '┊',
+  --     show_trailing_blankline_indent = false, -- ! do i even use this?
+  --   },
+  -- },
+  -- 'tpope/vim-sleuth',                           -- Detect tabstop and shiftwidth automatically
 --]]

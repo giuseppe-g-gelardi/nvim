@@ -3,12 +3,12 @@
 vim.g.mapleader = ' ' -- set leader key to space
 vim.g.maplocalleader = ' '  -- set local leader key to space
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex) -- show directory tree
-vim.keymap.set('n', '<leader>w', '<cmd>set wrap!<cr>') -- toggle line wrapping
+vim.keymap.set('i', 'jk', '<Esc>', { noremap = true }) -- escape insert mode
+vim.keymap.set('i', 'kj', '<Esc>', { noremap = true }) -- escape insert mode
 vim.keymap.set('t', 'jk', [[<C-\><C-n>]]) -- escape terminal mode
+vim.keymap.set('n', '<leader>w', '<cmd>set wrap!<cr>') -- toggle line wrapping
 
--- [[ Basic Keymaps ]]
-
--- Keymaps for better default experience -- See `:help vim.keymap.set()`
+-- [[ Basic Keymaps ]] -- Keymaps for better default experience -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true }) -- no idea what this does
 
 vim.keymap.set("n", "<leader>nt", vim.cmd.BufferLinePick) -- new tab

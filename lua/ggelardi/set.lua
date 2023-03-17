@@ -23,6 +23,10 @@ vim.o.timeoutlen = 300                 -- Decrease update time
 vim.o.ignorecase = true                -- Case insensitive searching UNLESS /C or capital in search
 vim.o.smartcase = true                 -- Case insensitive searching UNLESS /C or capital in search
 
+-- Set shell to powershell on windows
+local has = vim.fn.has
+local windows = has "win32"
+if windows then
+  vim.opt.shell = 'powershell.exe'
+end
 
--- Disable virtual_text since it's redundant due to lsp_lines.
--- vim.diagnostic.config({ virtual_text = false })

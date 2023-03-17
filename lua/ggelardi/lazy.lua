@@ -43,7 +43,6 @@ require('lazy').setup({
   'folke/which-key.nvim',                       -- Useful plugin to show you pending keybinds.
   'windwp/nvim-ts-autotag',                     -- autotag for html/tsx
   'lewis6991/gitsigns.nvim',                    -- Adds git releated signs to the gutter, as well as utilities for managing changes
-  'akinsho/nvim-toggleterm.lua',                -- terminal!
   'akinsho/bufferline.nvim',                    -- bufferline/tabs
   'hrsh7th/nvim-cmp',                           -- code completion
   'hrsh7th/cmp-nvim-lsp',                       -- lsp for nvim-cmp
@@ -100,7 +99,14 @@ require('lazy').setup({
     opts = {
       -- configurations go here
     },
-  }
+  },
+  {
+    's1n7ax/nvim-terminal',
+    config = function()
+      vim.o.hidden = true
+      require('nvim-terminal').setup()
+    end,
+  },
 }, {})
 
 

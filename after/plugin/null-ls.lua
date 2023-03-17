@@ -8,8 +8,9 @@ null_ls.setup({
         null_ls.builtins.formatting.stylua,
         null_ls.builtins.diagnostics.eslint,
         null_ls.builtins.completion.spell,
+        null_ls.builtins.diagnostics.pylint,
         require("null-ls").builtins.formatting.prettier.with({
-          filetypes = { 
+          filetypes = {
             "css",
             "html",
             "javascript",
@@ -22,8 +23,9 @@ null_ls.setup({
             "lua",
             "go",
             "rust",
-            "c",
-            "cpp",
+            -- "c",
+            -- "cpp",
+            "python"
           },
         }),
     },

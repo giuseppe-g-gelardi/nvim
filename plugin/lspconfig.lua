@@ -85,8 +85,15 @@ nvim_lsp.gopls.setup {
   capabilities = capabilities,
   cmd = { "gopls" }, -- "serve"
   filetypes = { "go", "gomod", "gowork", "gotmpl", "golang" },
-
 }
+
+nvim_lsp.pylsp.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "pylsp" },
+  filetypes = { "python" },
+}
+
 
 nvim_lsp.sourcekit.setup {
   on_attach = on_attach,

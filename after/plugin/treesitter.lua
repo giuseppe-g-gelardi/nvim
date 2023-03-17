@@ -6,8 +6,8 @@ require('nvim-treesitter.configs').setup {
   indent = { enable = true, disable = { 'python' } }, -- Indentation for treesitter
   -- Add languages to be installed here that you want installed for treesitter
   ensure_installed = {
-    'c',
-    'cpp',
+    -- 'c',
+    -- 'cpp',
     'go',
     'lua',
     'python',
@@ -30,7 +30,8 @@ require('nvim-treesitter.configs').setup {
     filetypes = {
       'html', 'javascript', 'typescript',
       'javascriptreact', 'typescriptreact',
-      'tsx', 'jsx', 'markdown', 'lua'
+      'tsx', 'jsx', 'markdown', 'lua', 
+      'python', 'rust', 'go'
     }
   },
 }

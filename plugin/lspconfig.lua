@@ -128,10 +128,17 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     virtual_text = false,
     signs = true,
     underline = true,
-    update_in_insert = false, -- Update diagnostics insert mode 
+    update_in_insert = true, -- Update diagnostics insert mode
     severity_sort = true,
   }
 )
+
+-- Design
+vim.cmd 'sign define LspDiagnosticsSignError text='
+vim.cmd 'sign define LspDiagnosticsSignWarning text=ﰣ'
+vim.cmd 'sign define LspDiagnosticsSignInformation text='
+vim.cmd 'sign define LspDiagnosticsSignHint text='
+
 
 -- Diagnostic symbols in the sign column (gutter)
 local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }

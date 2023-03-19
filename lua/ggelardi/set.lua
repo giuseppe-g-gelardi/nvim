@@ -5,7 +5,7 @@ vim.opt.expandtab = true               -- default 2 spaces for tab, 4 for python
 vim.opt.isfname:append("@-@")          -- allow @ in filenames, i think
 vim.opt.guicursor = ""                 -- fat cursor
 vim.opt.scrolloff = 8                  -- keep 8 lines above and below cursor
-vim.opt.smartindent = true             -- *** testing *** -- auto indent new lines after { } etc
+vim.opt.smartindent = true             -- auto indent new lines after { } etc
 vim.opt.colorcolumn = "80"             -- set color column
 vim.opt.relativenumber = true          -- show relative line numbers
 vim.opt.wrap = false                   -- i think this is text wrap
@@ -23,10 +23,10 @@ vim.o.timeoutlen = 300                 -- Decrease update time
 vim.o.ignorecase = true                -- Case insensitive searching UNLESS /C or capital in search
 vim.o.smartcase = true                 -- Case insensitive searching UNLESS /C or capital in search
 
--- Set shell to powershell on windows
-local has = vim.fn.has
-local windows = has "win32"
-if windows then
-  vim.opt.shell = 'powershell.exe'
-end
+vim.diagnostic.config({
+  virtual_text = false,
+  underline = true
+})
+
+vim.diagnostic.open_float({ scope = 'line' })
 

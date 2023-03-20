@@ -33,6 +33,11 @@ require('lazy').setup({
   'ThePrimeagen/harpoon',                       -- harpoon so lit
   'nvim-lua/plenary.nvim',                      -- needed for other things, they say its "All the lua functions I don't want to write twice."
   'hrsh7th/cmp-buffer',                         -- nvim-cmp source for buffer words
+  'hrsh7th/nvim-cmp',                           -- code completion
+  'hrsh7th/cmp-nvim-lsp',                       -- lsp for nvim-cmp
+  'hrsh7th/cmp-cmdline',                        -- nvim-cmp source for command line words
+  'hrsh7th/cmp-path',                           -- nvim-cmp source for file path words
+  'saadparwaiz1/cmp_luasnip',                   -- snippets for nvim-cmp
   'mbbill/undotree',                            -- undo tree
   'nvim-lualine/lualine.nvim',                  -- Set lualine as statusline
   'folke/neodev.nvim',                          -- Additional lua configuration, makes nvim stuff amazing!
@@ -44,8 +49,6 @@ require('lazy').setup({
   'windwp/nvim-ts-autotag',                     -- autotag for html/tsx
   'lewis6991/gitsigns.nvim',                    -- Adds git releated signs to the gutter, as well as utilities for managing changes
   'akinsho/bufferline.nvim',                    -- bufferline/tabs
-  'hrsh7th/nvim-cmp',                           -- code completion
-  'hrsh7th/cmp-nvim-lsp',                       -- lsp for nvim-cmp
   'L3MON4D3/LuaSnip',                           -- snippets that crash sometimes
   'saadparwaiz1/cmp_luasnip',                   -- snippets for nvim-cmp
   { 'rose-pine/neovim', name = 'rose-pine' },   -- easy on the eyes

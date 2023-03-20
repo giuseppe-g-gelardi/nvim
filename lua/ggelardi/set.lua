@@ -21,12 +21,19 @@ vim.o.updatetime = 250                 -- Decrease update time
 vim.o.timeout = true                   -- Decrease update time
 vim.o.timeoutlen = 300                 -- Decrease update time
 vim.o.ignorecase = true                -- Case insensitive searching UNLESS /C or capital in search
-vim.o.smartcase = true                 -- Case insensitive searching UNLESS /C or capital in search
+vim.o.smartcase = true
 
--- Set shell to powershell on windows
-local has = vim.fn.has
-local windows = has "win32"
-if windows then
-  vim.opt.shell = 'powershell.exe'
-end
 
+
+
+vim.diagnostic.config({
+  virtual_text = false,
+  underline = true
+})
+
+vim.diagnostic.open_float({ scope = 'line' })
+
+vim.api.nvim_create_autocmd('ColorScheme', {
+  command = [[highlight DiagnosticUnderlineError gui=undercurl]],
+  desc = "undercurl errors"
+})

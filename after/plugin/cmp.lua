@@ -37,19 +37,40 @@ cmp.setup {
       end
     end, { 'i', 's' }),
   },
+  window = {
+    documentation = cmp.config.window.bordered()
+  },
   sources = {
+    { name = 'path' },
     { name = 'nvim_lsp' },
+    { name = 'buffer' },
     { name = 'luasnip' },
   },
   formatting = {
-    format = require('lspkind').cmp_format({
-      -- mode = 'symbol',
-      maxwidth = 50,
-      ellipsis_char = '...',
-      -- before = function(entry, vim_item)
-      --   vim_item = formatForTailwindCSS(entry, vim_item)
-      --   return vim_item
-      -- end
-    })
+    fields = { 'menu', 'abbr', 'kind' },
+    format = function(entry, item)
+      local menu_icon = {
+        nvim_lsp = 'λ',
+        path = '🖫',
+        luasnip = '⋗',
+        buffer = 'Ω',
+      }
+      item.menu = menu_icon[entry.source.name]
+      return item
+    end,
   }
 }
+
+
+
+
+
+-- format = require('lspkind').cmp_format({
+--   maxwidth = 50,
+--   ellipsis_char = '...',
+-- mode = 'symbol',
+-- before = function(entry, vim_item)
+--   vim_item = formatForTailwindCSS(entry, vim_item)
+--   return vim_item
+-- end
+-- })

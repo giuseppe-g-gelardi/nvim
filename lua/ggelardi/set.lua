@@ -30,3 +30,7 @@ vim.diagnostic.config({
 
 vim.diagnostic.open_float({ scope = 'line' })
 
+vim.api.nvim_create_autocmd('ColorScheme', { -- this only works on mac right now
+  command = [[highlight DiagnosticUnderlineError gui=undercurl]],
+  desc = "undercurl errors"
+})

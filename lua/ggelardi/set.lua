@@ -34,3 +34,7 @@ vim.api.nvim_create_autocmd('ColorScheme', { -- this only works on mac right now
   command = [[highlight DiagnosticUnderlineError gui=undercurl]],
   desc = "undercurl errors"
 })
+
+-- Undercurl
+vim.cmd([[let &t_Cs = "\e[4:3m"]])
+vim.cmd([[let &t_Ce = "\e[4:0m"]])

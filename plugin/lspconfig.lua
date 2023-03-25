@@ -94,6 +94,13 @@ nvim_lsp.pylsp.setup {
   filetypes = { "python" },
 }
 
+nvim_lsp.rust_analyzer.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = {
+    "rustup", "run", "stable", "rust-analyzer",
+  }
+}
 
 nvim_lsp.sourcekit.setup {
   on_attach = on_attach,
@@ -128,7 +135,7 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
     virtual_text = false,
     signs = true,
     underline = true,
-    update_in_insert = false, -- Update diagnostics insert mode 
+    update_in_insert = false, -- Update diagnostics insert mode
     severity_sort = true,
   }
 )
@@ -139,3 +146,39 @@ for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+
+local rt = require('rust-tools')
+rt.setup({
+  server = {
+    on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      vim.keymap.set('n', 'K', function()
+        _G.X.help_float = 1
+        rt.hover_actions.hover_actions()
+      end, { buffer = bufnr })
+      vim.keymap.set('n', 'ga', rt.code_action_group.code_action_group, { buffer = bufnr })
+
+      vim.api.nvim_create_autocmd('BufWritePre', {
+        buffer = bufnr,
+        callback = function()
+          vim.lsp.buf.format({ name = 'rust_analyzer' })
+        end,
+        desc = 'Auto format on save for rust codes',
+      })
+    end,
+    handlers = {
+          ['textDocument/publishDiagnostics'] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = {
+          prefix = '',
+          spacing = 0,
+          format = function(diag)
+            if diag.severity == vim.diagnostic.severity.ERROR then
+              return diag.message
+            end
+            return ''
+          end,
+        },
+      }),
+    },
+  },
+})

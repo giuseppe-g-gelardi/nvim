@@ -19,6 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require('lazy').setup({
+  'simrat39/rust-tools.nvim',                   --*** testing
   'nvim-neo-tree/neo-tree.nvim',                -- neo tree
   'MunifTanjim/nui.nvim',                       -- UI component library for nvim
   'tpope/vim-fugitive',                         -- Git related plugin

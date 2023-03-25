@@ -30,7 +30,7 @@ require('nvim-treesitter.configs').setup {
     filetypes = {
       'html', 'javascript', 'typescript',
       'javascriptreact', 'typescriptreact',
-      'tsx', 'jsx', 'markdown', 'lua', 
+      'tsx', 'jsx', 'markdown', 'lua',
       'python', 'rust', 'go'
     }
   },

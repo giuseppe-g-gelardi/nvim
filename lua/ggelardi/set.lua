@@ -5,7 +5,7 @@ vim.opt.expandtab = true               -- default 2 spaces for tab, 4 for python
 vim.opt.isfname:append("@-@")          -- allow @ in filenames, i think
 vim.opt.guicursor = ""                 -- fat cursor
 vim.opt.scrolloff = 8                  -- keep 8 lines above and below cursor
-vim.opt.smartindent = true             -- *** testing *** -- auto indent new lines after { } etc
+vim.opt.smartindent = true             -- auto indent new lines after { } etc
 vim.opt.colorcolumn = "80"             -- set color column
 vim.opt.relativenumber = true          -- show relative line numbers
 vim.opt.wrap = false                   -- i think this is text wrap
@@ -21,15 +21,13 @@ vim.o.updatetime = 250                 -- Decrease update time
 vim.o.timeout = true                   -- Decrease update time
 vim.o.timeoutlen = 300                 -- Decrease update time
 vim.o.ignorecase = true                -- Case insensitive searching UNLESS /C or capital in search
-vim.o.smartcase = true
+vim.o.smartcase = true                 -- Smart case for searching (ignore case if all lowercase, otherwise respect case)
 
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_tab_tallback = ""
 
-
-
-vim.diagnostic.config({
-  virtual_text = false,
-  underline = true
-})
+vim.diagnostic.config({ virtual_text = false, underline = true }) -- disable virtual text and enable undercurl for diagnostics
 
 vim.diagnostic.open_float({ scope = 'line' })
 

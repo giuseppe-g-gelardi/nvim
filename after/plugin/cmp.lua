@@ -45,19 +45,40 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'buffer' },
     { name = 'luasnip' },
+    { name = 'path' },
   },
   formatting = {
-    format = require('lspkind').cmp_format({
-      -- mode = 'symbol',
-      maxwidth = 50,
-      ellipsis_char = '...',
-      -- before = function(entry, vim_item)
-      --   vim_item = formatForTailwindCSS(entry, vim_item)
-      --   return vim_item
-      -- end
-    })
+    -- show import path or library name
+    format = function(entry, vim_item)
+      vim_item.kind = require('lspkind').presets.default[vim_item.kind]
+      vim_item.menu = ({
+        nvim_lsp = '',
+        luasnip = '﬌',
+        buffer = '﬘',
+        path = '',
+      })[entry.source.name]
+      return vim_item
+    end,
   }
+  -- formatting = {
+  --   fields = { 'menu', 'abbr', 'kind' },
+  --   format = require('lspkind').cmp_format({
+  --     menu = ({
+  --       nvim_lsp = '',
+  --       luasnip = '﬌',
+  --       buffer = '﬘',
+  --       path = '[PATH]',
+  --       -- path = '',
+  --     }),
+  --     -- with_text = true,
+  --     -- mode = 'symbol',
+  --     -- maxwidth = 100,
+  --     -- ellipsis_char = '...',
+  --   })
+  -- }
+
 }
 
 
@@ -74,3 +95,40 @@ cmp.setup {
 --     fallback()
 --   end
 -- end, { 'i', 's' }),
+
+
+
+
+
+
+
+
+
+
+
+--  formatting = {
+--   format = function(entry, vim_item)
+--     vim_item.kind = require('lspkind').presets.default[vim_item.kind]
+--     vim_item.menu = ({
+--       nvim_lsp = '[LSP]',
+--       buffer = '[BUF]',
+--       luasnip = '[SNIP]',
+--       path = '[PATH]',
+--     })[entry.source.name]
+--     return vim_item
+--   end,
+-- },
+
+-- formatting = { -- this doesnt work for some reason. plz, someone tell me how to get the icons to show up in the completion menu
+--   fields = { 'menu', 'abbr', 'kind' },
+--   format = function(entry, item)
+--     local menu_icon = {
+--       nvim_lsp = 'λ',
+--       path = '🖫',
+--       luasnip = '⋗',
+--       buffer = 'Ω',
+--     }
+--     item.menu = menu_icon[entry.source.name]
+--     return item
+--   end,
+-- }

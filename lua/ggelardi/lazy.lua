@@ -19,7 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require('lazy').setup({
-  'simrat39/rust-tools.nvim',                   --*** testing
+  'simrat39/rust-tools.nvim',                   -- testing
   'nvim-neo-tree/neo-tree.nvim',                -- neo tree
   'MunifTanjim/nui.nvim',                       -- UI component library for nvim
   'tpope/vim-fugitive',                         -- Git related plugin
@@ -27,13 +27,17 @@ require('lazy').setup({
   'dinhhuy258/git.nvim',                        -- Git related plugin
   'sindrets/diffview.nvim',                     -- diffview
   'nvim-tree/nvim-web-devicons',                -- file icons
-  'xiyaowong/nvim-transparent',                 -- makes window transparent                                                                              -- makes bg transparent
-  'github/copilot.vim',                         -- needs no explanation                                                                                      -- github copilot
+  'xiyaowong/nvim-transparent',                 -- makes window transparent
+  'github/copilot.vim',                         -- github copilot
   'onsails/lspkind-nvim',                       -- vscode style ui icons in hints
   'glepnir/lspsaga.nvim',                       -- ui for nvim built in lsp
   'ThePrimeagen/harpoon',                       -- harpoon so lit
   'nvim-lua/plenary.nvim',                      -- needed for other things, they say its "All the lua functions I don't want to write twice."
   'hrsh7th/cmp-buffer',                         -- nvim-cmp source for buffer words
+  'hrsh7th/nvim-cmp',                           -- code completion
+  'hrsh7th/cmp-nvim-lsp',                       -- lsp for nvim-cmp
+  'hrsh7th/cmp-cmdline',                        -- nvim-cmp source for command line words
+  'hrsh7th/cmp-path',                           -- nvim-cmp source for file path words
   'mbbill/undotree',                            -- undo tree
   'nvim-lualine/lualine.nvim',                  -- Set lualine as statusline
   'folke/neodev.nvim',                          -- Additional lua configuration, makes nvim stuff amazing!
@@ -45,8 +49,6 @@ require('lazy').setup({
   'windwp/nvim-ts-autotag',                     -- autotag for html/tsx
   'lewis6991/gitsigns.nvim',                    -- Adds git releated signs to the gutter, as well as utilities for managing changes
   'akinsho/bufferline.nvim',                    -- bufferline/tabs
-  'hrsh7th/nvim-cmp',                           -- code completion
-  'hrsh7th/cmp-nvim-lsp',                       -- lsp for nvim-cmp
   'L3MON4D3/LuaSnip',                           -- snippets that crash sometimes
   'saadparwaiz1/cmp_luasnip',                   -- snippets for nvim-cmp
   { 'rose-pine/neovim', name = 'rose-pine' },   -- easy on the eyes

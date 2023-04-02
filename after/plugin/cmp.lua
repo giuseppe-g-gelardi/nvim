@@ -4,6 +4,47 @@ local luasnip = require 'luasnip'
 
 luasnip.config.setup {}
 
+
+local function get_lsp_completion_context(completion, source)
+  local ok, source_name = pcall(function() return source.source.client.config.name end)
+  if not ok then return nil end
+  if source_name == "tsserver" then
+    return completion.detail
+  elseif source_name == "gopls" then -- testing for gopls
+    return completion.detail
+  elseif source_name == "pyright" then
+    if completion.labelDetails ~= nil then return completion.labelDetails.description end
+  end
+end
+
+local SYMBOL_MAP = {
+  Text = " ",
+  Method = " ",
+  Function = "",
+  Constructor = " ",
+  Field = " ",
+  Variable = " ",
+  Class = " ",
+  Interface = " ",
+  Module = " ",
+  Property = " ",
+  Unit = "塞",
+  Value = " ",
+  Enum = " ",
+  Keyword = " ",
+  Snippet = " ",
+  Color = " ",
+  File = " ",
+  Reference = " ",
+  Folder = " ",
+  EnumMember = " ",
+  Constant = " ",
+  Struct = " ",
+  Event = "",
+  Operator = " ",
+  TypeParameter = " ",
+}
+
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -50,35 +91,42 @@ cmp.setup {
     { name = 'path' },
   },
   formatting = {
-    -- show import path or library name
+    fields = { "kind", "abbr", "menu" },
+    --- @param entry cmp.Entry
+    --- @param vim_item vim.CompletedItem
     format = function(entry, vim_item)
-      vim_item.kind = require('lspkind').presets.default[vim_item.kind]
-      vim_item.menu = ({
-        nvim_lsp = '',
-        luasnip = '﬌',
-        buffer = '﬘',
-        path = '',
-      })[entry.source.name]
-      return vim_item
+      local item_with_kind = require("lspkind").cmp_format({
+        mode = "symbol_text",
+        maxwidth = 50,
+        symbol_map = SYMBOL_MAP,
+      })(entry, vim_item)
+
+      local kind_s_menu = vim.split(item_with_kind.kind, "%s", { trimempty = true })
+      item_with_kind.kind = " " .. (kind_s_menu[1] or "") .. " "
+      item_with_kind.menu = "    (" .. (kind_s_menu[2] or "") .. ")"
+      item_with_kind.menu = vim.trim(item_with_kind.menu)
+
+      local completion_context = get_lsp_completion_context(entry.completion_item, entry.source)
+      if completion_context ~= nil and completion_context ~= "" then
+        item_with_kind.menu = item_with_kind.menu .. [[ -> ]] .. completion_context
+      end
+
+      return item_with_kind
     end,
-  }
+  },
   -- formatting = {
-  --   fields = { 'menu', 'abbr', 'kind' },
-  --   format = require('lspkind').cmp_format({
-  --     menu = ({
+  --   -- show import path or library name
+  --   format = function(entry, vim_item)
+  --     vim_item.kind = require('lspkind').presets.default[vim_item.kind]
+  --     vim_item.menu = ({
   --       nvim_lsp = '',
   --       luasnip = '﬌',
   --       buffer = '﬘',
-  --       path = '[PATH]',
-  --       -- path = '',
-  --     }),
-  --     -- with_text = true,
-  --     -- mode = 'symbol',
-  --     -- maxwidth = 100,
-  --     -- ellipsis_char = '...',
-  --   })
+  --       path = '',
+  --     })[entry.source.name]
+  --     return vim_item
+  --   end,
   -- }
-
 }
 
 
@@ -131,4 +179,24 @@ cmp.setup {
 --     item.menu = menu_icon[entry.source.name]
 --     return item
 --   end,
+-- }
+--
+--
+--
+--
+-- formatting = {
+--   fields = { 'menu', 'abbr', 'kind' },
+--   format = require('lspkind').cmp_format({
+--     menu = ({
+--       nvim_lsp = '',
+--       luasnip = '﬌',
+--       buffer = '﬘',
+--       path = '[PATH]',
+--       -- path = '',
+--     }),
+--     -- with_text = true,
+--     -- mode = 'symbol',
+--     -- maxwidth = 100,
+--     -- ellipsis_char = '...',
+--   })
 -- }

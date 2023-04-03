@@ -17,34 +17,6 @@ local function get_lsp_completion_context(completion, source)
   end
 end
 
-local SYMBOL_MAP = {
-  Text = "",
-  Method = "",
-  Function = "",
-  Constructor = "",
-  Field = "",
-  Variable = "",
-  Class = "ﴯ",
-  Interface = "",
-  Module = " ",
-  Property = "",
-  Unit = "塞",
-  Value = "",
-  Enum = "",
-  Keyword = "",
-  Snippet = "",
-  Color = "",
-  File = "",
-  Reference = "",
-  Folder = "",
-  EnumMember = "",
-  Constant = "",
-  Struct = "פּ",
-  Event = "",
-  Operator = "",
-  TypeParameter = "",
-}
-
 cmp.setup {
   snippet = {
     expand = function(args)
@@ -92,40 +64,33 @@ cmp.setup {
   },
   formatting = {
     fields = { "abbr", "kind", "menu" },
-    -- - @param entry cmp.Entry
-    -- - @param vim_item vim.CompletedItem
     format = function(entry, vim_item)
+      vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
       local item_with_kind = require("lspkind").cmp_format({
         menu = ({
           nvim_lsp = '', -- nvim_lsp = '',
-          luasnip = '﬌',
-          buffer = '﬘',
+          luasnip = '',  -- luasnip = '﬌',
+          buffer = '',   -- buffer = '﬘',
           path = '[PATH]',
         }),
-        mode = "symbol", -- "symbol" | "symbol_text" | "icon" | "icon_text" | "text"
-        maxwidth = 25,   -- was 50... shrug...
-        ellipsis_char = '...',
-        symbol_map = SYMBOL_MAP,
+        -- mode = "symbol", -- "symbol" | "symbol_text" | "icon" | "icon_text" | "text"
+        maxwidth = 25, -- max width of the menu in characters
+        -- ellipsis_char = '...', -- if max width is exceeded, this character will be used to indicate truncation, -- ! not working yet
+        -- symbol_map = SYMBOL_MAP,
       })(entry, vim_item)
 
-      -- TODO: understand what these are doing, specifically the kind_s_menu
-      -- local kind_s_menu = vim.split(item_with_kind.kind, "%s", { trimempty = true })
-      -- item_with_kind.kind = " " .. (kind_s_menu[1] or "") .. " "
-      -- item_with_kind.menu = "    (" .. (kind_s_menu[2] or "") .. ")"
       item_with_kind.menu = vim.trim(item_with_kind.menu)
 
       local completion_context = get_lsp_completion_context(entry.completion_item, entry.source)
       if completion_context ~= nil and completion_context ~= "" then
         item_with_kind.menu = item_with_kind.menu .. completion_context
       end
-
+      item_with_kind.menu = string.sub(item_with_kind.menu, 1, 15)
       return item_with_kind
     end,
   },
-
+  window = {
+    completion = cmp.config.window.bordered(),
+    documentation = cmp.config.window.bordered(),
+  },
 }
-
-
-
-
-

@@ -76,4 +76,18 @@
 --     -- ellipsis_char = '...',
 --   })
 -- }
+--
+--
+--
+--
+--
+--
+--
+--
+--
+-- TODO: understand what these are doing, specifically the kind_s_menu
+-- local kind_s_menu = vim.split(item_with_kind.kind, "%s", { trimempty = true })
+-- item_with_kind.kind = " " .. (kind_s_menu[1] or "") .. " "
+-- -- item_with_kind.menu = "    (" .. (kind_s_menu[2] or "") .. ")"
+-- item_with_kind.menu = vim.trim(item_with_kind.menu)
 -- !! CMP !!

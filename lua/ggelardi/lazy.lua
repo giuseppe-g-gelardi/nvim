@@ -19,6 +19,7 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require('lazy').setup({
+  'simrat39/rust-tools.nvim',                   -- testing
   'nvim-neo-tree/neo-tree.nvim',                -- neo tree
   'MunifTanjim/nui.nvim',                       -- UI component library for nvim
   'tpope/vim-fugitive',                         -- Git related plugin
@@ -26,8 +27,8 @@ require('lazy').setup({
   'dinhhuy258/git.nvim',                        -- Git related plugin
   'sindrets/diffview.nvim',                     -- diffview
   'nvim-tree/nvim-web-devicons',                -- file icons
-  'xiyaowong/nvim-transparent',                 -- makes window transparent                                                                              -- makes bg transparent
-  'github/copilot.vim',                         -- needs no explanation                                                                                      -- github copilot
+  'xiyaowong/nvim-transparent',                 -- makes window transparent
+  'github/copilot.vim',                         -- github copilot
   'onsails/lspkind-nvim',                       -- vscode style ui icons in hints
   'glepnir/lspsaga.nvim',                       -- ui for nvim built in lsp
   'ThePrimeagen/harpoon',                       -- harpoon so lit
@@ -37,7 +38,6 @@ require('lazy').setup({
   'hrsh7th/cmp-nvim-lsp',                       -- lsp for nvim-cmp
   'hrsh7th/cmp-cmdline',                        -- nvim-cmp source for command line words
   'hrsh7th/cmp-path',                           -- nvim-cmp source for file path words
-  'saadparwaiz1/cmp_luasnip',                   -- snippets for nvim-cmp
   'mbbill/undotree',                            -- undo tree
   'nvim-lualine/lualine.nvim',                  -- Set lualine as statusline
   'folke/neodev.nvim',                          -- Additional lua configuration, makes nvim stuff amazing!
@@ -111,63 +111,3 @@ require('lazy').setup({
     end,
   },
 }, {})
-
-
-
-
-
-
---[[
-    { -- Material Theme
-      'marko-cerovac/material.nvim',
-    priority = 1000,
-    config = function()
-      vim.cmd.colorscheme 'material'
-    end,
-  },
--- {
---   'navarasu/onedark.nvim', -- Theme inspired by Atom
---   priority = 1000,
---   config = function()
---     vim.cmd.colorscheme 'onedark'
---   end,
--- },
-  -- {
-  --   "ray-x/go.nvim",
-  --   dependencies = {  -- optional packages
-  --     "ray-x/guihua.lua",
-  --     "neovim/nvim-lspconfig",
-  --     "nvim-treesitter/nvim-treesitter",
-  --   },
-  --   config = function()
-  --     require("go").setup()
-  --   end,
-  --   event = {"CmdlineEnter"},
-  --   ft = {"go", 'gomod'},
-  --   build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
-  -- }
-    --testing
-  -- {
-  --   'hrsh7th/nvim-cmp', -- Autocompletion
-  --   dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
-  -- },
-  -- {
-  --   "L3MON4D3/LuaSnip",
-  --   -- follow latest release.
-  --   version = "<CurrentMajor>.*",
-  --   -- install jsregexp (optional!).
-  --   build = "make install_jsregexp"
-  -- },
-  --testing
-    -- {
-  --   -- Add indentation guides even on blank lines
-  --   'lukas-reineke/indent-blankline.nvim', -- ! set this up??
-  --   -- Enable `lukas-reineke/indent-blankline.nvim`
-  --   -- See `:help indent_blankline.txt`
-  --   opts = {
-  --     char = '┊',
-  --     show_trailing_blankline_indent = false, -- ! do i even use this?
-  --   },
-  -- },
-  -- 'tpope/vim-sleuth',                           -- Detect tabstop and shiftwidth automatically
---]]

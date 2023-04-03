@@ -94,6 +94,18 @@ nvim_lsp.pylsp.setup {
   filetypes = { "python" },
 }
 
+nvim_lsp.rust_analyzer.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  -- cmd = {
+  --   "rustup", "run", "stable", "rust-analyzer",
+  -- },
+  settings = {
+        ['rust_analyzer'] = {
+      diagnostics = false,
+    }
+  }
+}
 
 nvim_lsp.sourcekit.setup {
   on_attach = on_attach,

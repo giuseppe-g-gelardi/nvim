@@ -21,16 +21,17 @@ vim.o.updatetime = 250                 -- Decrease update time
 vim.o.timeout = true                   -- Decrease update time
 vim.o.timeoutlen = 300                 -- Decrease update time
 vim.o.ignorecase = true                -- Case insensitive searching UNLESS /C or capital in search
-vim.o.smartcase = true                 -- Case insensitive searching UNLESS /C or capital in search
+vim.o.smartcase = true                 -- Smart case for searching (ignore case if all lowercase, otherwise respect case)
 
-vim.diagnostic.config({
-  virtual_text = false,
-  underline = true
-})
+vim.g.copilot_no_tab_map = true
+vim.g.copilot_assume_mapped = true
+vim.g.copilot_tab_tallback = ""
+
+vim.diagnostic.config({ virtual_text = false, underline = true }) -- disable virtual text and enable undercurl for diagnostics
 
 vim.diagnostic.open_float({ scope = 'line' })
 
-vim.api.nvim_create_autocmd('ColorScheme', { -- this only works on mac right now
+vim.api.nvim_create_autocmd('ColorScheme', {
   command = [[highlight DiagnosticUnderlineError gui=undercurl]],
   desc = "undercurl errors"
 })
@@ -38,3 +39,29 @@ vim.api.nvim_create_autocmd('ColorScheme', { -- this only works on mac right now
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]])
 vim.cmd([[let &t_Ce = "\e[4:0m"]])
+
+
+
+
+local ns = vim.api.nvim_create_namespace "test_namespace"
+vim.diagnostic.set(ns, 0, {
+  {
+    lnum = 0,
+    col = 10,
+    end_col = 40,
+    severity = vim.diagnostic.severity.ERROR,
+    message = "error",
+  }, {
+  lnum = 0,
+  col = 15,
+  end_col = 30,
+  severity = vim.diagnostic.severity.WARN,
+  message = "warning",
+},
+})
+
+vim.cmd [[
+hi DiagnosticUnderlineError guisp='Red' gui=undercurl
+hi DiagnosticUnderlineWarn guisp='Cyan' gui=underline
+set termguicolors
+]]

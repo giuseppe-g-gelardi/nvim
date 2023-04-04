@@ -65,7 +65,7 @@ cmp.setup {
   formatting = {
     fields = { "abbr", "kind", "menu" },
     format = function(entry, vim_item)
-      vim_item.abbr = string.sub(vim_item.abbr, 1, 20)
+      vim_item.abbr = string.sub(vim_item.abbr, 1, 16)
       local item_with_kind = require("lspkind").cmp_format({
         menu = ({
           nvim_lsp = '', -- nvim_lsp = '',
@@ -74,7 +74,7 @@ cmp.setup {
           path = '[PATH]',
         }),
         -- mode = "symbol", -- "symbol" | "symbol_text" | "icon" | "icon_text" | "text"
-        maxwidth = 25, -- max width of the menu in characters
+        maxwidth = 20, -- max width of the menu in characters
         -- ellipsis_char = '...', -- if max width is exceeded, this character will be used to indicate truncation, -- ! not working yet
         -- symbol_map = SYMBOL_MAP,
       })(entry, vim_item)

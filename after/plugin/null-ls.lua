@@ -22,9 +22,6 @@ null_ls.setup({
             "markdown",
             "lua",
             "go",
-            "rust",
-            -- "c",
-            -- "cpp",
             "python"
           },
         }),

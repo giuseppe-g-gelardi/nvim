@@ -16,7 +16,7 @@ vim.o.mouse = 'a'                                                 -- Enable mous
 vim.o.clipboard = 'unnamedplus'                                   -- Sync clipboard between OS and Neovim.
 vim.o.breakindent = true                                          -- Enable break indent
 vim.o.undofile = true                                             -- Save undo history
-vim.o.completeopt = 'menuone,noselect'                            -- Set completeopt to have a better completion experience
+vim.o.completeopt = 'menuone,noselect';                           -- Set completeopt to have a better completion experience
 vim.o.updatetime = 250                                            -- Decrease update time
 vim.o.timeout = true                                              -- Decrease update time
 vim.o.timeoutlen = 300                                            -- Decrease update time
@@ -38,9 +38,6 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 vim.cmd([[let &t_Cs = "\e[4:3m"]]) -- Undercurl
 vim.cmd([[let &t_Ce = "\e[4:0m"]]) -- Undercurl
 
-
-
-
 local ns = vim.api.nvim_create_namespace "test_namespace"
 vim.diagnostic.set(ns, 0, {
   {
@@ -56,7 +53,7 @@ vim.diagnostic.set(ns, 0, {
   severity = vim.diagnostic.severity.WARN,
   message = "warning",
 },
-})
+}) -- Undercurl
 
 vim.cmd [[
 hi DiagnosticUnderlineError guisp='Red' gui=undercurl

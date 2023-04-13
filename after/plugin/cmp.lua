@@ -4,7 +4,6 @@ local luasnip = require 'luasnip'
 
 luasnip.config.setup {}
 
-
 local function get_lsp_completion_context(completion, source)
   local ok, source_name = pcall(function() return source.source.client.config.name end)
   if not ok then return nil end

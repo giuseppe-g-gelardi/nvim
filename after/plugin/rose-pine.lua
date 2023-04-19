@@ -37,7 +37,6 @@ require('rose-pine').setup({
   -- https://github.com/rose-pine/neovim/wiki/Recipes
   highlight_groups = {
     ColorColumn = { bg = 'base' },
-    -- Blend colours against the "base" background
     CursorLine = { bg = 'foam', blend = 10 },
     StatusLine = { fg = 'love', bg = 'love', blend = 10 },
     LineNrAbove = { fg = 'highlight_med' },

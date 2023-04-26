@@ -41,7 +41,13 @@ require('rose-pine').setup({
     StatusLine = { fg = 'love', bg = 'love', blend = 10 },
     LineNrAbove = { fg = 'highlight_med' },
     LineNr = { fg = 'iris' },
-    LineNrBelow = { fg = 'muted' }
+    LineNrBelow = { fg = 'muted' },
+    rainbowcol1 = { fg = '#eb6f92' },
+    rainbowcol2 = { fg = '#f6c177' },
+    rainbowcol3 = { fg = '#ebbcba' },
+    rainbowcol4 = { fg = '#31748f' },
+    rainbowcol5 = { fg = '#9ccfd8' },
+    rainbowcol6 = { fg = '#c4a7e7' },
   }
 })
 

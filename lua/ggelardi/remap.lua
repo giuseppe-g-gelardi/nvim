@@ -1,5 +1,7 @@
 vim.g.mapleader = ' ';                                                                                     -- set leader key to space
 vim.g.maplocalleader = ' ';                                                                                -- set local leader key to space
+vim.keymap.set('n', '<C-_>', function() require('Comment.api').toggle.linewise.current() end,
+  { noremap = true, silent = true })                                                                       -- toggle comment
 vim.keymap.set('n', '<leader>pv', vim.cmd.Ex)                                                              -- show directory tree
 vim.keymap.set('i', 'jk', '<Esc>', { noremap = true })                                                     -- escape insert mode
 vim.keymap.set('i', 'kj', '<Esc>', { noremap = true })                                                     -- escape insert mode

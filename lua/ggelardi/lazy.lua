@@ -24,7 +24,6 @@ require('lazy').setup({
   'tpope/vim-fugitive',                         -- Git related plugin
   'tpope/vim-rhubarb',                          -- Git related plugin
   'dinhhuy258/git.nvim',                        -- Git related plugin
-  'sindrets/diffview.nvim',                     -- diffview
   'nvim-tree/nvim-web-devicons',                -- file icons
   'xiyaowong/nvim-transparent',                 -- makes window transparent
   'github/copilot.vim',                         -- github copilot
@@ -56,15 +55,6 @@ require('lazy').setup({
     dependencies = {                            -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
     },
-  },
-  {
-    -- https://git.sr.ht/~whynothugo/lsp_lines.nvim
-    -- "ErichDonGubler/lsp_lines.nvim"
-    -- just incase one doesnt work, the other usually does.. depends on the machine
-    "https://git.sr.ht/~whynothugo/lsp_lines.nvim", -- diagnostic lines that dont extend off screen
-    config = function()
-      require("lsp_lines").setup()
-    end,
   },
   {
     "windwp/nvim-autopairs", -- auto pairs brackets, ect
@@ -122,8 +112,15 @@ require('lazy').setup({
       vim.keymap.set('n', "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
       vim.keymap.set('n', "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
       vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
-      vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
-      vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
     end
   }
 }, {})
+
+
+-- {
+-- -- https://git.sr.ht/~whynothugo/lsp_lines.nvim
+-- -- "ErichDonGubler/lsp_lines.nvim"
+-- -- just incase one doesnt work, the other usually does.. depends on the machine
+-- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+-- -- diagnostic lines that dont extend off screen
+-- config = function() require("lsp_lines").setup() end, },

@@ -23,7 +23,6 @@ require('lazy').setup({
   'MunifTanjim/nui.nvim',                       -- UI component library for nvim
   'tpope/vim-fugitive',                         -- Git related plugin
   'tpope/vim-rhubarb',                          -- Git related plugin
-  'dinhhuy258/git.nvim',                        -- Git related plugin
   'nvim-tree/nvim-web-devicons',                -- file icons
   'xiyaowong/nvim-transparent',                 -- makes window transparent
   'github/copilot.vim',                         -- github copilot
@@ -51,8 +50,20 @@ require('lazy').setup({
   'saadparwaiz1/cmp_luasnip',                   -- snippets for nvim-cmp
   { 'rose-pine/neovim', name = 'rose-pine' },   -- easy on the eyes
   {
-    'neovim/nvim-lspconfig',                    -- LSP Configuration & Plugins
-    dependencies = {                            -- Automatically install LSPs to stdpath for neovim
+    "sanathks/workspace.nvim",
+    dependencies = { "nvim-telescope/telescope.nvim" },
+    config = function()
+      require("workspace").setup({
+        workspaces = {
+          { name = "NeovimConfig", path = "~/.config/nvim", keymap = { "<leader>V" } },
+          { name = "Code",         path = "~/code",         keymap = { "<leader>C" } },
+        }
+      })
+    end,
+  },
+  {
+    'neovim/nvim-lspconfig', -- LSP Configuration & Plugins
+    dependencies = {         -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
     },
   },
@@ -115,12 +126,3 @@ require('lazy').setup({
     end
   }
 }, {})
-
-
--- {
--- -- https://git.sr.ht/~whynothugo/lsp_lines.nvim
--- -- "ErichDonGubler/lsp_lines.nvim"
--- -- just incase one doesnt work, the other usually does.. depends on the machine
--- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
--- -- diagnostic lines that dont extend off screen
--- config = function() require("lsp_lines").setup() end, },

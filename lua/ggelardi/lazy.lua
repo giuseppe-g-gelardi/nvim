@@ -40,7 +40,8 @@ require('lazy').setup({
   'folke/neodev.nvim',                          -- Additional lua configuration, makes nvim stuff amazing!
   'nvim-telescope/telescope.nvim',              -- Fuzzy Finder (files, lsp, etc)
   'nvim-telescope/telescope-file-browser.nvim', -- file browser w/ telescope UI and fuzzy finder
-  'jose-elias-alvarez/null-ls.nvim',            -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+  -- 'jose-elias-alvarez/null-ls.nvim',            -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
+  'nvimtools/none-ls.nvim',                     -- ! TESTING null-ls replacement
   'j-hui/fidget.nvim',                          -- Useful status updates for LSP
   'folke/which-key.nvim',                       -- Useful plugin to show you pending keybinds.
   'windwp/nvim-ts-autotag',                     -- autotag for html/tsx

@@ -42,7 +42,7 @@ require('lazy').setup({
   'nvim-telescope/telescope-file-browser.nvim', -- file browser w/ telescope UI and fuzzy finder
   -- 'jose-elias-alvarez/null-ls.nvim',            -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
   'nvimtools/none-ls.nvim',                     -- ! TESTING null-ls replacement
-  'j-hui/fidget.nvim',                          -- Useful status updates for LSP
+  -- 'j-hui/fidget.nvim',                          -- Useful status updates for LSP
   'folke/which-key.nvim',                       -- Useful plugin to show you pending keybinds.
   'windwp/nvim-ts-autotag',                     -- autotag for html/tsx
   'lewis6991/gitsigns.nvim',                    -- Adds git releated signs to the gutter, as well as utilities for managing changes

@@ -1,4 +1,4 @@
-require"fidget".setup{}
+-- require"fidget".setup{}
 
 --[[
   this is the UI on the bottom right of the screen

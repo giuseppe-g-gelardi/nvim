@@ -49,7 +49,13 @@ require('lazy').setup({
   'akinsho/bufferline.nvim',                    -- bufferline/tabs
   'L3MON4D3/LuaSnip',                           -- snippets that crash sometimes
   'saadparwaiz1/cmp_luasnip',                   -- snippets for nvim-cmp
-  { 'rose-pine/neovim', name = 'rose-pine' },   -- easy on the eyes
+  {
+                                                -- early retirement
+    "chrisgrieser/nvim-early-retirement",
+    config = true,
+    event = "VeryLazy",
+  },
+  { 'rose-pine/neovim', name = 'rose-pine' }, -- easy on the eyes
   {
     "sanathks/workspace.nvim",
     dependencies = { "nvim-telescope/telescope.nvim" },

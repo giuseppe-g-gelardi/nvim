@@ -12,5 +12,5 @@ vim.keymap.set("n", "<C-e>", ui.toggle_quick_menu) -- toggle harpoon menu
 -- vim.keymap.set("n", "<C-k>", function() ui.nav_file(3) end) -- k
 -- vim.keymap.set("n", "<C-l>", function() ui.nav_file(4) end) -- l
 
-vim.keymap.set("n", "<C-t>", function() ui.nav_file(1) end) -- t
-vim.keymap.set("n", "<C-g>", function() ui.nav_file(2) end) -- g
+vim.keymap.set("n", "<C-i>", function() ui.nav_file(1) end) -- i
+vim.keymap.set("n", "<C-o>", function() ui.nav_file(2) end) -- o

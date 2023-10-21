@@ -1,0 +1,28 @@
+{
+    "workspace.library": [
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/neodev.nvim/types/stable",
+        "/home/linuxbrew/.linuxbrew/Cellar/neovim/0.9.4/share/nvim/runtime/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/opt/nvim-web-devicons/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/LuaSnip/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/cmp-buffer/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/cmp-path/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/cmp_luasnip/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/harpoon/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/lualine.nvim/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/mason.nvim/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/material.nvim/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/neodev.nvim/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/nvim-cmp/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/nvim-lspconfig/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/nvim-treesitter/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/packer.nvim/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/plenary.nvim/lua",
+        "/home/giuseppe/.local/share/nvim/site/pack/packer/start/telescope.nvim/lua",
+        "/home/giuseppe/.dotfiles/nvim/.config/nvim/lua",
+        "${3rd}/luv/library"
+    ]
+}

@@ -1,4 +1,8 @@
-require('telescope').setup {}
+require('telescope').setup {
+  find_files = {
+    hidden = true,
+  },
+}
 
 pcall(require('telescope').load_extension, 'fzf')
 

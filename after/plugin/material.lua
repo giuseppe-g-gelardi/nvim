@@ -52,20 +52,13 @@ material.setup {
     darker = false   -- Enable higher contrast text for darker style
   },
 
-  lualine_style = "default", -- Lualine style ( can be 'stealth' or 'default' )
-
+  lualine_style = "stealth", -- Lualine style ( can be 'stealth' or 'default' )
   async_loading = true,      -- Load parts of the theme asyncronously for faster startup (turned on by default)
-
-  -- custom_colors = nil,       -- If you want to override the default colors, set this to a function
-  custom_colors = function()
-    print('ok')
-  end,
-
-  custom_highlights = {}, -- Overwrite highlights with your own
+  custom_colors = nil,       -- If you want to override the default colors, set this to a function
+  custom_highlights = {},    -- Overwrite highlights with your own
 }
 
 vim.cmd 'colorscheme material'
 vim.g.material_style = 'oceanic'
 
 -- vim.cmd('highlight Function guifg=#C792EA')
-

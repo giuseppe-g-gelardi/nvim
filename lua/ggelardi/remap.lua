@@ -8,7 +8,6 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")                                    
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")                                                               -- when highlighted, move selected lines up
 vim.keymap.set("n", "<C-d>", "<C-d>zz")                                                                    -- keeps cursor center when half page scrolling down
 vim.keymap.set("n", "<C-u>", "<C-u>zz")                                                                    -- keeps cursor center when half page scrolling up
-vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)                                                   -- toggle undo tree
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)                                                       -- format document
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git);                                                            -- git status
 vim.keymap.set('n', '<leader>t', ':Neotree toggle<CR>', { noremap = true, silent = true })                 -- toggle neo-tree -- this WAS <leader>j (for reference)

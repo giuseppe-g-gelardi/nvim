@@ -10,7 +10,8 @@ vim.keymap.set("n", "<C-d>", "<C-d>zz")                                         
 vim.keymap.set("n", "<C-u>", "<C-u>zz")                                                                    -- keeps cursor center when half page scrolling up
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)                                                       -- format document
 vim.keymap.set("n", "<leader>gs", vim.cmd.Git);                                                            -- git status
-vim.keymap.set('n', '<leader>t', ':Neotree toggle<CR>', { noremap = true, silent = true })                 -- toggle neo-tree -- this WAS <leader>j (for reference)
+vim.keymap.set('n', '<leader>t', ':NvimTreeFocus<CR>', { desc = 'nvim-tree: Focus' })
+vim.keymap.set('n', '<leader>t', ':NvimTreeToggle<CR>', { desc = 'nvim-tree: Toggle' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" }) -- open message
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })            -- open list
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })        -- go to previous message

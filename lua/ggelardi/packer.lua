@@ -6,8 +6,10 @@ return require('packer').startup(function(use)
     -- or                            , branch = '0.1.x',
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
-  use { 'marko-cerovac/material.nvim' }
+  -- use { 'marko-cerovac/material.nvim' }
+  use('kaicataldo/material.vim', { branch = 'main' })
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
+  use('HiPhish/nvim-ts-rainbow2')
   use('theprimeagen/harpoon')
   use('tpope/vim-fugitive')
 

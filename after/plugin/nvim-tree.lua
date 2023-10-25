@@ -1,14 +1,5 @@
 
 
--- *:NvimTreeToggle*
---     Open or close the tree. See |nvim-tree-api.tree.toggle()|
---     Calls: `api.tree.toggle({ path = "<arg>" })`
-
--- *:NvimTreeFocus*
---     Open the tree if it is closed, and then focus on the tree.
---     See |nvim-tree-api.tree.toggle()|
---     Calls: `api.tree.focus()`
-
 
 
 require("nvim-tree").setup({

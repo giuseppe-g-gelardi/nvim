@@ -1,5 +1,5 @@
-vim.opt.tabstop = 2                                               -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
-vim.opt.softtabstop = 2                                           -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
+vim.opt.tabstop = 4                                               -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
+vim.opt.softtabstop = 4                                           -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
 vim.opt.shiftwidth = 2                                            -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
 vim.opt.expandtab = true                                          -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
 vim.opt.isfname:append("@-@")                                     -- allow @ in filenames, i think
@@ -29,9 +29,21 @@ vim.g.copilot_tab_tallback = ""                                   -- removes fal
 vim.diagnostic.config({ virtual_text = false, underline = true }) -- disable virtual text and enable undercurl for diagnostics
 vim.diagnostic.open_float({ scope = 'line' })                     -- open floating menu on line
 
-vim.api.nvim_create_autocmd('ColorScheme', {
+vim.api.nvim_create_autocmd('ColorScheme', {                      -- Undercorl for Errors
   command = [[highlight DiagnosticUnderlineError gui=undercurl]],
   desc = "undercurl errors"
+})
+vim.api.nvim_create_autocmd('ColorScheme', { -- Undercorl for Warnings
+  command = [[highlight DiagnosticUnderlineWarn gui=undercurl]],
+  desc = "undercurl warnings"
+})
+vim.api.nvim_create_autocmd('ColorScheme', { -- Undercorl for Info
+  command = [[highlight DiagnosticUnderlineInfo gui=undercurl]],
+  desc = "undercurl info"
+})
+vim.api.nvim_create_autocmd('ColorScheme', { -- Undercorl for Hints
+  command = [[highlight DiagnosticUnderlineHint gui=undercurl]],
+  desc = "undercurl hints"
 })
 
 -- Undercurl
@@ -52,11 +64,25 @@ vim.diagnostic.set(ns, 0, {
   end_col = 30,
   severity = vim.diagnostic.severity.WARN,
   message = "warning",
-},
+}, {
+  lnum = 0,
+  col = 20,
+  end_col = 25,
+  severity = vim.diagnostic.severity.INFO,
+  message = "info",
+}, {
+  lnum = 0,
+  col = 25,
+  end_col = 30,
+  severity = vim.diagnostic.severity.HINT,
+  message = "hint",
+}
 }) -- Undercurl
 
 vim.cmd [[
 hi DiagnosticUnderlineError guisp='Red' gui=undercurl
 hi DiagnosticUnderlineWarn guisp='Cyan' gui=underline
+hi DiagnosticUnderlineInfo guisp='Green' gui=undercurl
+hi DiagnosticUnderlineHint guisp='Yellow' gui=undercurl
 set termguicolors
 ]] -- Undercurl settings to make it work with tmux

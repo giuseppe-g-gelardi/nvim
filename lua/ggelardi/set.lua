@@ -81,8 +81,8 @@ vim.diagnostic.set(ns, 0, {
 
 vim.cmd [[
 hi DiagnosticUnderlineError guisp='Red' gui=undercurl
-hi DiagnosticUnderlineWarn guisp='Cyan' gui=underline
+hi DiagnosticUnderlineWarn guisp='Yellow' gui=underline
 hi DiagnosticUnderlineInfo guisp='Green' gui=undercurl
-hi DiagnosticUnderlineHint guisp='Yellow' gui=undercurl
+hi DiagnosticUnderlineHint guisp='Purple' gui=undercurl
 set termguicolors
 ]] -- Undercurl settings to make it work with tmux

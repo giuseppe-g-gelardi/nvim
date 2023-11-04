@@ -1,6 +1,6 @@
 vim.opt.tabstop = 4                                               -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
 vim.opt.softtabstop = 4                                           -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
-vim.opt.shiftwidth = 2                                            -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
+vim.opt.shiftwidth = 4                                            -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
 vim.opt.expandtab = true                                          -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
 vim.opt.isfname:append("@-@")                                     -- allow @ in filenames, i think
 vim.opt.guicursor = ""                                            -- fat cursor

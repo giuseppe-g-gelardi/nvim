@@ -3,8 +3,8 @@ require('lualine').setup {
     icons_enabled = true,
     theme = 'auto',
     -- theme = require('material.lualine'),
-    component_separators = { left = '|', right = '|'},
-    section_separators = { left = '', right = ''},
+    component_separators = { left = '|', right = '|' },
+    section_separators = { left = '', right = '' },
     disabled_filetypes = {
       statusline = {},
       winbar = {},
@@ -19,18 +19,23 @@ require('lualine').setup {
     }
   },
   sections = {
-    lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics'},
-    lualine_c = {'filename'},
-    lualine_x = {'encoding', 'fileformat', 'filetype'},
-    lualine_y = {'progress'},
-    lualine_z = {'location'}
+    -- branch, buffers, diagnostics, diff, encoding, fileformat, filename,
+    -- filesize, filetype, hostname, location, mode, progress, searchcount,
+    -- selectioncount, tabs, windows
+    lualine_a = { 'mode' },
+    lualine_b = { 'branch', 'diff', 'diagnostics' },
+    -- lualine_c = { 'filename' },
+    lualine_c = { 'buffers' },
+    lualine_x = { 'encoding', 'fileformat', 'filetype' },
+    lualine_y = { 'progress' },
+    lualine_z = { 'filename' },
+    -- lualine_z = { 'location' }
   },
   inactive_sections = {
     lualine_a = {},
     lualine_b = {},
-    lualine_c = {'filename'},
-    lualine_x = {'location'},
+    lualine_c = { 'filename' },
+    lualine_x = { 'location' },
     lualine_y = {},
     lualine_z = {}
   },

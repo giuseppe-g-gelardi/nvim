@@ -126,6 +126,14 @@ _G.packer_plugins = {
     path = "/home/giuseppe/.local/share/nvim/site/pack/packer/start/friendly-snippets",
     url = "https://github.com/rafamadriz/friendly-snippets"
   },
+  ["gopher.nvim"] = {
+    config = { "\27LJ\2\ni\0\2\5\0\5\0\r6\2\0\0'\4\1\0B\2\2\0029\2\2\2\18\4\1\0B\2\2\0016\2\0\0'\4\3\0B\2\2\0029\2\4\2'\4\1\0B\2\2\1K\0\1\0\18load_mappings\15core.utils\nsetup\vgopher\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/giuseppe/.local/share/nvim/site/pack/packer/opt/gopher.nvim",
+    url = "https://github.com/olexsmir/gopher.nvim"
+  },
   harpoon = {
     loaded = true,
     path = "/home/giuseppe/.local/share/nvim/site/pack/packer/start/harpoon",
@@ -177,6 +185,19 @@ _G.packer_plugins = {
     path = "/home/giuseppe/.local/share/nvim/site/pack/packer/start/nvim-cmp",
     url = "https://github.com/hrsh7th/nvim-cmp"
   },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/home/giuseppe/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-dap-go"] = {
+    config = { "\27LJ\2\np\0\2\5\0\6\0\r6\2\0\0'\4\1\0B\2\2\0029\2\2\2\18\4\1\0B\2\2\0016\2\0\0'\4\3\0B\2\2\0029\2\4\2'\4\5\0B\2\2\1K\0\1\0\vdap_go\18load_mappings\15core.utils\nsetup\vdap-go\frequire\0" },
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/giuseppe/.local/share/nvim/site/pack/packer/opt/nvim-dap-go",
+    url = "https://github.com/dreamsofcode-io/nvim-dap-go"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/home/giuseppe/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
@@ -213,15 +234,15 @@ _G.packer_plugins = {
     path = "/home/giuseppe/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["telescope-file-browser.nvim"] = {
+    loaded = true,
+    path = "/home/giuseppe/.local/share/nvim/site/pack/packer/start/telescope-file-browser.nvim",
+    url = "https://github.com/nvim-telescope/telescope-file-browser.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/home/giuseppe/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
-  },
-  ["vim-be-good"] = {
-    loaded = true,
-    path = "/home/giuseppe/.local/share/nvim/site/pack/packer/start/vim-be-good",
-    url = "https://github.com/thePrimeagen/vim-be-good"
   },
   ["vim-fugitive"] = {
     loaded = true,
@@ -243,6 +264,13 @@ time([[Config for Comment.nvim]], false)
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\n@\0\0\3\0\3\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0004\2\0\0B\0\2\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
+vim.cmd [[augroup packer_load_aucmds]]
+vim.cmd [[au!]]
+  -- Filetype lazy-loads
+time([[Defining lazy-load filetype autocommands]], true)
+vim.cmd [[au FileType go ++once lua require("packer.load")({'gopher.nvim', 'nvim-dap-go'}, { ft = "go" }, _G.packer_plugins)]]
+time([[Defining lazy-load filetype autocommands]], false)
+vim.cmd("augroup END")
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

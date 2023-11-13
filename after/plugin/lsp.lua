@@ -9,6 +9,8 @@ lsp.preset("recommended")
 lsp.ensure_installed({
   'tsserver',
   'rust_analyzer',
+  'gopls',
+  'tailwindcss'
 })
 
 lsp.configure('lua-language-server', {

@@ -29,19 +29,26 @@ vim.g.copilot_tab_tallback = ""                                   -- removes fal
 vim.diagnostic.config({ virtual_text = false, underline = true }) -- disable virtual text and enable undercurl for diagnostics
 vim.diagnostic.open_float({ scope = 'line' })                     -- open floating menu on line
 
-vim.api.nvim_create_autocmd('ColorScheme', {                      -- Undercorl for Errors
+-- these set the ported VSC community material color theme
+-- and adjust the colors for specific elements to match the vscode version
+vim.cmd 'colorscheme material'
+vim.cmd 'highlight Identifier guifg=#eeffff'
+vim.cmd 'highlight keyword guifg=#c792ea'
+-- ...because i like it....
+
+vim.api.nvim_create_autocmd('ColorScheme', { -- Undercurl for Errors
   command = [[highlight DiagnosticUnderlineError gui=undercurl]],
   desc = "undercurl errors"
 })
-vim.api.nvim_create_autocmd('ColorScheme', { -- Undercorl for Warnings
+vim.api.nvim_create_autocmd('ColorScheme', { -- Undercurl for Warnings
   command = [[highlight DiagnosticUnderlineWarn gui=undercurl]],
   desc = "undercurl warnings"
 })
-vim.api.nvim_create_autocmd('ColorScheme', { -- Undercorl for Info
+vim.api.nvim_create_autocmd('ColorScheme', { -- Undercurl for Info
   command = [[highlight DiagnosticUnderlineInfo gui=undercurl]],
   desc = "undercurl info"
 })
-vim.api.nvim_create_autocmd('ColorScheme', { -- Undercorl for Hints
+vim.api.nvim_create_autocmd('ColorScheme', { -- Undercurl for Hints
   command = [[highlight DiagnosticUnderlineHint gui=undercurl]],
   desc = "undercurl hints"
 })

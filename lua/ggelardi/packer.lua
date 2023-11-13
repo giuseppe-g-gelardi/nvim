@@ -83,9 +83,9 @@ return require('packer').startup(function(use)
   --debugging
   use({
     "mfussenegger/nvim-dap",
-    init = function()
-      require("core.utils").load_mappings("dap")
-    end
+    -- init = function()
+    --   -- require("core.utils").load_mappings("dap")
+    -- end
   })
 
   use({
@@ -94,7 +94,7 @@ return require('packer').startup(function(use)
     dependencies = "mfussenegger/nvim-dap",
     config = function(_, opts)
       require("dap-go").setup(opts)
-      require("core.utils").load_mappings("dap_go")
+      -- require("core.utils").load_mappings("dap_go")
     end
   })
 
@@ -104,10 +104,17 @@ return require('packer').startup(function(use)
     ft = "go",
     config = function(_, opts)
       require("gopher").setup(opts)
-      require("core.utils").load_mappings("gopher")
+      -- require("core.utils").load_mappings("gopher")
     end,
     build = function()
       vim.cmd [[silent! GoInstallDeps]]
     end,
   })
+
+  use {
+    "chrisgrieser/nvim-early-retirement",
+    config = function() require("early-retirement").setup({
+      retirementAgeMins = 5,
+    }) end,
+  }
 end)

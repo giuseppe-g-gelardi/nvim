@@ -7,7 +7,7 @@ require('telescope').setup {
   },
   extensions = {
     file_browser = {
-      theme = 'dropdown'
+      theme = 'dropdown' -- dropdown, ivy, cursor
     }
   }
 }

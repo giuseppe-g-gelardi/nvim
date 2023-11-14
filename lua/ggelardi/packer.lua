@@ -117,4 +117,6 @@ return require('packer').startup(function(use)
       retirementAgeMins = 5,
     }) end,
   }
+
+  use 'j-hui/fidget.nvim'
 end)

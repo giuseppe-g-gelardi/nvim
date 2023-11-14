@@ -5,14 +5,14 @@ require('telescope').setup {
   find_files = {
     hidden = true,
   },
-  extensions = {
-    file_browser = {
-      theme = 'dropdown' -- dropdown, ivy, cursor
-    }
-  }
+  -- extensions = {
+  --   file_browser = {
+  --     theme = 'dropdown' -- dropdown, ivy, cursor
+  --   }
+  -- }
 }
 
-require('telescope').load_extension "file_browser"
+-- require('telescope').load_extension "file_browser"
 pcall(require('telescope').load_extension, 'fzf')
 
 vim.keymap.set('n', '<leader>pf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
@@ -23,9 +23,9 @@ vim.keymap.set('n', '<leader>ps',
 
 
 
--- opens the telescope file browser
-vim.keymap.set('n', '<leader>pb', require('telescope').extensions.file_browser.file_browser,
-  { desc = '[F]ile [B]rowser' })
+-- -- opens the telescope file browser
+-- vim.keymap.set('n', '<leader>pb', require('telescope').extensions.file_browser.file_browser,
+--   { desc = '[F]ile [B]rowser' })
 
 -- opens telescope diagnostics 
 vim.keymap.set('n', '<leader>pd', require('telescope.builtin').diagnostics, { desc = '[S]earch [D]iagnostics' })

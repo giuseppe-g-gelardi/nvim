@@ -1,7 +1,6 @@
 require("neodev").setup({})
 
-
-local lsp = require("lsp-zero")
+local lsp = require 'lsp-zero'
 local cmp = require 'cmp'
 
 lsp.preset("recommended")

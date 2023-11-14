@@ -6,16 +6,16 @@ return require('packer').startup(function(use)
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
-  use {
-    "nvim-telescope/telescope-file-browser.nvim",
-    requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-  }
+  -- use {
+  --   "nvim-telescope/telescope-file-browser.nvim",
+  --   requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
+  -- }
 
   use('kaicataldo/material.vim', { branch = 'main' })
   use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
   use('HiPhish/nvim-ts-rainbow2')
   use('theprimeagen/harpoon')
-  use('tpope/vim-fugitive')
+  -- use('tpope/vim-fugitive')
 
 
   use {
@@ -60,9 +60,7 @@ return require('packer').startup(function(use)
     end
   }
 
-  use {
-    'github/copilot.vim'
-  }
+  use 'github/copilot.vim'
 
   use "lukas-reineke/indent-blankline.nvim"
 
@@ -113,10 +111,16 @@ return require('packer').startup(function(use)
 
   use {
     "chrisgrieser/nvim-early-retirement",
-    config = function() require("early-retirement").setup({
-      retirementAgeMins = 5,
-    }) end,
+    config = function()
+      require("early-retirement").setup({
+        retirementAgeMins = 5,
+      })
+    end,
   }
 
   use 'j-hui/fidget.nvim'
+
+  use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+    require("toggleterm").setup()
+  end }
 end)

@@ -1,24 +1,20 @@
 return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'
+  use 'wbthomason/packer.nvim'                                  -- Package manager
+  use 'HiPhish/nvim-ts-rainbow2'                                -- rainbow parentheses
+  use 'theprimeagen/harpoon'                                    -- quick file navigation
+  use "numToStr/Comment.nvim"                                   -- ez comments
+  use 'github/copilot.vim'                                      -- copilot integration
+  use "lukas-reineke/indent-blankline.nvim"                     -- indent lines
+  use 'j-hui/fidget.nvim'                                       -- loading UI
+  use('kaicataldo/material.vim', { branch = 'main' })           -- material theme
+  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' }) -- treesitter syntax highlighting
 
   use {
-    'nvim-telescope/telescope.nvim', tag = '0.1.4',
+    'nvim-telescope/telescope.nvim', tag = '0.1.4', -- Fuzzy finder
     requires = { { 'nvim-lua/plenary.nvim' } }
   }
 
-  -- use {
-  --   "nvim-telescope/telescope-file-browser.nvim",
-  --   requires = { "nvim-telescope/telescope.nvim", "nvim-lua/plenary.nvim" }
-  -- }
-
-  use('kaicataldo/material.vim', { branch = 'main' })
-  use('nvim-treesitter/nvim-treesitter', { run = ':TSUpdate' })
-  use('HiPhish/nvim-ts-rainbow2')
-  use('theprimeagen/harpoon')
-  -- use('tpope/vim-fugitive')
-
-
-  use {
+  use { -- ELL ESS PEEEEEEEE ... SEE EMMM PEEEEEE
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v1.x',
     requires = {
@@ -41,76 +37,32 @@ return require('packer').startup(function(use)
     }
   }
 
-  use {
+  use { -- lualine, statusline
     'nvim-lualine/lualine.nvim',
     requires = { 'nvim-tree/nvim-web-devicons', opt = true }
   }
 
-  use { "folke/neodev.nvim", opts = {} }
+  use { "folke/neodev.nvim", opts = {} } -- neovim development environment
 
-  use {
+  use {                                  -- auto pairs for brackets
     "windwp/nvim-autopairs",
     config = function() require("nvim-autopairs").setup {} end
   }
 
-  use {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
-  }
-
-  use 'github/copilot.vim'
-
-  use "lukas-reineke/indent-blankline.nvim"
-
-
-  use({
+  use({ -- winbar
     "utilyre/barbecue.nvim",
     tag = "*",
     requires = {
       "SmiteshP/nvim-navic",
       "nvim-tree/nvim-web-devicons", -- optional dependency
     },
-    -- after = "nvim-web-devicons", -- keep this if you're using NvChad
     config = function()
       require("barbecue").setup()
     end,
   })
 
-  --debugging
-  use({
-    "mfussenegger/nvim-dap",
-    -- init = function()
-    --   -- require("core.utils").load_mappings("dap")
-    -- end
-  })
-
-  use({
-    "dreamsofcode-io/nvim-dap-go",
-    ft = "go",
-    dependencies = "mfussenegger/nvim-dap",
-    config = function(_, opts)
-      require("dap-go").setup(opts)
-      -- require("core.utils").load_mappings("dap_go")
-    end
-  })
-
-  -- go stuff
-  use({
-    "olexsmir/gopher.nvim",
-    ft = "go",
-    config = function(_, opts)
-      require("gopher").setup(opts)
-      -- require("core.utils").load_mappings("gopher")
-    end,
-    build = function()
-      vim.cmd [[silent! GoInstallDeps]]
-    end,
-  })
-
   use {
-    "chrisgrieser/nvim-early-retirement",
+    "chrisgrieser/nvim-early-retirement", -- automatically close open buffers after X minutes
     config = function()
       require("early-retirement").setup({
         retirementAgeMins = 5,
@@ -118,9 +70,7 @@ return require('packer').startup(function(use)
     end,
   }
 
-  use 'j-hui/fidget.nvim'
-
-  use { "akinsho/toggleterm.nvim", tag = '*', config = function()
+  use { "akinsho/toggleterm.nvim", tag = '*', config = function() -- terminal, literally just for lazygit
     require("toggleterm").setup()
   end }
 end)

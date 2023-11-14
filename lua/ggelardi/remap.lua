@@ -10,16 +10,8 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")                                         
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)                                                       -- format document
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" }) -- open message
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })            -- open list
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })        -- go to previous message
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })            -- go to next message
 vim.keymap.set('n', '<leader>A', 'ggVG', { desc = "Select All" })                                          -- select all
-vim.keymap.set("n", "<leader>gs", vim.cmd.Git);                                                            -- git status
 vim.keymap.set('n', '<leader>]', function() vim.cmd('bn') end, { desc = "Next buffer" })                   -- next buffer
 vim.keymap.set('n', '<leader>[', function() vim.cmd('bp') end, { desc = "Previous buffer" })               -- previous buffer
-vim.keymap.set('n', '<C-_>', function() require('Comment.api').toggle.linewise.current() end,              -- toggle comment
-  { noremap = true, silent = true })                                                                       -- toggle comment
-
-
-vim.keymap.set("n", "<leader>gs", "<cmd>lua Lazygit_toggle()<CR>", {silent = true})
--- vim.keymap.set("n", "<leader>gs", vim.cmd.Git);                                                            -- git status
+vim.keymap.set("n", "<leader>gs", "<cmd>lua Lazygit_toggle()<CR>", { silent = true })
 

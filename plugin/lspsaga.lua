@@ -1,5 +1,8 @@
-require('lspsaga').setup({
+local lspsaga = require 'lspsaga'
+
+lspsaga.setup({
   ui = {
+    code_action_icon = '', -- this disables the lightbulb. remove this like if you want the lightbulb back
     winblend = 10,
     border = 'rounded',
     colors = {
@@ -8,8 +11,8 @@ require('lspsaga').setup({
   }
 })
 
+local codeaction = require 'lspsaga.codeaction'
 -- code action
-local codeaction = require("lspsaga.codeaction")
 vim.keymap.set("n", "<leader>ca", function() codeaction:code_action() end, { silent = true })
 vim.keymap.set("v", "<leader>ca", function()
   vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-U>", true, false, true))

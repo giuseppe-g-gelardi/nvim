@@ -8,14 +8,11 @@ mason.setup({})
 lspconfig.setup {
   ensure_installed = {
     "lua_ls", -- lua_language_server
-    "eslint_d",
     "bashls",
     "tsserver",
     "rust_analyzer",
     "gopls",
-    "jsonlsp",
     "yamlls",
-    "vim",
   },
   automatic_installation = true,
 }

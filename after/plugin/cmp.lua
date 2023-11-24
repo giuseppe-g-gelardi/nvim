@@ -1,6 +1,7 @@
 -- nvim-cmp setup
 local cmp = require 'cmp'
 local luasnip = require 'luasnip'
+local lspkind = require 'lspkind'
 
 luasnip.config.setup {}
 
@@ -65,7 +66,7 @@ cmp.setup {
     fields = { "abbr", "kind", "menu" },
     format = function(entry, vim_item)
       vim_item.abbr = string.sub(vim_item.abbr, 1, 16)
-      local item_with_kind = require("lspkind").cmp_format({
+      local item_with_kind = lspkind.cmp_format({
         menu = ({
           nvim_lsp = '', -- nvim_lsp = '',
           luasnip = '',  -- luasnip = '﬌',

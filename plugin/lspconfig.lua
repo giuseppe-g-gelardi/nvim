@@ -37,47 +37,25 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
 end
 
-protocol.CompletionItemKind = {
-  '', -- Text
-  '', -- Method
-  '', -- Function
-  '', -- Constructor
-  '', -- Field
-  '', -- Variable
-  '', -- Class
-  'ﰮ', -- Interface
-  '', -- Module
-  '', -- Property
-  '', -- Unit
-  '', -- Value
-  '', -- Enum
-  '', -- Keyword
-  '﬌', -- Snippet
-  '', -- Color
-  '', -- File
-  '', -- Reference
-  '', -- Folder
-  '', -- EnumMember
-  '', -- Constant
-  '', -- Struct
-  '', -- Event
-  'ﬦ', -- Operator
-  '', -- TypeParameter
-}
-
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
-nvim_lsp.flow.setup {
-  on_attach = on_attach,
-  capabilities = capabilities
-}
+nvim_lsp.flow.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.sourcekit.setup { on_attach = on_attach, capabilities = capabilities }
+nvim_lsp.tailwindcss.setup { on_attach = on_attach, capabilities = capabilities } -- tailwind for life
 
 nvim_lsp.tsserver.setup {
   on_attach = on_attach,
   filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
   cmd = { "typescript-language-server", "--stdio" },
   capabilities = capabilities
+}
+
+nvim_lsp.gopls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "gopls" }, -- "serve"
+  filetypes = { "go", "gomod", "gowork", "gotmpl", "golang" },
 }
 
 nvim_lsp.rust_analyzer.setup {
@@ -100,24 +78,14 @@ nvim_lsp.rust_analyzer.setup {
   filetypes = { "rust" },
 }
 
-nvim_lsp.gopls.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = { "gopls" }, -- "serve"
-  filetypes = { "go", "gomod", "gowork", "gotmpl", "golang" },
-}
 
-nvim_lsp.pylsp.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  cmd = { "pylsp" },
-  filetypes = { "python" },
-}
+-- nvim_lsp.pylsp.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   cmd = { "pylsp" },
+--   filetypes = { "python" },
+-- }
 
-nvim_lsp.sourcekit.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-}
 
 nvim_lsp.lua_ls.setup {
   capabilities = capabilities,
@@ -140,7 +108,6 @@ nvim_lsp.lua_ls.setup {
   },
 }
 
-nvim_lsp.tailwindcss.setup { on_attach = on_attach, capabilities = capabilities } -- tailwind for life
 
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
@@ -153,15 +120,43 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 )
 
 -- Design
-vim.cmd 'sign define LspDiagnosticsSignError text='
-vim.cmd 'sign define LspDiagnosticsSignWarning text=ﰣ'
-vim.cmd 'sign define LspDiagnosticsSignInformation text='
-vim.cmd 'sign define LspDiagnosticsSignHint text='
+vim.cmd 'sign define LspDiagnosticsSignError text=E'
+vim.cmd 'sign define LspDiagnosticsSignWarning text=W'
+vim.cmd 'sign define LspDiagnosticsSignInformation text=I'
+vim.cmd 'sign define LspDiagnosticsSignHint text=H'
 
 
 -- Diagnostic symbols in the sign column (gutter)
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
+local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
+
+protocol.CompletionItemKind = {
+  '', -- Text
+  '', -- Method
+  '󰡱', -- Function
+  '', -- Constructor
+  '', -- Field
+  '', -- Variable
+  '', -- Class
+  '', -- Interface
+  '󰕳', -- Module
+  '', -- Property
+  '', -- Unit
+  '󰫧', -- Value
+  '', -- Enum
+  '', -- Keyword
+  '', -- Snippet
+  '', -- Color
+  '', -- File
+  '', -- Reference
+  '', -- Folder
+  '', -- EnumMember
+  '', -- Constant
+  '', -- Struct
+  '', -- Event
+  '', -- Operator
+  '', -- TypeParameter
+}

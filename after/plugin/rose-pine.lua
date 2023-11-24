@@ -51,5 +51,5 @@ require('rose-pine').setup({
   }
 })
 
--- Set colorscheme after options
-vim.cmd('colorscheme rose-pine')
+-- -- Set colorscheme after options
+-- vim.cmd('colorscheme rose-pine')

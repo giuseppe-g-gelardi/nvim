@@ -19,58 +19,51 @@ vim.opt.rtp:prepend(lazypath)
 
 
 require('lazy').setup({
-  'nvim-neo-tree/neo-tree.nvim',                -- neo tree
-  'MunifTanjim/nui.nvim',                       -- UI component library for nvim
-  'tpope/vim-fugitive',                         -- Git related plugin
-  'tpope/vim-rhubarb',                          -- Git related plugin
-  'nvim-tree/nvim-web-devicons',                -- file icons
-  'xiyaowong/nvim-transparent',                 -- makes window transparent
-  'github/copilot.vim',                         -- github copilot
-  'onsails/lspkind-nvim',                       -- vscode style ui icons in hints
-  'glepnir/lspsaga.nvim',                       -- ui for nvim built in lsp
-  'ThePrimeagen/harpoon',                       -- harpoon so lit
-  'nvim-lua/plenary.nvim',                      -- needed for other things, they say its "All the lua functions I don't want to write twice."
-  'hrsh7th/cmp-buffer',                         -- nvim-cmp source for buffer words
-  'hrsh7th/nvim-cmp',                           -- code completion
-  'hrsh7th/cmp-nvim-lsp',                       -- lsp for nvim-cmp
-  'hrsh7th/cmp-cmdline',                        -- nvim-cmp source for command line words
-  'hrsh7th/cmp-path',                           -- nvim-cmp source for file path words
-  'mbbill/undotree',                            -- undo tree
-  'nvim-lualine/lualine.nvim',                  -- Set lualine as statusline
-  'folke/neodev.nvim',                          -- Additional lua configuration, makes nvim stuff amazing!
-  'nvim-telescope/telescope.nvim',              -- Fuzzy Finder (files, lsp, etc)
-  'nvim-telescope/telescope-file-browser.nvim', -- file browser w/ telescope UI and fuzzy finder
+  'Shatur/neovim-ayu',
+  'HiPhish/nvim-ts-rainbow2',            -- rainbow parentheses
+  'lukas-reineke/indent-blankline.nvim', -- indent lines
+  -- 'nvim-neo-tree/neo-tree.nvim',                                   -- neo tree
+  -- 'MunifTanjim/nui.nvim',                                          -- UI component library for nvim
+  -- 'tpope/vim-fugitive',                                            -- Git related plugin
+  -- 'tpope/vim-rhubarb',                                             -- Git related plugin
+  'numToStr/Comment.nvim',                                         -- easier way to comment code
+  'nvim-tree/nvim-web-devicons',                                   -- file icons
+  -- 'xiyaowong/nvim-transparent',                                    -- makes window transparent
+  'github/copilot.vim',                                            -- github copilot
+  'onsails/lspkind-nvim',                                          -- vscode style ui icons in hints
+  'glepnir/lspsaga.nvim',                                          -- ui for nvim built in lsp
+  'ThePrimeagen/harpoon',                                          -- harpoon so lit
+  'nvim-lua/plenary.nvim',                                         -- needed for other things, they say its "All the lua functions I don't want to write twice."
+  'hrsh7th/cmp-buffer',                                            -- nvim-cmp source for buffer words
+  'hrsh7th/nvim-cmp',                                              -- code completion
+  'hrsh7th/cmp-nvim-lsp',                                          -- lsp for nvim-cmp
+  'hrsh7th/cmp-cmdline',                                           -- nvim-cmp source for command line words
+  'hrsh7th/cmp-path',                                              -- nvim-cmp source for file path words
+  -- 'mbbill/undotree',                                               -- undo tree
+  'nvim-lualine/lualine.nvim',                                     -- Set lualine as statusline
+  'folke/neodev.nvim',                                             -- Additional lua configuration, makes nvim stuff amazing!
+  'nvim-telescope/telescope.nvim',                                 -- Fuzzy Finder (files, lsp, etc)
+  'nvim-telescope/telescope-file-browser.nvim',                    -- file browser w/ telescope UI and fuzzy finder
   -- 'jose-elias-alvarez/null-ls.nvim',            -- Use Neovim as a language server to inject LSP diagnostics, code actions, and more via Lua
-  'nvimtools/none-ls.nvim',                     -- ! TESTING null-ls replacement
+  'nvimtools/none-ls.nvim',                                        -- ! TESTING null-ls replacement
   -- 'j-hui/fidget.nvim',                          -- Useful status updates for LSP
-  'folke/which-key.nvim',                       -- Useful plugin to show you pending keybinds.
-  'windwp/nvim-ts-autotag',                     -- autotag for html/tsx
-  'lewis6991/gitsigns.nvim',                    -- Adds git releated signs to the gutter, as well as utilities for managing changes
-  'akinsho/bufferline.nvim',                    -- bufferline/tabs
-  'L3MON4D3/LuaSnip',                           -- snippets that crash sometimes
-  'saadparwaiz1/cmp_luasnip',                   -- snippets for nvim-cmp
+  'folke/which-key.nvim',                                          -- Useful plugin to show you pending keybinds.
+  'windwp/nvim-ts-autotag',                                        -- autotag for html/tsx
+  'lewis6991/gitsigns.nvim',                                       -- Adds git releated signs to the gutter, as well as utilities for managing changes
+  -- 'akinsho/bufferline.nvim',                                       -- bufferline/tabs
+  'L3MON4D3/LuaSnip',                                              -- snippets that crash sometimes
+  'saadparwaiz1/cmp_luasnip',                                      -- snippets for nvim-cmp
+  { 'akinsho/toggleterm.nvim', version = "*",     config = true }, --- terminal
   {
-                                                -- early retirement
+    -- early retirement
     "chrisgrieser/nvim-early-retirement",
     config = true,
     event = "VeryLazy",
   },
-  { 'rose-pine/neovim', name = 'rose-pine' }, -- easy on the eyes
+  { 'rose-pine/neovim',        name = 'rose-pine' }, -- easy on the eyes
   {
-    "sanathks/workspace.nvim",
-    dependencies = { "nvim-telescope/telescope.nvim" },
-    config = function()
-      require("workspace").setup({
-        workspaces = {
-          { name = "NeovimConfig", path = "~/.config/nvim", keymap = { "<leader>V" } },
-          { name = "Code",         path = "~/code",         keymap = { "<leader>C" } },
-        }
-      })
-    end,
-  },
-  {
-    'neovim/nvim-lspconfig', -- LSP Configuration & Plugins
-    dependencies = {         -- Automatically install LSPs to stdpath for neovim
+    'neovim/nvim-lspconfig',                         -- LSP Configuration & Plugins
+    dependencies = {                                 -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
     },
   },
@@ -80,10 +73,6 @@ require('lazy').setup({
       require("nvim-autopairs").setup {}
     end
   },
-  {
-    'numToStr/Comment.nvim',                    -- easier way to comment code
-    requires = { 'JoosepAlviste/nvim-ts-context-commentstring' }
-  },                                            -- "gc" to comment visual regions/lines
   {
     'nvim-telescope/telescope-fzf-native.nvim', -- im sure this does something
     build = 'make',
@@ -110,26 +99,4 @@ require('lazy').setup({
       -- configurations go here
     },
   },
-  {
-    's1n7ax/nvim-terminal',
-    config = function()
-      vim.o.hidden = true
-      require('nvim-terminal').setup()
-    end,
-  },
-  {
-    'alexghergh/nvim-tmux-navigation',
-    config = function()
-      local nvim_tmux_nav = require('nvim-tmux-navigation')
-
-      nvim_tmux_nav.setup {
-        disable_when_zoomed = true -- defaults to false
-      }
-
-      vim.keymap.set('n', "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
-      vim.keymap.set('n', "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
-      vim.keymap.set('n', "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
-      vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
-    end
-  }
 }, {})

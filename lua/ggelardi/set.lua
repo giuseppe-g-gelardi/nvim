@@ -1,6 +1,6 @@
-vim.opt.tabstop = 2                                               -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
-vim.opt.softtabstop = 2                                           -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
-vim.opt.shiftwidth = 2                                            -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
+vim.opt.tabstop = 4                                               -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
+vim.opt.softtabstop = 4                                           -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
+vim.opt.shiftwidth = 4                                            -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
 vim.opt.expandtab = true                                          -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
 vim.opt.isfname:append("@-@")                                     -- allow @ in filenames, i think
 vim.opt.guicursor = ""                                            -- fat cursor
@@ -25,13 +25,20 @@ vim.o.smartcase = true                                            -- Smart case 
 vim.g.copilot_no_tab_map = true                                   -- this removes tab as the default key to map as its set in CMP
 vim.g.copilot_assume_mapped = true                                -- forces the plugin to think it is mapped so it doesnt try to map it
 vim.g.copilot_tab_tallback = ""                                   -- removes fall back as its set in cmp
-
 vim.diagnostic.config({ virtual_text = false, underline = true }) -- disable virtual text and enable undercurl for diagnostics
 vim.diagnostic.open_float({ scope = 'line' })                     -- open floating menu on line
 
+--- this is for the material theme, when i wanna use it
+-- -- these set the ported VSC community material color theme
+-- -- and adjust the colors for specific elements to match the vscode version
+-- vim.cmd 'colorscheme material'
+-- vim.cmd 'highlight Identifier guifg=#eeffff'
+-- vim.cmd 'highlight keyword guifg=#c792ea'
+-- -- ...because i like it....
+
 vim.api.nvim_create_autocmd('ColorScheme', {
-  command = [[highlight DiagnosticUnderlineError gui=undercurl]],
-  desc = "undercurl errors"
+    command = [[highlight DiagnosticUnderlineError gui=undercurl]],
+    desc = "undercurl errors"
 })
 
 -- Undercurl
@@ -40,23 +47,24 @@ vim.cmd([[let &t_Ce = "\e[4:0m"]]) -- Undercurl
 
 local ns = vim.api.nvim_create_namespace "test_namespace"
 vim.diagnostic.set(ns, 0, {
-  {
-    lnum = 0,
-    col = 10,
-    end_col = 40,
-    severity = vim.diagnostic.severity.ERROR,
-    message = "error",
-  }, {
-  lnum = 0,
-  col = 15,
-  end_col = 30,
-  severity = vim.diagnostic.severity.WARN,
-  message = "warning",
-},
+    {
+        lnum = 0,
+        col = 10,
+        end_col = 40,
+        severity = vim.diagnostic.severity.ERROR,
+        message = "error",
+    },
+    {
+        lnum = 0,
+        col = 15,
+        end_col = 30,
+        severity = vim.diagnostic.severity.WARN,
+        message = "warning",
+    },
 }) -- Undercurl
 
 vim.cmd [[
 hi DiagnosticUnderlineError guisp='Red' gui=undercurl
-hi DiagnosticUnderlineWarn guisp='Cyan' gui=underline
+hi DiagnosticUnderlineWarn guisp='Yellow' gui=underline
 set termguicolors
 ]] -- Undercurl settings to make it work with tmux

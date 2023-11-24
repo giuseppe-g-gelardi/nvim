@@ -6,5 +6,17 @@ if (not status2) then return end
 mason.setup({})
 
 lspconfig.setup {
-  automatic_installation = true
+  ensure_installed = {
+    "lua",
+    "bash",
+    "typescript",
+    "rust",
+    "go",
+    "html",
+    "javascript",
+    "json",
+    "yaml",
+    "vim",
+  },
+  automatic_installation = true,
 }

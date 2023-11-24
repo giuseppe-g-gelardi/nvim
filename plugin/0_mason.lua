@@ -7,15 +7,14 @@ mason.setup({})
 
 lspconfig.setup {
   ensure_installed = {
-    "lua",
-    "bash",
-    "typescript",
-    "rust",
-    "go",
-    "html",
-    "javascript",
-    "json",
-    "yaml",
+    "lua_ls", -- lua_language_server
+    "eslint_d",
+    "bashls",
+    "tsserver",
+    "rust_analyzer",
+    "gopls",
+    "jsonlsp",
+    "yamlls",
     "vim",
   },
   automatic_installation = true,

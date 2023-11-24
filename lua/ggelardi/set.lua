@@ -28,13 +28,6 @@ vim.g.copilot_tab_tallback = ""                                   -- removes fal
 vim.diagnostic.config({ virtual_text = false, underline = true }) -- disable virtual text and enable undercurl for diagnostics
 vim.diagnostic.open_float({ scope = 'line' })                     -- open floating menu on line
 
---- this is for the material theme, when i wanna use it
--- -- these set the ported VSC community material color theme
--- -- and adjust the colors for specific elements to match the vscode version
--- vim.cmd 'colorscheme material'
--- vim.cmd 'highlight Identifier guifg=#eeffff'
--- vim.cmd 'highlight keyword guifg=#c792ea'
--- -- ...because i like it....
 
 vim.api.nvim_create_autocmd('ColorScheme', {
     command = [[highlight DiagnosticUnderlineError gui=undercurl]],
@@ -45,26 +38,28 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 vim.cmd([[let &t_Cs = "\e[4:3m"]]) -- Undercurl
 vim.cmd([[let &t_Ce = "\e[4:0m"]]) -- Undercurl
 
-local ns = vim.api.nvim_create_namespace "test_namespace"
-vim.diagnostic.set(ns, 0, {
-    {
-        lnum = 0,
-        col = 10,
-        end_col = 40,
-        severity = vim.diagnostic.severity.ERROR,
-        message = "error",
-    },
-    {
-        lnum = 0,
-        col = 15,
-        end_col = 30,
-        severity = vim.diagnostic.severity.WARN,
-        message = "warning",
-    },
-}) -- Undercurl
+-- local ns = vim.api.nvim_create_namespace "test_namespace"
+-- vim.diagnostic.set(ns, 0, {
+--     {
+--         lnum = 0,
+--         col = 10,
+--         end_col = 40,
+--         severity = vim.diagnostic.severity.ERROR,
+--         message = "error",
+--     },
+--     {
+--         lnum = 0,
+--         col = 15,
+--         end_col = 30,
+--         severity = vim.diagnostic.severity.WARN,
+--         message = "warning",
+--     },
+-- }) -- Undercurl
 
 vim.cmd [[
-hi DiagnosticUnderlineError guisp='Red' gui=undercurl
-hi DiagnosticUnderlineWarn guisp='Yellow' gui=underline
+hi DiagnosticUnderlineError cterm=undercurl gui=undercurl guisp=#ff3333
+hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl guisp=#ffa750
+hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl guisp=#5ccfe6
+hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl guisp=#95e6cb
 set termguicolors
 ]] -- Undercurl settings to make it work with tmux

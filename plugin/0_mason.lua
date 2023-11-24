@@ -7,7 +7,7 @@ mason.setup({})
 
 lspconfig.setup {
   ensure_installed = {
-    "lua_ls", -- lua_language_server
+    "lua_ls",
     "bashls",
     "tsserver",
     "rust_analyzer",
@@ -15,4 +15,11 @@ lspconfig.setup {
     "yamlls",
   },
   automatic_installation = true,
+  ui = {
+    icons = {
+      package_installed = "✓",
+      package_pending = "➜",
+      package_uninstalled = "✗"
+    }
+  }
 }

@@ -28,38 +28,25 @@ vim.g.copilot_tab_tallback = ""                                   -- removes fal
 vim.diagnostic.config({ virtual_text = false, underline = true }) -- disable virtual text and enable undercurl for diagnostics
 vim.diagnostic.open_float({ scope = 'line' })                     -- open floating menu on line
 
-
 vim.api.nvim_create_autocmd('ColorScheme', {
-    command = [[highlight DiagnosticUnderlineError gui=undercurl]],
-    desc = "undercurl errors"
+  command = [[
+    highlight DiagnosticUnderlineError gui=undercurl cterm=undercurl guisp=#ff3333
+    highlight DiagnosticUnderlineWarn gui=undercurl cterm=undercurl guisp=#ffa750
+    highlight DiagnosticUnnecessary gui=undercurl cterm=undercurl guisp=#ffa750 "Unncecessary shows up as Warnings sometimes
+    highlight DiagnosticUnderlineInfo gui=undercurl cterm=undercurl guisp=#5ccfe6
+    highlight DiagnosticUnderlineHint gui=undercurl cterm=undercurl guisp=#95e6cb
+  ]],
+  desc = "undercurls"
 })
 
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]]) -- Undercurl
 vim.cmd([[let &t_Ce = "\e[4:0m"]]) -- Undercurl
 
--- local ns = vim.api.nvim_create_namespace "test_namespace"
--- vim.diagnostic.set(ns, 0, {
---     {
---         lnum = 0,
---         col = 10,
---         end_col = 40,
---         severity = vim.diagnostic.severity.ERROR,
---         message = "error",
---     },
---     {
---         lnum = 0,
---         col = 15,
---         end_col = 30,
---         severity = vim.diagnostic.severity.WARN,
---         message = "warning",
---     },
--- }) -- Undercurl
-
-vim.cmd [[
-hi DiagnosticUnderlineError cterm=undercurl gui=undercurl guisp=#ff3333
-hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl guisp=#ffa750
-hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl guisp=#5ccfe6
-hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl guisp=#95e6cb
-set termguicolors
-]] -- Undercurl settings to make it work with tmux
+-- vim.cmd [[
+-- hi DiagnosticUnderlineError cterm=undercurl gui=undercurl guisp=#ff3333
+-- hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl guisp=#ffa750
+-- hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl guisp=#5ccfe6
+-- hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl guisp=#95e6cb
+-- set termguicolors
+-- ]] -- Undercurl settings to make it work with tmux

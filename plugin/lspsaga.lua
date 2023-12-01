@@ -16,8 +16,6 @@ lspsaga.setup({
   }
 })
 
-local asscheeks
-
 local codeaction = require 'lspsaga.codeaction'
 -- code action
 vim.keymap.set("n", "<leader>ca", function() codeaction:code_action() end, { silent = true })

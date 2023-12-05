@@ -19,9 +19,8 @@ require('lazy').setup({
   { "catppuccin/nvim",         name = "catppuccin", priority = 1000 }, -- catppuccin theme
   -- 'kaicataldo/material.vim',                                           -- material theme
   'HiPhish/nvim-ts-rainbow2',                                          -- rainbow parentheses
-  'lukas-reineke/indent-blankline.nvim',                               -- indent lines
   'numToStr/Comment.nvim',                                             -- easier way to comment code
-  'nvim-tree/nvim-web-devicons',                                       -- file icons
+  -- 'nvim-tree/nvim-web-devicons',                                       -- file icons
   'github/copilot.vim',                                                -- github copilot
   'onsails/lspkind-nvim',                                              -- vscode style ui icons in hints
   'glepnir/lspsaga.nvim',                                              -- ui for nvim built in lsp
@@ -43,6 +42,7 @@ require('lazy').setup({
   'lewis6991/gitsigns.nvim',                                           -- Adds git releated signs to the gutter, as well as utilities for managing changes
   'L3MON4D3/LuaSnip',                                                  -- snippets that crash sometimes
   'saadparwaiz1/cmp_luasnip',                                          -- snippets for nvim-cmp
+  "windwp/nvim-autopairs",                                             -- auto pairs brackets, ect
   { 'akinsho/toggleterm.nvim', version = "*",       config = true },   --- terminal
   {
     -- early retirement -- closes open buffers after a period of inactivity
@@ -55,12 +55,6 @@ require('lazy').setup({
     dependencies = {         -- Automatically install LSPs to stdpath for neovim
       'williamboman/mason.nvim', 'williamboman/mason-lspconfig.nvim',
     },
-  },
-  {
-    "windwp/nvim-autopairs", -- auto pairs brackets, ect
-    config = function()
-      require("nvim-autopairs").setup {}
-    end
   },
   {
     'nvim-telescope/telescope-fzf-native.nvim', -- FUZZZZZY FINDERRRRRR

@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd('ColorScheme', {
     highlight DiagnosticUnderlineWarn gui=undercurl cterm=undercurl guisp=#ffa750
     highlight DiagnosticUnnecessary gui=undercurl cterm=undercurl guisp=#ffa750 "Unncecessary shows up as Warnings sometimes
     highlight DiagnosticUnderlineInfo gui=undercurl cterm=undercurl guisp=#5ccfe6
-    highlight DiagnosticUnderlineHint gui=undercurl cterm=undercurl guisp=#95e6cb
+    highlight DiagnosticUnderlineHint gui=undercurl cterm=undercurl guisp=#81c8bf
   ]],
   desc = "undercurls"
 })
@@ -42,11 +42,3 @@ vim.api.nvim_create_autocmd('ColorScheme', {
 -- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]]) -- Undercurl
 vim.cmd([[let &t_Ce = "\e[4:0m"]]) -- Undercurl
-
--- vim.cmd [[
--- hi DiagnosticUnderlineError cterm=undercurl gui=undercurl guisp=#ff3333
--- hi DiagnosticUnderlineWarn cterm=undercurl gui=undercurl guisp=#ffa750
--- hi DiagnosticUnderlineInfo cterm=undercurl gui=undercurl guisp=#5ccfe6
--- hi DiagnosticUnderlineHint cterm=undercurl gui=undercurl guisp=#95e6cb
--- set termguicolors
--- ]] -- Undercurl settings to make it work with tmux

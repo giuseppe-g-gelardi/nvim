@@ -52,12 +52,64 @@ nvim_lsp.tsserver.setup {
   capabilities = capabilities
 }
 
+-- nvim_lsp.gopls.setup {
+--   on_attach = on_attach,
+--   capabilities = capabilities,
+--   cmd = { "gopls" }, -- "serve"
+--   filetypes = { "go", "gomod", "gowork", "gotmpl", "golang" },
+--   settings = {
+--     gopls = {
+--       analyses = {
+--         unusedparams = true,
+--         shadow = true,
+--       },
+--       staticcheck = true,
+--     },
+--   },
+--   flags = {
+--     debounce_text_changes = 150,
+--   },
+-- }
+
+-- TODO figure out why golang is being fiesty with diagnostics
 nvim_lsp.gopls.setup {
-  on_attach = on_attach,
   capabilities = capabilities,
-  cmd = { "gopls" }, -- "serve"
-  filetypes = { "go", "gomod", "gowork", "gotmpl", "golang" },
+  on_attach = on_attach,
+  cmd = { "gopls" },
+  settings = {
+    gopls = {
+      gofumpt = true,
+      staticcheck = true,
+      analyses = {
+        unusedparams = true,
+      }
+    },
+  },
+  flags = {
+    debounce_text_changes = 150,
+  },
 }
+
+nvim_lsp.golangci_lint_ls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+  cmd = { "golangci-lint-langserver" },
+  filetypes = { "go", "gomod", "gowork", "gotmpl", "golang" },
+  settings = {
+    virtual_text = {
+      prefix = "",
+      spacing = 0,
+    },
+    gopls = {
+      gofumpt = true,
+      staticcheck = true,
+    },
+  },
+  flags = {
+    debounce_text_changes = 150,
+  },
+}
+
 
 nvim_lsp.rust_analyzer.setup {
   on_attach = on_attach,
@@ -79,15 +131,6 @@ nvim_lsp.rust_analyzer.setup {
   filetypes = { "rust" },
 }
 
-
--- nvim_lsp.pylsp.setup {
---   on_attach = on_attach,
---   capabilities = capabilities,
---   cmd = { "pylsp" },
---   filetypes = { "python" },
--- }
-
-
 nvim_lsp.lua_ls.setup {
   capabilities = capabilities,
   on_attach = function(client, bufnr)
@@ -96,6 +139,9 @@ nvim_lsp.lua_ls.setup {
   end,
   settings = {
     Lua = {
+      completion = {
+        callSnippet = "Replace"
+      },
       diagnostics = {
         -- Get the language server to recognize the `vim` global
         globals = { 'vim' },
@@ -109,10 +155,11 @@ nvim_lsp.lua_ls.setup {
   },
 }
 
-
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
-    virtual_text = false,
+    virtual_text = function(_, bufnr) -- Enable virtual text only for golang
+      return vim.api.nvim_buf_get_option(bufnr, 'ft') == 'go'
+    end,
     signs = true,
     underline = true,
     update_in_insert = true, -- Update diagnostics insert mode

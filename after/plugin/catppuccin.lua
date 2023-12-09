@@ -29,9 +29,7 @@ require("catppuccin").setup({
     types = {},
     operators = {},
   },
-  color_overrides = {
-    diagnostic_hint = { fg = "#81c8bf", style = "undercurl" },
-  },
+  color_overrides = {},
   custom_highlights = {},
   integrations = {
     native_lsp = {
@@ -56,11 +54,24 @@ require("catppuccin").setup({
     gitsigns = true,
     nvimtree = true,
     treesitter = true,
+    ts_rainbow = true,
+    ts_rainbow2 = true,
     notify = false,
+    telescope = true,
     mini = {
       enabled = true,
       indentscope_color = "",
     },
+    barbecue = {
+      dim_dirname = true, -- directory name is dimmed by default
+      bold_basename = true,
+      dim_context = false,
+      alt_background = false,
+    },
+    fidget = true,
+    harpoon = true,
+    lsp_saga = true,
+    markdown = true,
     -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
   },
 })

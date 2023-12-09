@@ -1,8 +1,8 @@
 require("catppuccin").setup({
-  flavour = "frappe", -- latte, frappe, macchiato, mocha
-  background = {      -- :h background
+  flavour = "frappe",             -- latte, frappe, macchiato, mocha
+  background = {                  -- :h background
     light = "latte",
-    dark = "mocha",
+    dark = "mocha",               -- mocha
   },
   transparent_background = false, -- disables setting the background color.
   show_end_of_buffer = false,     -- shows the '~' characters after the end of buffers
@@ -29,9 +29,29 @@ require("catppuccin").setup({
     types = {},
     operators = {},
   },
-  color_overrides = {},
+  color_overrides = {
+    diagnostic_hint = { fg = "#81c8bf", style = "undercurl" },
+  },
   custom_highlights = {},
   integrations = {
+    native_lsp = {
+      enabled = true,
+      virtual_text = {
+        errors = { "italic" },
+        hints = { "italic" },
+        warnings = { "italic" },
+        information = { "italic" },
+      },
+      underlines = {
+        errors = { "undercurl" },
+        hints = { "undercurl" },
+        warnings = { "undercurl" },
+        information = { "undercurl" },
+      },
+      inlay_hints = {
+        background = true,
+      },
+    },
     cmp = true,
     gitsigns = true,
     nvimtree = true,

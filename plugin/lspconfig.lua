@@ -52,6 +52,13 @@ nvim_lsp.tsserver.setup {
   capabilities = capabilities
 }
 
+nvim_lsp.zls.setup {
+  on_attach = on_attach,
+  capabilities = capabilities,
+  cmd = { "zls" },
+  filetypes = { "zig" },
+}
+
 -- nvim_lsp.gopls.setup {
 --   on_attach = on_attach,
 --   capabilities = capabilities,

@@ -13,6 +13,7 @@ lspconfig.setup {
     "rust_analyzer",
     "gopls",
     "yamlls",
+    "zls"
   },
   automatic_installation = true,
   ui = {

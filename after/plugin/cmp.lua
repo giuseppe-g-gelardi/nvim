@@ -14,6 +14,8 @@ local function get_lsp_completion_context(completion, source)
     return completion.detail
   elseif source_name == "rust_analyzer" then
     return completion.detail
+  elseif source_name == "zls" then
+    return completion.detail
   elseif source_name == "lua_ls" then
     return completion.detail
   end

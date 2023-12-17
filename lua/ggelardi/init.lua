@@ -1,3 +1,3 @@
 require('ggelardi.remap')
 require('ggelardi.set')
-require('ggelardi.lazy')
+require('ggelardi.highlights')

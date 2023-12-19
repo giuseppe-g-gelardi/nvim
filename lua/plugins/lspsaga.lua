@@ -7,7 +7,6 @@ return {
   config = function()
     local lspsaga = require 'lspsaga'
 
-
     lspsaga.setup({
       code_action_prompt = {
         enable = false,
@@ -25,8 +24,8 @@ return {
       }
     })
 
-    local codeaction = require 'lspsaga.codeaction'
     -- code action
+    local codeaction = require 'lspsaga.codeaction'
     vim.keymap.set("n", "<leader>ca", function() codeaction:code_action() end, { silent = true })
     vim.keymap.set("v", "<leader>ca", function()
       vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-U>", true, false, true))

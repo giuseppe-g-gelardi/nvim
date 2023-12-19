@@ -17,6 +17,10 @@ return {
         bufnr = bufnr,
       })
     end
+    --[[
+    -- ! Important!
+    -- Make sure eslint_d and prettierd are installed globally
+    --]]
 
     null_ls.setup {
       sources = {

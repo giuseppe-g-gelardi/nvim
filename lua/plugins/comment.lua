@@ -4,7 +4,7 @@ return {
   config = function()
     local U = require('Comment.utils')
     -- [[
-    -- this sets comments to be toggled with Control + / similar to vscode
+    -- this sets comments to be toggled with `Control + /` similar to vscode
     -- ]]
     require("Comment").setup(
       {

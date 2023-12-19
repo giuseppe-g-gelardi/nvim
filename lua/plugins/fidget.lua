@@ -1,9 +1,3 @@
--- --[[
---   this is the UI on the bottom right of the screen
---   shows the spinny thingy when loading/installing
---   shows which lsps are running and installing
--- ]]
-
 return {
   "j-hui/fidget.nvim",
   tag = "v1.0.0",

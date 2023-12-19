@@ -23,10 +23,10 @@ return {
       },
       sections = {
         lualine_a = { 'mode' },
-        lualine_b = { 'branch', 'diff', 'diagnostics' },
-        lualine_c = { 'buffers' },
-        lualine_x = { 'encoding', 'fileformat', 'filetype' },
-        lualine_y = { 'progress' },
+        lualine_b = { 'branch', 'diff', 'diagnostics' }, -- { 'branch', 'diff', 'diagnostics' },
+        lualine_c = {},
+        lualine_x = {},                                  -- { 'encoding', 'fileformat', 'filetype' },
+        lualine_y = {},
         lualine_z = { 'filename' }
       },
       inactive_sections = {

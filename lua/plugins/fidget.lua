@@ -38,13 +38,10 @@ return {
           group_style = "Title", -- Highlight group for group name (LSP server name)
           icon_style = "Question", -- Highlight group for group icons
           priority = 30, -- Ordering priority for LSP notification group
-          skip_history = true, -- Whether progress notifications should be omitted from history
-          format_message = -- How to format a progress message
-              require("fidget.progress.display").default_format_message,
-          format_annote = -- How to format a progress annotation
-              function(msg) return msg.title end,
-          format_group_name = -- How to format a progress notification group's name
-              function(group) return tostring(group) end,
+          -- skip_history = true, -- Whether progress notifications should be omitted from history
+          format_message = require("fidget.progress.display").default_format_message, -- How to format a progress message
+          format_annote = function(msg) return msg.title end, -- How to format a progress annotation
+          format_group_name = function(group) return tostring(group) end, -- How to format a progress notification group's name
           overrides = { -- Override options from the default notification config
             rust_analyzer = { name = "rust-analyzer" },
           },
@@ -60,7 +57,7 @@ return {
       notification = {
         poll_rate = 10,               -- How frequently to update and render notifications
         filter = vim.log.levels.INFO, -- Minimum notifications level
-        history_size = 128,           -- Number of removed messages to retain in history
+        -- history_size = 128,           -- Number of removed messages to retain in history
         override_vim_notify = false,  -- Automatically override vim.notify() with Fidget
         configs =                     -- How to configure notification groups when instantiated
         { default = require("fidget.notification").default_config },
@@ -89,12 +86,12 @@ return {
         },
       },
 
-      -- Options related to integrating with other plugins
-      integration = {
-        ["nvim-tree"] = {
-          enable = true, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
-        },
-      },
+      -- -- Options related to integrating with other plugins
+      -- integration = {
+      --   ["nvim-tree"] = {
+      --     enable = true, -- Integrate with nvim-tree/nvim-tree.lua (if installed)
+      --   },
+      -- },
 
       -- Options related to logging
       logger = {

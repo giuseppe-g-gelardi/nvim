@@ -1,9 +1,9 @@
 return {
-  'nvim-telescope/telescope.nvim',   -- Fuzzy Finder (files, lsp, etc)
-  dependencies = { 
-      'nvim-lua/plenary.nvim', 
-  'nvim-telescope/telescope-file-browser.nvim',  
-  'nvim-telescope/telescope-fzf-native.nvim',   
+  'nvim-telescope/telescope.nvim', -- Fuzzy Finder (files, lsp, etc)
+  dependencies = {
+    'nvim-lua/plenary.nvim',
+    'nvim-telescope/telescope-file-browser.nvim',
+    'nvim-telescope/telescope-fzf-native.nvim',
   },
   config = function()
     local telescope = require('telescope')

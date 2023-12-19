@@ -7,7 +7,7 @@ return {
     "MunifTanjim/nui.nvim",
   },
   config = function()
-    vim.keymap.set('n', '<leader>A', ':Neotree filesystem reveal left<CR>', {})
+    vim.keymap.set('n', '<leader>;', ':Neotree filesystem reveal left<CR>', {})
     -- vim.keymap.set('n', '<leader>bf', ':Neotree buffers reveal float<CR>', {})
     require("neo-tree").setup({
       close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
@@ -188,11 +188,11 @@ return {
           },
         },
         follow_current_file = {
-          enabled = false,                 -- This will find and focus the file in the active buffer every time
+          enabled = false,                  -- This will find and focus the file in the active buffer every time
           --               -- the current file is changed while the tree is open.
-          leave_dirs_open = false,         -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
+          leave_dirs_open = false,          -- `false` closes auto expanded dirs, such as with `:Neotree reveal`
         },
-        group_empty_dirs = false,          -- when true, empty folders will be grouped together
+        group_empty_dirs = false,           -- when true, empty folders will be grouped together
         hijack_netrw_behavior = "disabled", -- "open_default", -- netrw disabled, opening a directory opens neo-tree
         -- in whatever position is specified in window.position
         -- "open_current",  -- netrw disabled, opening a directory opens within the

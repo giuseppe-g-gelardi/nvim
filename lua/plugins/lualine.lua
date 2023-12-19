@@ -1,12 +1,12 @@
 return {
   'nvim-lualine/lualine.nvim', -- Set lualine as statusline
   config = function()
+    ---@diagnostic disable-next-line: undefined-field
     require('lualine').setup {
       options = {
         icons_enabled = true,
         theme = 'catppuccin', -- require('material.lualine') -- when using material
-        -- component_separators = { left = '|', right = '|' },
-        component_separators = { left = '', right = '' },
+        component_separators = { left = '|', right = '|' },
         section_separators = { left = '', right = '' },
         disabled_filetypes = {
           statusline = {},
@@ -22,17 +22,12 @@ return {
         }
       },
       sections = {
-        -- branch, buffers, diagnostics, diff, encoding, fileformat, filename,
-        -- filesize, filetype, hostname, location, mode, progress, searchcount,
-        -- selectioncount, tabs, windows
         lualine_a = { 'mode' },
         lualine_b = { 'branch', 'diff', 'diagnostics' },
-        -- lualine_c = { 'filename' },
         lualine_c = { 'buffers' },
         lualine_x = { 'encoding', 'fileformat', 'filetype' },
         lualine_y = { 'progress' },
-        lualine_z = { 'filename' },
-        -- lualine_z = { 'location' }
+        lualine_z = { 'filename' }
       },
       inactive_sections = {
         lualine_a = {},
@@ -49,3 +44,44 @@ return {
     }
   end,
 }
+
+--[[
+--
+    branch (git branch)
+    buffers (shows currently available buffers)
+    diagnostics (diagnostics count from your preferred source)
+    diff (git diff status)
+    encoding (file encoding)
+    fileformat (file format)
+    filename
+    filesize
+    filetype
+    hostname
+    location (location in file in line:column format)
+    mode (vim mode)
+    progress (%progress in file)
+    searchcount (number of search matches when hlsearch is active)
+    selectioncount (number of selected characters or lines)
+    tabs (shows currently available tabs)
+    windows (shows currently available windows)
+
+--]]
+
+
+
+-- sections = {
+--   lualine_a = { 'mode' },
+--   lualine_b = { 'branch', 'diff', 'diagnostics' },
+--   lualine_c = { 'buffers' },
+--   lualine_x = { 'encoding', 'fileformat', 'filetype' },
+--   lualine_y = { 'progress' },
+--   lualine_z = { 'filename' },
+-- },
+-- inactive_sections = {
+--   lualine_a = {},
+--   lualine_b = {},
+--   lualine_c = { 'filename' },
+--   lualine_x = { 'location' },
+--   lualine_y = {},
+--   lualine_z = {}
+-- },

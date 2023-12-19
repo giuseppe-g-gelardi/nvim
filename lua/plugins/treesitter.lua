@@ -1,6 +1,8 @@
 return {
   'nvim-treesitter/nvim-treesitter', -- Highlight, edit, and navigate code
-  dependencies = { 'nvim-treesitter/nvim-treesitter-textobjects', 'HiPhish/nvim-ts-rainbow2'
+  dependencies = {
+    'nvim-treesitter/nvim-treesitter-textobjects',
+    'HiPhish/nvim-ts-rainbow2'
   },
 
   config = function()

@@ -1,20 +1,23 @@
 return {
   'nvim-treesitter/nvim-treesitter', -- Highlight, edit, and navigate code
+  build = ":TSUpdate",
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
-    'HiPhish/nvim-ts-rainbow2'
   },
 
   config = function()
-    pcall(require('nvim-treesitter.install').update { with_sync = true })
-    require 'nvim-treesitter.configs'.setup {
+    local configs = require('nvim-treesitter.configs')
+    configs.setup {
       -- A list of parser names, or "all" (the five listed parsers should always be installed)
       ensure_installed = { -- c, vim, vimdoc, query, javascript
+        "c",
         "lua",
+        "tsx",
         "typescript",
         "go",
         "rust",
         "zig",
+        "markdown_inline"
       },
       sync_install = false,
       auto_install = true,
@@ -28,16 +31,6 @@ return {
         -- Instead of true it can also be a list of languages
         additional_vim_regex_highlighting = false,
       },
-      rainbow = {
-        enable = true,
-        -- list of languages you want to disable the plugin for
-        -- disable = { 'jsx', 'cpp' },
-        disable = {},
-        -- Which query to use for finding delimiters
-        query = 'rainbow-parens',
-        -- Highlight the entire buffer all at once
-        strategy = require('ts-rainbow').strategy.global,
-      }
     }
   end,
 }

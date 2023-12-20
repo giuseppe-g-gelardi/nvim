@@ -4,15 +4,12 @@ return {
   dependencies = {
     'nvim-treesitter/nvim-treesitter-textobjects',
   },
-
   config = function()
     local configs = require('nvim-treesitter.configs')
     configs.setup {
       -- A list of parser names, or "all" (the five listed parsers should always be installed)
       ensure_installed = { -- c, vim, vimdoc, query, javascript
-        "c",
         "lua",
-        "tsx",
         "typescript",
         "go",
         "rust",

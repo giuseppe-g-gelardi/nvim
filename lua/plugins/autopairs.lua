@@ -9,6 +9,16 @@ return {
         lua = { "string", "source" },
         javascript = { "string", "template_string" },
         java = false,
+        rust = {
+          "string",
+          "comment",
+          "argument",
+          "block",
+          "tuple",
+          "template_string",
+          "array",
+        },
+        zig = { "string", "comment", "argument", "block", "tuple", "template_string", "array" },
       },
       disable_filetype = { "TelescopePrompt", "spectre_panel" },
       fast_wrap = {

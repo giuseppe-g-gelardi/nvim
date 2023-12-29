@@ -13,6 +13,8 @@ return {
     local mason_lspconfig, lspconfig = pcall(require, "mason-lspconfig")
     if (not mason_lspconfig) then return end
 
+    local util = require 'lspconfig/util'
+
     mason.setup({})
 
     lspconfig.setup {
@@ -73,7 +75,7 @@ return {
       buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
       buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
       buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-      -- buf_set_keymap({ 'n', 'v' }, '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+      -- buf_set_keymap({ 'n', 'v' }, '<leader>co', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     end
 
     -- Set up completion using nvim_cmp with LSP source
@@ -94,10 +96,21 @@ return {
       on_attach = on_attach,
       capabilities = capabilities,
       cmd = { "zls" },
-      filetypes = { "zig" },
+      filetypes = { "zig", "zir" },
+      root_dir = util.root_pattern("zls.json", "build.zig", ".git"),
+      single_file_support = true,
+      docs = {
+        description = [[
+        https://github.com/zigtools/zls
+
+        Zig Lsp Implementations + Zig Language Server
+        ]],
+        default_config = {
+          root_dir = [[root_pattern("zls.json", "build.zig", ".git")]],
+        },
+      }
     }
 
-    -- TODO figure out why golang is being fiesty with diagnostics
     nvim_lsp.gopls.setup {
       capabilities = capabilities,
       on_attach = on_attach,

@@ -9,6 +9,7 @@ return {
     local telescope = require('telescope')
     local builtin = require('telescope.builtin')
     local themes = require('telescope.themes')
+
     telescope.setup {
       defaults = {
         layout_config = {
@@ -16,7 +17,7 @@ return {
         },
         file_ignore_patterns = {
           "node_modules"
-        }
+        },
       },
       extensions = {
         file_browser = {

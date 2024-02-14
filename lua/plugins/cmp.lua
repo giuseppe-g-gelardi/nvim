@@ -30,15 +30,6 @@ return {
       if source_details[source_name] then
         return completion.detail
       end
-      -- if source_name == "tsserver" then
-      --   return completion.detail
-      -- elseif source_name == "gopls" then
-      --   return completion.detail
-      -- elseif source_name == "rust_analyzer" then
-      --   return completion.detail
-      -- elseif source_name == "lua_ls" then
-      --   return completion.detail
-      -- end
     end
 
     cmp.setup {
@@ -97,10 +88,8 @@ return {
               buffer = '',   -- buffer = '﬘',
               path = '[PATH]',
             }),
-            -- mode = "symbol", -- "symbol" | "symbol_text" | "icon" | "icon_text" | "text"
-            maxwidth = 20, -- max width of the menu in characters
-            -- ellipsis_char = '...', -- if max width is exceeded, this character will be used to indicate truncation, -- ! not working yet
-            -- symbol_map = SYMBOL_MAP,
+            maxwidth = 20,         -- max width of the menu in characters
+            ellipsis_char = '...', -- if max width is exceeded, this character will be used to indicate truncation, -- ! not working yet
           })(entry, vim_item)
 
           item_with_kind.menu = vim.trim(item_with_kind.menu)

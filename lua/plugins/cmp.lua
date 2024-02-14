@@ -22,17 +22,23 @@ return {
     local function get_lsp_completion_context(completion, source)
       local ok, source_name = pcall(function() return source.source.client.config.name end)
       if not ok then return nil end
-      if source_name == "tsserver" then
-        return completion.detail
-      elseif source_name == "gopls" then
-        return completion.detail
-      elseif source_name == "rust_analyzer" then
-        return completion.detail
-      elseif source_name == "zls" then
-        return completion.detail
-      elseif source_name == "lua_ls" then
+
+      local source_details = {
+        tsserver = true, gopls = true, rust_analyzer = true, lua_ls = true,
+      }
+
+      if source_details[source_name] then
         return completion.detail
       end
+      -- if source_name == "tsserver" then
+      --   return completion.detail
+      -- elseif source_name == "gopls" then
+      --   return completion.detail
+      -- elseif source_name == "rust_analyzer" then
+      --   return completion.detail
+      -- elseif source_name == "lua_ls" then
+      --   return completion.detail
+      -- end
     end
 
     cmp.setup {

@@ -18,6 +18,7 @@ return {
     mason.setup({})
 
     lspconfig.setup {
+      single_file_support = true,
       ensure_installed = {
         "lua_ls",
         "bashls",
@@ -112,6 +113,7 @@ return {
     }
 
     nvim_lsp.gopls.setup {
+      single_file_support = true,
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = { "gopls" },
@@ -172,6 +174,13 @@ return {
         },
       },
     }
+
+    -- nvim_lsp.eslint_d.setup {
+    --   on_attach = on_attach,
+    --   capabilities = capabilities,
+    --   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+    --   root_dir = util.root_pattern(".eslintrc.js", ".eslintrc.json", ".eslintrc", "package.json"),
+    -- }
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
       vim.lsp.diagnostic.on_publish_diagnostics, {

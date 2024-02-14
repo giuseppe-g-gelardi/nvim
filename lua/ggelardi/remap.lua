@@ -14,16 +14,16 @@ vim.keymap.set('n', '<leader>[', function() vim.cmd('bp') end, { desc = "Previou
 vim.keymap.set('n', '<leader>gs', '<cmd>lua Lazygit_toggle()<CR>', { silent = true, desc = "[g]it [s]tatus" }); -- toggle lazygit
 
 -- diagnostics
-vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" });                                  -- open message
-vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" });                                             -- open list
-vim.keymap.set('n', '<leader>on', '<cmd>ObsidianNew<CR>', { desc = "[O]bsidian [N]ew" })                                                     -- create a new obsidian note
-vim.keymap.set('n', '<leader>oo', '<cmd>ObsidianOpen<CR>', { desc = "[O]bsidian [O]pen" })                                                   -- open note in obsidian
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" });         -- open message
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" });                    -- open list
+vim.keymap.set('n', '<leader>on', '<cmd>ObsidianNew<CR>', { desc = "[O]bsidian [N]ew" })                            -- create a new obsidian note
+vim.keymap.set('n', '<leader>oo', '<cmd>ObsidianOpen<CR>', { desc = "[O]bsidian [O]pen" })                          -- open note in obsidian
 
-vim.keymap.set("n", "<leader>tr", function() require("trouble").toggle() end, { desc = "toggle [TR]ouble" })                                 -- toggle trouble
-vim.keymap.set("n", "<leader>wd", function() require("trouble").toggle("workspace_diagnostics") end,
-  { desc = "[W]orkplace [D]iagnostics" })                                                                                                    -- toggle trouble workplace diagnostics
-vim.keymap.set("n", "<leader>dd", function() require("trouble").toggle("document_diagnostics") end,
-  { desc = "[D]ocument [D]iagnostics" })                                                                                                     -- toggle trouble document diagnostics
-vim.keymap.set("n", "<leader>qf", function() require("trouble").toggle("quickfix") end, { desc = "[Q]uick [F]ix" })                          -- toggle trouble quickfix list
+vim.keymap.set("n", "<leader>t", function() require("trouble").toggle() end, { desc = "toggle [TR]ouble" })         -- toggle trouble
+vim.keymap.set("n", "<leader>d", function() require("trouble").toggle("workspace_diagnostics") end,
+  { desc = "[W]orkplace [D]iagnostics" })                                                                           -- toggle trouble workplace diagnostics
+vim.keymap.set("n", "<leader>D", function() require("trouble").toggle("document_diagnostics") end,
+  { desc = "[D]ocument [D]iagnostics" })                                                                            -- toggle trouble document diagnostics
+vim.keymap.set("n", "<leader>qf", function() require("trouble").toggle("quickfix") end, { desc = "[Q]uick [F]ix" }) -- toggle trouble quickfix list
 -- vim.keymap.set("n", "<leader>xl", function() require("trouble").toggle("loclist") end)                   -- toggle trouble loclist -- not sure what this is for
 -- vim.keymap.set("n", "gR", function() require("trouble").toggle("lsp_references") end)                    -- toggle trouble lsp references -- probably just gonna use the lsp for this one

@@ -36,7 +36,7 @@ return {
         use_path_only = false,
       },
       templates = {
-        subdir = "Templates",
+        subdir = "templates",
         date_format = "%Y-%m-%d-%a",
         time_format = "%H:%M",
       },

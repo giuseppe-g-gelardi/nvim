@@ -11,13 +11,12 @@ return {
         -- Directory to keep default note (preset).
         -- string or fun(): string
 
-        -- path = "~/Documents/Obsidian_Vault/",
         -- directory = vim.fn.stdpath("data") .. "/global-note/",
         directory = "~/Documents/",
 
         -- Floating window title.
         -- string or fun(): string
-        title = "Global note",
+        title = "Notes",
 
         -- Ex command name.
         -- string

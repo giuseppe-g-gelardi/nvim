@@ -16,8 +16,6 @@ vim.keymap.set('n', '<leader>gs', '<cmd>lua Lazygit_toggle()<CR>', { silent = tr
 -- diagnostics
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" });         -- open message
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = "Open diagnostics list" });                    -- open list
-vim.keymap.set('n', '<leader>on', '<cmd>ObsidianNew<CR>', { desc = "[O]bsidian [N]ew" })                            -- create a new obsidian note
-vim.keymap.set('n', '<leader>oo', '<cmd>ObsidianOpen<CR>', { desc = "[O]bsidian [O]pen" })                          -- open note in obsidian
 
 vim.keymap.set("n", "<leader>t", function() require("trouble").toggle() end, { desc = "toggle [TR]ouble" })         -- toggle trouble
 vim.keymap.set("n", "<leader>d", function() require("trouble").toggle("workspace_diagnostics") end,

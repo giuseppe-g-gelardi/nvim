@@ -16,7 +16,8 @@ return {
         "go",
         "rust",
         "zig",
-        "markdown_inline"
+        "markdown_inline",
+        "elixir"
       },
       sync_install = false,
       auto_install = true,

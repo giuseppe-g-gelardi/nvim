@@ -26,7 +26,8 @@ return {
         "rust_analyzer",
         "gopls",
         "yamlls",
-        "zls"
+        -- "zls",
+        "elixirls"
       },
       automatic_installation = true,
       ui = {
@@ -91,6 +92,20 @@ return {
       filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
       cmd = { "typescript-language-server", "--stdio" },
       capabilities = capabilities
+    }
+
+    nvim_lsp.elixirls.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      cmd = { "elixir-ls" },
+      -- filetypes = { "elixir" },
+      -- root_dir = util.root_pattern("mix.exs", ".git"),
+      -- docs = {
+      --   description = [[util.root_pattern("mix.exs", ".git")]],
+      --   default_config = {
+      --     root_dir = [[root_pattern("mix.exs", ".git")]],
+      --   },
+      -- },
     }
 
     nvim_lsp.zls.setup {

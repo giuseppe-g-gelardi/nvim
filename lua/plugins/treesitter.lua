@@ -17,7 +17,8 @@ return {
         "rust",
         "zig",
         "markdown_inline",
-        "elixir", "heex", "eex"
+        "elixir", "heex", "eex",
+        "javascript"
       },
       sync_install = false,
       auto_install = true,

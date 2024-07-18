@@ -27,7 +27,7 @@ return {
         "gopls",
         "yamlls",
         -- "zls",
-        "elixirls"
+        "elixirls",
       },
       automatic_installation = true,
       ui = {
@@ -196,6 +196,13 @@ return {
     --   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
     --   root_dir = util.root_pattern(".eslintrc.js", ".eslintrc.json", ".eslintrc", "package.json"),
     -- }
+
+    nvim_lsp.eslint.setup {
+      on_attach = on_attach,
+      capabilities = capabilities,
+      filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+      root_dir = util.root_pattern(".eslintrc.js", ".eslintrc.json", ".eslintrc", "package.json"),
+    }
 
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
       vim.lsp.diagnostic.on_publish_diagnostics, {

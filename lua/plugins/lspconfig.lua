@@ -14,6 +14,7 @@ return {
     if (not mason_lspconfig) then return end
 
     local util = require 'lspconfig/util'
+    local configs = require 'lspconfig/configs'
 
     mason.setup({})
 
@@ -27,7 +28,11 @@ return {
         "gopls",
         "yamlls",
         -- "zls",
-        "elixirls",
+        -- "elixirls",
+        "pyright",
+        "ruff",
+        -- "mypy"
+        "black"
       },
       automatic_installation = true,
       ui = {
@@ -36,6 +41,13 @@ return {
           package_pending = "➜",
           package_uninstalled = "✗"
         }
+      }
+    }
+
+    configs['black'] = {
+      default_config = {
+        cmd = { "black", "--quiet", "-" },
+        filetypes = { "python" },
       }
     }
 
@@ -94,18 +106,10 @@ return {
       capabilities = capabilities
     }
 
-    nvim_lsp.elixirls.setup {
+    nvim_lsp.pyright.setup {
       on_attach = on_attach,
       capabilities = capabilities,
-      cmd = { "elixir-ls" },
-      -- filetypes = { "elixir" },
-      -- root_dir = util.root_pattern("mix.exs", ".git"),
-      -- docs = {
-      --   description = [[util.root_pattern("mix.exs", ".git")]],
-      --   default_config = {
-      --     root_dir = [[root_pattern("mix.exs", ".git")]],
-      --   },
-      -- },
+      filetypes = { "python" },
     }
 
     nvim_lsp.zls.setup {

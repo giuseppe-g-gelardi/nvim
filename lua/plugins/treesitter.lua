@@ -18,7 +18,8 @@ return {
         "zig",
         "markdown_inline",
         "elixir", "heex", "eex",
-        "javascript"
+        "javascript",
+        "python"
       },
       sync_install = false,
       auto_install = true,

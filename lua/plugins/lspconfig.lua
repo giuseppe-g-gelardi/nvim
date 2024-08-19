@@ -14,7 +14,7 @@ return {
     if (not mason_lspconfig) then return end
 
     local util = require 'lspconfig/util'
-    local configs = require 'lspconfig/configs'
+    -- local configs = require 'lspconfig/configs'
 
     mason.setup({})
 
@@ -29,10 +29,10 @@ return {
         "yamlls",
         -- "zls",
         -- "elixirls",
-        "pyright",
-        "ruff",
+        -- "pyright",
+        -- "ruff",
         -- "mypy"
-        "black"
+        -- "black"
       },
       automatic_installation = true,
       ui = {
@@ -44,12 +44,12 @@ return {
       }
     }
 
-    configs['black'] = {
-      default_config = {
-        cmd = { "black", "--quiet", "-" },
-        filetypes = { "python" },
-      }
-    }
+    -- configs['black'] = {
+    --   default_config = {
+    --     cmd = { "black", "--quiet", "-" },
+    --     filetypes = { "python" },
+    --   }
+    -- }
 
     --
     -- LSP setup
@@ -106,11 +106,11 @@ return {
       capabilities = capabilities
     }
 
-    nvim_lsp.pyright.setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      filetypes = { "python" },
-    }
+    -- nvim_lsp.pyright.setup {
+    --   on_attach = on_attach,
+    --   capabilities = capabilities,
+    --   filetypes = { "python" },
+    -- }
 
     nvim_lsp.zls.setup {
       on_attach = on_attach,

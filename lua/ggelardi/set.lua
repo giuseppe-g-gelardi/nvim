@@ -1,7 +1,7 @@
-vim.opt.tabstop = 4                     -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
-vim.opt.softtabstop = 4                 -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
-vim.opt.shiftwidth = 4                  -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
-vim.opt.expandtab = true                -- default 2 spaces for tab, 4 for python, 4 for go, set in ftplugin
+vim.opt.tabstop = 4                     -- default 4 spaces for tab, 2 for react/html, set in ftplugin
+vim.opt.softtabstop = 4                 -- default 4 spaces for tab, 2 for react/html, set in ftplugin
+vim.opt.shiftwidth = 4                  -- default 4 spaces for tab, 2 for react/html, set in ftplugin
+vim.opt.expandtab = true                -- use spaces instead of tabs -- i think
 vim.opt.isfname:append("@-@")           -- allow @ in filenames, i think
 vim.opt.guicursor = ""                  -- fat cursor
 vim.opt.scrolloff = 8                   -- keep 8 lines above and below cursor
@@ -30,6 +30,7 @@ vim.cmd([[ " Relative and absolute line numbers with git signs"
   let &stc='%s' . '%#NonText#%{&nu?v:lnum:""} ' . '%=%{&rnu&&(v:lnum%2)?"\ ".v:relnum:""}' . '%#LineNr#%{&rnu&&!(v:lnum%2)?"\ ".v:relnum:""} '
 ]])
 
+-- undercurls -- works with alacritty and iterm2, does NOT work with warp, not sure about others.
 vim.api.nvim_create_autocmd('ColorScheme', {
   command = [[
     highlight DiagnosticUnderlineError gui=undercurl cterm=undercurl guisp=#ff3333
@@ -41,6 +42,6 @@ vim.api.nvim_create_autocmd('ColorScheme', {
   desc = "undercurls"
 })
 
--- Undercurl
 vim.cmd([[let &t_Cs = "\e[4:3m"]]) -- Undercurl
 vim.cmd([[let &t_Ce = "\e[4:0m"]]) -- Undercurl
+-- undercurls -- works with alacritty and iterm2, does NOT work with warp, not sure about others.

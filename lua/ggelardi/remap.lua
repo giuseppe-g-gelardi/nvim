@@ -12,6 +12,7 @@ vim.keymap.set('n', '<leader>A', 'ggVG', { desc = "Select [A]ll" });            
 vim.keymap.set('n', '<leader>]', function() vim.cmd('bn') end, { desc = "Next buffer" });                       -- next buffer
 vim.keymap.set('n', '<leader>[', function() vim.cmd('bp') end, { desc = "Previous buffer" });                   -- previous buffer
 vim.keymap.set('n', '<leader>gs', '<cmd>lua Lazygit_toggle()<CR>', { silent = true, desc = "[g]it [s]tatus" }); -- toggle lazygit
+vim.keymap.set('n', 'Z', '<cmd>ZenMode<CR>', { desc = "[Z]en mode" });                                          -- toggle zen mode
 
 -- diagnostics
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" }); -- open message

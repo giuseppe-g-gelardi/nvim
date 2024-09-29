@@ -4,7 +4,10 @@ return {
   config = function()
     local U = require('Comment.utils')
     -- [[
+    --
     -- this sets comments to be toggled with `Control + /` similar to vscode
+    -- NOTE: this only works in a tmux session
+    --
     -- ]]
     require("Comment").setup(
       {

@@ -25,23 +25,3 @@ vim.o.smartcase = true                  -- Smart case for searching (ignore case
 vim.g.copilot_no_tab_map = true         -- this removes tab as the default key to map as its set in CMP
 vim.g.copilot_assume_mapped = true      -- forces the plugin to think it is mapped so it doesnt try to map it
 vim.g.copilot_tab_tallback = ""         -- removes fall back as its set in cmp
-
-vim.cmd([[ " Relative and absolute line numbers with git signs"
-  let &stc='%s' . '%#NonText#%{&nu?v:lnum:""} ' . '%=%{&rnu&&(v:lnum%2)?"\ ".v:relnum:""}' . '%#LineNr#%{&rnu&&!(v:lnum%2)?"\ ".v:relnum:""} '
-]])
-
--- undercurls -- works with alacritty and iterm2, does NOT work with warp, not sure about others.
-vim.api.nvim_create_autocmd('ColorScheme', {
-  command = [[
-    highlight DiagnosticUnderlineError gui=undercurl cterm=undercurl guisp=#ff3333
-    highlight DiagnosticUnderlineWarn gui=undercurl cterm=undercurl guisp=#ffa750
-    highlight DiagnosticUnnecessary gui=undercurl cterm=undercurl guisp=#ffa750 "Unncecessary shows up as Warnings sometimes
-    highlight DiagnosticUnderlineHint gui=undercurl cterm=undercurl guisp=#81c8bf
-    highlight DiagnosticUnderlineInfo gui=undercurl cterm=undercurl guisp=#5ccfe6
-  ]],
-  desc = "undercurls"
-})
-
-vim.cmd([[let &t_Cs = "\e[4:3m"]]) -- Undercurl
-vim.cmd([[let &t_Ce = "\e[4:0m"]]) -- Undercurl
--- undercurls -- works with alacritty and iterm2, does NOT work with warp, not sure about others.

@@ -1,3 +1,5 @@
 require('ggelardi.remap')
 require('ggelardi.set')
 require('ggelardi.highlights')
+require('ggelardi.undercurl')
+require('ggelardi.status_column')

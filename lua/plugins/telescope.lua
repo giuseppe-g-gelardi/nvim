@@ -2,7 +2,7 @@ return {
   'nvim-telescope/telescope.nvim', -- Fuzzy Finder (files, lsp, etc)
   dependencies = {
     'nvim-lua/plenary.nvim',
-    'nvim-telescope/telescope-file-browser.nvim',
+    -- 'nvim-telescope/telescope-file-browser.nvim',
     'nvim-telescope/telescope-fzf-native.nvim',
   },
   config = function()
@@ -20,43 +20,43 @@ return {
         },
       },
       extensions = {
-        file_browser = {
-          --   theme = "dropdown",   -- dropdown, ivy
-          path = vim.loop.cwd(),
-          cwd = vim.loop.cwd(),
-          cwd_to_path = false,
-          grouped = false,
-          files = true,
-          add_dirs = true,
-          depth = 1,
-          auto_depth = false,
-          select_buffer = false,
-          hidden = { file_browser = false, folder_browser = false },
-          respect_gitignore = vim.fn.executable "fd" == 1,
-          no_ignore = false,
-          follow_symlinks = false,
-          browse_files = require("telescope._extensions.file_browser.finders").browse_files,
-          browse_folders = require("telescope._extensions.file_browser.finders").browse_folders,
-          hide_parent_dir = false,
-          collapse_dirs = false,
-          prompt_path = false,
-          quiet = false,
-          dir_icon = "",
-          dir_icon_hl = "Default",
-          display_stat = { date = true, size = true, mode = true },
-          hijack_netrw = false,
-          use_fd = true,
-          git_status = true,
-          mappings = {}
-        },
+        -- file_browser = {
+        --   --   theme = "dropdown",   -- dropdown, ivy
+        --   path = vim.loop.cwd(),
+        --   cwd = vim.loop.cwd(),
+        --   cwd_to_path = false,
+        --   grouped = false,
+        --   files = true,
+        --   add_dirs = true,
+        --   depth = 1,
+        --   auto_depth = false,
+        --   select_buffer = false,
+        --   hidden = { file_browser = false, folder_browser = false },
+        --   respect_gitignore = vim.fn.executable "fd" == 1,
+        --   no_ignore = false,
+        --   follow_symlinks = false,
+        --   browse_files = require("telescope._extensions.file_browser.finders").browse_files,
+        --   browse_folders = require("telescope._extensions.file_browser.finders").browse_folders,
+        --   hide_parent_dir = false,
+        --   collapse_dirs = false,
+        --   prompt_path = false,
+        --   quiet = false,
+        --   dir_icon = "",
+        --   dir_icon_hl = "Default",
+        --   display_stat = { date = true, size = true, mode = true },
+        --   hijack_netrw = false,
+        --   use_fd = true,
+        --   git_status = true,
+        --   mappings = {}
+        -- },
       },
       -- maybe i should uncomment this?
       -- Enable telescope fzf native, if installed
       pcall(telescope.load_extension, 'fzf'),
 
       -- opens the telescope file browser
-      vim.keymap.set('n', '<leader>pb', telescope.extensions.file_browser.file_browser,
-        { desc = '[F]ile [B]rowser' }),
+      -- vim.keymap.set('n', '<leader>pb', telescope.extensions.file_browser.file_browser,
+      --   { desc = '[F]ile [B]rowser' }),
 
       -- See `:help telescope.builtin`
       vim.keymap.set('n', '<leader>?', builtin.oldfiles, { desc = '[?] Find recently opened files' }),
@@ -75,9 +75,9 @@ return {
       -- vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' }),
       vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = '[S]earch by [G]rep' }),
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' }),
-      vim.keymap.set('n', '<leader>sg',
-        function() builtin.grep_string({ search = vim.fn.input('Grep For > ') }) end,
-        { desc = '[S]earch [F]iles' }) -- global search
+      -- vim.keymap.set('n', '<leader>sg',
+      --   function() builtin.grep_string({ search = vim.fn.input('Grep For > ') }) end,
+      --   { desc = '[S]earch [F]iles' }) -- global search
     }
   end
 }

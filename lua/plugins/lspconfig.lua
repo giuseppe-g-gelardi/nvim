@@ -27,12 +27,7 @@ return {
         "rust_analyzer",
         "gopls",
         "yamlls",
-        -- "zls",
-        -- "elixirls",
-        -- "pyright",
-        -- "ruff",
-        -- "mypy"
-        -- "black"
+        -- "denols"
       },
       automatic_installation = true,
       ui = {
@@ -43,13 +38,6 @@ return {
         }
       }
     }
-
-    -- configs['black'] = {
-    --   default_config = {
-    --     cmd = { "black", "--quiet", "-" },
-    --     filetypes = { "python" },
-    --   }
-    -- }
 
     --
     -- LSP setup
@@ -103,13 +91,14 @@ return {
       on_attach = on_attach,
       filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
       cmd = { "typescript-language-server", "--stdio" },
+      root_dir = nvim_lsp.util.root_pattern("package.json"),
       capabilities = capabilities
     }
 
-    -- nvim_lsp.pyright.setup {
+    -- nvim_lsp.denols.setupd {
     --   on_attach = on_attach,
-    --   capabilities = capabilities,
-    --   filetypes = { "python" },
+    --   root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
+    --   capabilities = capabilities
     -- }
 
     nvim_lsp.zls.setup {

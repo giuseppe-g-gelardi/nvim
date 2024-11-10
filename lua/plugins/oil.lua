@@ -1,18 +1,22 @@
-return {}
--- return {
---   'stevearc/oil.nvim',
---   dependencies = { "nvim-tree/nvim-web-devicons" },
---   config = function()
---     require('oil').setup {
---       columns = { "icon" },
---       keymaps = {
---         ["<C-h>"] = false
---       },
---       view_options = {
---         show_hidden = true,
---       }
---     }
---     vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
---     vim.keymap.set("n", "<leader>-", require("oil").toggle_float)
---  https://app.serverless.com?client=cli&transactionId=1XIcRkq95hlCA7CuD1x2A end,
--- }
+-- return {}
+return {
+  'stevearc/oil.nvim',
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+  config = function()
+    require('oil').setup {
+      columns = { "icon" },
+      keymaps = {
+        ["<C-h>"] = false
+      },
+      default_file_explorer = false,
+      view_options = {
+        show_hidden = true,
+      }
+    }
+    vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+    -- vim.keymap.set("n", "<leader>-", require("oil").toggle_float)
+    -- https://app.serverless.com?client=cli&transactionId=1XIcRkq95hlCA7CuD1x2A end,
+  end,
+}
+
+-- go through all the default options and see whats up

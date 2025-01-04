@@ -23,7 +23,8 @@ return {
       ensure_installed = {
         "lua_ls",
         "bashls",
-        "tsserver",
+        -- "tsserver",
+        "ts_ls",
         "rust_analyzer",
         "gopls",
         "yamlls",
@@ -83,11 +84,13 @@ return {
     -- Set up completion using nvim_cmp with LSP source
     local capabilities = require('cmp_nvim_lsp').default_capabilities()
 
+    capabilities.textDocument.completion.completionItem.snippetSupport = false
+
     nvim_lsp.flow.setup { on_attach = on_attach, capabilities = capabilities }
     nvim_lsp.sourcekit.setup { on_attach = on_attach, capabilities = capabilities }
     nvim_lsp.tailwindcss.setup { on_attach = on_attach, capabilities = capabilities } -- tailwind for life
 
-    nvim_lsp.tsserver.setup {
+    nvim_lsp.ts_ls.setup {
       on_attach = on_attach,
       filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
       cmd = { "typescript-language-server", "--stdio" },
@@ -101,24 +104,24 @@ return {
     --   capabilities = capabilities
     -- }
 
-    nvim_lsp.zls.setup {
-      on_attach = on_attach,
-      capabilities = capabilities,
-      cmd = { "zls" },
-      filetypes = { "zig", "zir" },
-      root_dir = util.root_pattern("zls.json", "build.zig", ".git"),
-      single_file_support = true,
-      docs = {
-        description = [[
-        https://github.com/zigtools/zls
-
-        Zig Lsp Implementations + Zig Language Server
-        ]],
-        default_config = {
-          root_dir = [[root_pattern("zls.json", "build.zig", ".git")]],
-        },
-      }
-    }
+    -- nvim_lsp.zls.setup {
+    --   on_attach = on_attach,
+    --   capabilities = capabilities,
+    --   cmd = { "zls" },
+    --   filetypes = { "zig", "zir" },
+    --   root_dir = util.root_pattern("zls.json", "build.zig", ".git"),
+    --   single_file_support = true,
+    --   docs = {
+    --     description = [[
+    --     https://github.com/zigtools/zls
+    --
+    --     Zig Lsp Implementations + Zig Language Server
+    --     ]],
+    --     default_config = {
+    --       root_dir = [[root_pattern("zls.json", "build.zig", ".git")]],
+    --     },
+    --   }
+    -- }
 
     nvim_lsp.gopls.setup {
       single_file_support = true,

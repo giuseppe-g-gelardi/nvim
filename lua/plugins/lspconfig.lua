@@ -14,7 +14,6 @@ return {
     if (not mason_lspconfig) then return end
 
     local util = require 'lspconfig/util'
-    -- local configs = require 'lspconfig/configs'
 
     mason.setup({})
 
@@ -23,12 +22,10 @@ return {
       ensure_installed = {
         "lua_ls",
         "bashls",
-        -- "tsserver",
         "ts_ls",
         "rust_analyzer",
         "gopls",
         "yamlls",
-        -- "denols"
       },
       automatic_installation = true,
       ui = {
@@ -98,31 +95,6 @@ return {
       capabilities = capabilities
     }
 
-    -- nvim_lsp.denols.setupd {
-    --   on_attach = on_attach,
-    --   root_dir = nvim_lsp.util.root_pattern("deno.json", "deno.jsonc"),
-    --   capabilities = capabilities
-    -- }
-
-    -- nvim_lsp.zls.setup {
-    --   on_attach = on_attach,
-    --   capabilities = capabilities,
-    --   cmd = { "zls" },
-    --   filetypes = { "zig", "zir" },
-    --   root_dir = util.root_pattern("zls.json", "build.zig", ".git"),
-    --   single_file_support = true,
-    --   docs = {
-    --     description = [[
-    --     https://github.com/zigtools/zls
-    --
-    --     Zig Lsp Implementations + Zig Language Server
-    --     ]],
-    --     default_config = {
-    --       root_dir = [[root_pattern("zls.json", "build.zig", ".git")]],
-    --     },
-    --   }
-    -- }
-
     nvim_lsp.gopls.setup {
       single_file_support = true,
       capabilities = capabilities,
@@ -185,13 +157,6 @@ return {
         },
       },
     }
-
-    -- nvim_lsp.eslint_d.setup {
-    --   on_attach = on_attach,
-    --   capabilities = capabilities,
-    --   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-    --   root_dir = util.root_pattern(".eslintrc.js", ".eslintrc.json", ".eslintrc", "package.json"),
-    -- }
 
     nvim_lsp.eslint.setup {
       on_attach = on_attach,

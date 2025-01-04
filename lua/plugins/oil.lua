@@ -1,4 +1,3 @@
--- return {}
 return {
   'stevearc/oil.nvim',
   dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -14,9 +13,5 @@ return {
       }
     }
     vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
-    -- vim.keymap.set("n", "<leader>-", require("oil").toggle_float)
-    -- https://app.serverless.com?client=cli&transactionId=1XIcRkq95hlCA7CuD1x2A end,
   end,
 }
-
--- go through all the default options and see whats up

@@ -7,24 +7,18 @@ return {
     'hrsh7th/cmp-nvim-lsp', -- lsp for nvim-cmp
     'hrsh7th/cmp-cmdline',  -- nvim-cmp source for command line words
     'hrsh7th/cmp-path',     -- nvim-cmp source for file path words
-    -- 'L3MON4D3/LuaSnip',         -- snippets that crash sometimes
-    -- 'saadparwaiz1/cmp_luasnip', -- snippets for nvim-cmp
+    'github/copilot.vim',   -- copilot
   },
 
   config = function()
-    -- nvim-cmp setup
     local cmp = require 'cmp'
-    -- local luasnip = require 'luasnip'
     local lspkind = require 'lspkind'
-
-    -- luasnip.config.setup {}
 
     local function get_lsp_completion_context(completion, source)
       local ok, source_name = pcall(function() return source.source.client.config.name end)
       if not ok then return nil end
 
       local source_details = {
-        -- tsserver = true, gopls = true, rust_analyzer = true, lua_ls = true,
         ts_ls = true,
         gopls = true,
         rust_analyzer = true,
@@ -37,11 +31,6 @@ return {
     end
 
     cmp.setup {
-      -- snippet = {
-      --   expand = function(args)
-      --     luasnip.lsp_expand(args.body)
-      --   end,
-      -- },
       mapping = cmp.mapping.preset.insert {
         ['<C-d>'] = cmp.mapping.scroll_docs(-4),
         ['<C-u>'] = cmp.mapping.scroll_docs(4),
@@ -54,8 +43,6 @@ return {
           local copilot_keys = vim.fn['copilot#Accept']()
           if cmp.visible() then
             cmp.select_next_item()
-            -- elseif luasnip.expand_or_jumpable() then
-            --   luasnip.expand_or_jump()
           elseif copilot_keys ~= '' and type(copilot_keys) == 'string' then
             vim.api.nvim_feedkeys(copilot_keys, 'i', true)
           else
@@ -68,8 +55,6 @@ return {
         ['<S-Tab>'] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.select_prev_item()
-            -- elseif luasnip.jumpable(-1) then
-            --   luasnip.jump(-1)
           else
             fallback()
           end
@@ -78,7 +63,6 @@ return {
       sources = {
         { name = 'nvim_lsp' },
         { name = 'buffer' },
-        -- { name = 'luasnip' },
         { name = 'path' },
       },
       formatting = {

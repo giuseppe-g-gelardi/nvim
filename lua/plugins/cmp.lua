@@ -61,7 +61,7 @@ return {
         menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end },
       },
 
-      signature = { enabled = true },
+      signature = { enabled = false },
       sources = {
         default = { 'lsp', 'path', 'buffer' },
       },

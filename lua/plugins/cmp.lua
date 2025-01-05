@@ -54,6 +54,9 @@ return {
           TypeParameter = ""
         }
       },
+      completion = {
+        menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end },
+      },
 
       signature = { enabled = true },
       sources = {

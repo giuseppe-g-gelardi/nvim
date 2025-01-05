@@ -1,7 +1,10 @@
 return {
   {
     'saghen/blink.cmp',
-    dependencies = 'rafamadriz/friendly-snippets',
+    dependencies = {
+      -- 'rafamadriz/friendly-snippets', -- snippets that ill never use lol
+      'github/copilot.vim', -- copilot -- sometimes helpful
+    },
 
     version = 'v0.*',
 

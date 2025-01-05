@@ -1,44 +1,59 @@
 return {
-  'windwp/nvim-autopairs',
-  event = "InsertEnter",
-  opts = {}, -- this is equalent to setup({}) function
-  config = function()
-    require('nvim-autopairs').setup {
-      check_ts = true,
-      ts_config = {
-        lua = { "string", "source" },
-        javascript = { "string", "template_string" },
-        java = false,
-        rust = {
-          "string",
-          "comment",
-          "argument",
-          "block",
-          "tuple",
-          "template_string",
-          "array",
+  {
+    'windwp/nvim-autopairs',
+    event = "InsertEnter",
+    opts = {}, -- this is equalent to setup({}) function
+    config = function()
+      require('nvim-autopairs').setup {
+        check_ts = true,
+        ts_config = {
+          lua = { "string", "source" },
+          javascript = { "string", "template_string" },
+          java = false,
+          rust = {
+            "string",
+            "comment",
+            "argument",
+            "block",
+            "tuple",
+            "template_string",
+            "array",
+          },
+          zig = { "string", "comment", "argument", "block", "tuple", "template_string", "array" },
         },
-        zig = { "string", "comment", "argument", "block", "tuple", "template_string", "array" },
-      },
-      disable_filetype = { "TelescopePrompt", "spectre_panel" },
-      fast_wrap = {
-        map = "<M-e>",
-        chars = { "{", "[", "(", '"', "'", },
-        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
-        offset = 0, -- Offset from pattern match
-        end_key = "$",
-        keys = "qwertyuiopzxcvbnmasdfghjkl",
-        check_comma = true,
-        highlight = "PmenuSel",
-        highlight_grey = "LineNr",
-      },
-    }
+        disable_filetype = { "TelescopePrompt", "spectre_panel" },
+        fast_wrap = {
+          map = "<M-e>",
+          chars = { "{", "[", "(", '"', "'", },
+          pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], "%s+", ""),
+          offset = 0, -- Offset from pattern match
+          end_key = "$",
+          keys = "qwertyuiopzxcvbnmasdfghjkl",
+          check_comma = true,
+          highlight = "PmenuSel",
+          highlight_grey = "LineNr",
+        },
+      }
 
-    local cmp_autopairs = require "nvim-autopairs.completion.cmp"
-    local cmp_status_ok, cmp = pcall(require, "cmp")
-    if not cmp_status_ok then
-      return
-    end
-    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
-  end,
+      local cmp_autopairs = require "nvim-autopairs.completion.cmp"
+      local cmp_status_ok, cmp = pcall(require, "cmp")
+      if not cmp_status_ok then
+        return
+      end
+      cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done { map_char = { tex = "" } })
+    end,
+  },
+  {
+    'windwp/nvim-ts-autotag', -- autotag for html/tsx
+    config = function()
+      local ts_autotag = require('nvim-ts-autotag')
+      ts_autotag.setup({
+        opts = {
+          enable_close = true,
+          enable_rename = true,
+          enable_close_on_slash = true, -- false?
+        }
+      })
+    end,
+  }
 }

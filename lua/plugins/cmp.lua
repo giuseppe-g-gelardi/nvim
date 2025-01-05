@@ -1,10 +1,13 @@
 return {
+
+  {
+    'github/copilot.vim',        -- Separate configuration for Copilot
+    config = function()
+      vim.cmd('Copilot disable') -- Disable Copilot on startup without affecting cmp
+    end,
+  },
   {
     'saghen/blink.cmp',
-    dependencies = {
-      'github/copilot.vim', -- copilot -- sometimes helpful
-    },
-
     version = 'v0.*',
 
     opts = {
@@ -65,5 +68,5 @@ return {
         default = { 'lsp', 'path', 'buffer' },
       },
     },
-  }
+  },
 }

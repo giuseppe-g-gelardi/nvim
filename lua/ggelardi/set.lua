@@ -26,4 +26,4 @@ vim.o.smartcase = true                  -- Smart case for searching (ignore case
 vim.g.copilot_no_tab_map = true         -- this removes tab as the default key to map as its set in CMP
 vim.g.copilot_assume_mapped = true      -- forces the plugin to think it is mapped so it doesnt try to map it
 vim.g.copilot_tab_tallback = ""         -- removes fall back as its set in cmp
-vim.api.nvim_set_keymap('i', '<C-o>', 'copilot#Accept("<CR>")', { noremap = true, silent = true, expr = true })
+vim.api.nvim_set_keymap('i', '<C-y>', 'copilot#Accept("<CR>")', { noremap = true, silent = true, expr = true })

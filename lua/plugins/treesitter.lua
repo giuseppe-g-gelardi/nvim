@@ -17,9 +17,6 @@ return {
         "rust",
         "zig",
         "markdown_inline",
-        "elixir", "heex", "eex",
-        "javascript",
-        "python"
       },
       sync_install = false,
       auto_install = true,

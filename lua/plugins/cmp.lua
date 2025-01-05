@@ -9,11 +9,12 @@ return {
       keymap = {
         preset = 'enter',
         -- ['<C-space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+        -- ['<C-e>'] = { 'hide', 'fallback' },
         ['<Tab>'] = { 'select_next', 'fallback' },
         ['<S-Tab>'] = { 'select_prev', 'fallback' },
-        ['<CR>'] = { 'accept', 'fallback' },
-        ['<Up>'] = { 'scroll_documentation_up', 'fallback' },
-        ['<Down>'] = { 'scroll_documentation_down', 'fallback' },
+        ['<CR>'] = { 'accept', 'fallback' }, -- <CR> is 'enter'
+        ['<C-d>'] = { 'scroll_documentation_down', 'fallback' },
+        ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
       },
 
       appearance = {

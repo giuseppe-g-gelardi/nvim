@@ -78,11 +78,8 @@ return {
       -- buf_set_keymap({ 'n', 'v' }, '<leader>co', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     end
 
-    -- Set up completion using nvim_cmp with LSP source
-    -- local capabilities = require('cmp_nvim_lsp').default_capabilities()
-    -- local capabilities = vim.lsp.protocol.make_client_capabilities()
+    -- Set up completion using blink.cmp
     local capabilities = require('blink.cmp').get_lsp_capabilities()
-
     capabilities.textDocument.completion.completionItem.snippetSupport = false
 
     nvim_lsp.flow.setup { on_attach = on_attach, capabilities = capabilities }

@@ -50,32 +50,58 @@ return {
         }
       },
       completion = {
+        trigger = {
+          show_on_keyword = true
+        },
         -- menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end },
         menu = {
           draw = {
-            columns = {
-              { 'kind_icon',  'kind', gap = 1 }, -- Icon and kind (e.g., function)
-              { 'label',      gap = 1 },         -- Label and description
-              { 'source_name' }                  -- Add the source of the completion
-            },
+            gap = 2,
+            columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
             components = {
               kind_icon = {
-                text = function(ctx) return ctx.kind_icon .. " " end,
-                highlight = function(ctx) return 'BlinkCmpKind' .. ctx.kind end,
-              },
-              kind = {
-                text = function(ctx) return ctx.kind end,
-                highlight = function(ctx) return 'BlinkCmpKind' .. ctx.kind end,
+                ellipsis = false,
+                text = function(ctx) return ctx.kind_icon .. ctx.icon_gap end,
+                highlight = function(ctx)
+                  return require('blink.cmp.completion.windows.render.tailwind').get_hl(ctx) or
+                      'BlinkCmpKind' .. ctx.kind
+                end,
               },
               label = {
-                width = { fill = true, max = 20 },
-                text = function(ctx) return ctx.label end,
+                width = {
+                  fill = true,
+                  -- max = 60
+                },
+                -- text = function(ctx) return ctx.label end,
+                text = function(ctx) return ctx.label .. ctx.label_detail end,
+                -- highlight = function(ctx)
+                --   local highlights = {
+                --     { 0, #ctx.label, group = 'BlinkCmpLabel' },
+                --   }
+                --   return highlights
+                -- end,
                 highlight = function(ctx)
+                  -- label and label details
                   local highlights = {
-                    { 0, #ctx.label, group = 'BlinkCmpLabel' },
+                    { 0, #ctx.label, group = ctx.deprecated and 'BlinkCmpLabelDeprecated' or 'BlinkCmpLabel' },
                   }
+                  if ctx.label_detail then
+                    table.insert(highlights,
+                      { #ctx.label, #ctx.label + #ctx.label_detail, group = 'BlinkCmpLabelDetail' })
+                  end
+
+                  -- characters matched on the label by the fuzzy matcher
+                  for _, idx in ipairs(ctx.label_matched_indices) do
+                    table.insert(highlights, { idx, idx + 1, group = 'BlinkCmpLabelMatch' })
+                  end
+
                   return highlights
                 end,
+              },
+              label_description = {
+                -- width = { max = 30 },
+                text = function(ctx) return ctx.label_description end,
+                highlight = 'BlinkCmpLabelDescription',
               },
               source_name = {
                 text = function(ctx) return ctx.source_name or "" end, -- Display the source name
@@ -86,6 +112,7 @@ return {
         }
       },
       signature = { enabled = false },
+      -- signature = { enabled = true },
       sources = {
         default = { 'lsp', 'path', 'buffer' },
         cmdline = {}

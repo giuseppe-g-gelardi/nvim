@@ -21,34 +21,35 @@ return {
       appearance = {
         use_nvim_cmp_as_default = true,
         nerd_font_variant = 'mono',
-        kind_icons = {
-          Text = "",
-          Method = "",
-          Function = "󰡱",
-          Constructor = "",
-          Field = "󰜢",
-          Variable = "󰀫",
-          Property = "󰜢",
-          Class = "󰠱",
-          Interface = "",
-          Struct = "󰏿",
-          Module = "",
-          Unit = "󰑭",
-          Value = "󰫧", -- 󰎠
-          Enum = "",
-          EnumMember = "",
-          Keyword = "󰌋",
-          Constant = "",
-          Snippet = "",
-          Color = "",
-          File = "",
-          Reference = "󰈇",
-          Folder = "",
-          Event = "",
-          Operator = "󰆕",
-          TypeParameter = ""
-        }
+        kind_icons = { -- VSCode Icons
+          Text = ' ',
+          Method = ' ',
+          Function = ' ',
+          Constructor = ' ',
+          Field = ' ',
+          Variable = ' ',
+          Class = ' ',
+          Interface = ' ',
+          Module = ' ',
+          Property = ' ',
+          Unit = ' ',
+          Value = ' ',
+          Enum = ' ',
+          Keyword = ' ',
+          Snippet = ' ',
+          Color = ' ',
+          File = ' ',
+          Reference = ' ',
+          Folder = ' ',
+          EnumMember = ' ',
+          Constant = ' ',
+          Struct = ' ',
+          Event = ' ',
+          Operator = ' ',
+          TypeParameter = ' ',
+        },
       },
+
       completion = {
         trigger = {
           show_on_keyword = true
@@ -56,7 +57,7 @@ return {
         -- menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end },
         menu = {
           draw = {
-            gap = 2,
+            -- gap = 1,
             columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
             components = {
               kind_icon = {
@@ -70,16 +71,8 @@ return {
               label = {
                 width = {
                   fill = true,
-                  -- max = 60
                 },
-                -- text = function(ctx) return ctx.label end,
                 text = function(ctx) return ctx.label .. ctx.label_detail end,
-                -- highlight = function(ctx)
-                --   local highlights = {
-                --     { 0, #ctx.label, group = 'BlinkCmpLabel' },
-                --   }
-                --   return highlights
-                -- end,
                 highlight = function(ctx)
                   -- label and label details
                   local highlights = {
@@ -120,3 +113,33 @@ return {
     },
   },
 }
+
+
+
+
+
+-- Text = "",
+-- Method = "",
+-- Function = "󰡱",
+-- Constructor = "",
+-- Field = "󰜢",
+-- Variable = "󰀫",
+-- Property = "󰜢",
+-- Class = "󰠱",
+-- Interface = "",
+-- Struct = "󰏿",
+-- Module = "",
+-- Unit = "󰑭",
+-- Value = "󰫧", -- 󰎠
+-- Enum = "",
+-- EnumMember = "",
+-- Keyword = "󰌋",
+-- Constant = "",
+-- Snippet = "",
+-- Color = "",
+-- File = "",
+-- Reference = "󰈇",
+-- Folder = "",
+-- Event = "",
+-- Operator = "󰆕",
+-- TypeParameter = ""

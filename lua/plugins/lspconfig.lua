@@ -75,7 +75,7 @@ return {
       buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
       buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
       buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-      -- buf_set_keymap({ 'n', 'v' }, '<leader>co', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+      -- buf_set_keymap({ 'n', 'v' }, '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
     end
 
     -- Set up completion using blink.cmp
@@ -167,9 +167,9 @@ return {
     vim.diagnostic.config({ virtual_text = false })
     vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
       vim.lsp.diagnostic.on_publish_diagnostics, {
-        virtual_text = function(_, bufnr) -- Enable virtual text only for golang
-          return vim.api.nvim_buf_get_option(bufnr, 'ft') == 'go'
-        end,
+        -- virtual_text = function(_, bufnr) -- Enable virtual text only for golang
+        --   return vim.api.nvim_buf_get_option(bufnr, 'ft') == 'go'
+        -- end,
         signs = true,
         underline = true,
         update_in_insert = true, -- Update diagnostics insert mode
@@ -192,31 +192,56 @@ return {
     end
 
     protocol.CompletionItemKind = {
-      '', -- Text
-      '', -- Method
-      '󰡱', -- Function
-      '', -- Constructor
-      '', -- Field
-      '', -- Variable
-      '', -- Class
-      '', -- Interface
-      '󰕳', -- Module
-      '', -- Property
-      '', -- Unit
-      '󰫧', -- Value
-      '', -- Enum
-      '', -- Keyword
-      '', -- Snippet
-      '', -- Color
-      '', -- File
-      '', -- Reference
-      '', -- Folder
-      '', -- EnumMember
-      '', -- Constant
-      '', -- Struct
-      '', -- Event
-      '', -- Operator
-      '', -- TypeParameter
+        Text = ' ',
+        Method = ' ',
+        Function = ' ',
+        Constructor = ' ',
+        Field = ' ',
+        Variable = ' ',
+        Class = ' ',
+        Interface = ' ',
+        Module = ' ',
+        Property = ' ',
+        Unit = ' ',
+        Value = ' ',
+        Enum = ' ',
+        Keyword = ' ',
+        Snippet = ' ',
+        Color = ' ',
+        File = ' ',
+        Reference = ' ',
+        Folder = ' ',
+        EnumMember = ' ',
+        Constant = ' ',
+        Struct = ' ',
+        Event = ' ',
+        Operator = ' ',
+        TypeParameter = ' ',
+      -- '', -- Text
+      -- '', -- Method
+      -- '󰡱', -- Function
+      -- '', -- Constructor
+      -- '', -- Field
+      -- '', -- Variable
+      -- '', -- Class
+      -- '', -- Interface
+      -- '󰕳', -- Module
+      -- '', -- Property
+      -- '', -- Unit
+      -- '󰫧', -- Value
+      -- '', -- Enum
+      -- '', -- Keyword
+      -- '', -- Snippet
+      -- '', -- Color
+      -- '', -- File
+      -- '', -- Reference
+      -- '', -- Folder
+      -- '', -- EnumMember
+      -- '', -- Constant
+      -- '', -- Struct
+      -- '', -- Event
+      -- '', -- Operator
+      -- '', -- TypeParameter
     }
   end,
 }

@@ -16,7 +16,6 @@ return {
       --
       -- default: {}
       symbol_map = {
-
         Text = ' ',
         Method = ' ',
         Function = ' ',
@@ -42,11 +41,6 @@ return {
         Event = ' ',
         Operator = ' ',
         TypeParameter = ' ',
-
-
-
-
-
         -- Text = "",
         -- Method = "",
         -- Function = "󰡱",

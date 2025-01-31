@@ -81,6 +81,8 @@ return {
     -- Set up completion using blink.cmp
     local capabilities = require('blink.cmp').get_lsp_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = false
+    -- capabilities.textDocument.completion = nil
+    -- capabilities.textDocument.completion.completionItem.insertTextMode = 1
 
     nvim_lsp.flow.setup { on_attach = on_attach, capabilities = capabilities }
     nvim_lsp.sourcekit.setup { on_attach = on_attach, capabilities = capabilities }
@@ -192,56 +194,31 @@ return {
     end
 
     protocol.CompletionItemKind = {
-        Text = ' ',
-        Method = ' ',
-        Function = ' ',
-        Constructor = ' ',
-        Field = ' ',
-        Variable = ' ',
-        Class = ' ',
-        Interface = ' ',
-        Module = ' ',
-        Property = ' ',
-        Unit = ' ',
-        Value = ' ',
-        Enum = ' ',
-        Keyword = ' ',
-        Snippet = ' ',
-        Color = ' ',
-        File = ' ',
-        Reference = ' ',
-        Folder = ' ',
-        EnumMember = ' ',
-        Constant = ' ',
-        Struct = ' ',
-        Event = ' ',
-        Operator = ' ',
-        TypeParameter = ' ',
-      -- '', -- Text
-      -- '', -- Method
-      -- '󰡱', -- Function
-      -- '', -- Constructor
-      -- '', -- Field
-      -- '', -- Variable
-      -- '', -- Class
-      -- '', -- Interface
-      -- '󰕳', -- Module
-      -- '', -- Property
-      -- '', -- Unit
-      -- '󰫧', -- Value
-      -- '', -- Enum
-      -- '', -- Keyword
-      -- '', -- Snippet
-      -- '', -- Color
-      -- '', -- File
-      -- '', -- Reference
-      -- '', -- Folder
-      -- '', -- EnumMember
-      -- '', -- Constant
-      -- '', -- Struct
-      -- '', -- Event
-      -- '', -- Operator
-      -- '', -- TypeParameter
+      Text = ' ',
+      Method = ' ',
+      Function = ' ',
+      Constructor = ' ',
+      Field = ' ',
+      Variable = ' ',
+      Class = ' ',
+      Interface = ' ',
+      Module = ' ',
+      Property = ' ',
+      Unit = ' ',
+      Value = ' ',
+      Enum = ' ',
+      Keyword = ' ',
+      Snippet = ' ',
+      Color = ' ',
+      File = ' ',
+      Reference = ' ',
+      Folder = ' ',
+      EnumMember = ' ',
+      Constant = ' ',
+      Struct = ' ',
+      Event = ' ',
+      Operator = ' ',
+      TypeParameter = ' ',
     }
   end,
 }

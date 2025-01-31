@@ -19,7 +19,7 @@ return {
         ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
       },
       appearance = {
-        use_nvim_cmp_as_default = true,
+        use_nvim_cmp_as_default = false,
         nerd_font_variant = 'mono',
         kind_icons = { -- VSCode Icons
           Text = ' ',
@@ -62,6 +62,12 @@ return {
               kind_icon = {
                 ellipsis = false,
                 text = function(ctx) return ctx.kind_icon .. ctx.icon_gap end,
+                highlight = function(ctx)
+                  -- return require('blink.cmp.completion.windows.render.tailwind').get_hl(ctx) or
+                  --     'BlinkCmpKind' .. ctx.kind
+                  return require('blink.cmp.completion.windows.render.tailwind').get_hl(ctx) or
+                      ('BlinkCmpKind' .. ctx.kind)
+                end,
               },
               label = {
                 width = {
@@ -82,8 +88,13 @@ return {
       },
       signature = { enabled = false },
       sources = {
-        default = { 'lsp', 'path', 'buffer' },
-        cmdline = {}
+        providers = {
+          buffer = { enabled = false },
+        },
+        -- default = { 'lsp', 'path', 'buffer' },
+        default = { 'lsp', 'path' },
+        cmdline = {},
+        -- default = {},
       },
     },
   },

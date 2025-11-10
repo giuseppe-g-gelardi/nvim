@@ -157,7 +157,7 @@ return {
     })
 
     -- Enable all configured LSP servers
-    vim.lsp.enable({ 'tailwindcss', 'ts_ls', 'gopls', 'rust_analyzer', 'lua_ls', 'eslint' })
+    vim.lsp.enable({ 'tailwindcss', 'ts_ls', 'gopls', 'rust_analyzer', 'lua_ls' })
   end,
 }
 

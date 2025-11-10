@@ -107,32 +107,6 @@ return {
     ---|table<string, string> # Type to icon mapping.
     ---Icons for different context entry kinds.
     ---@type barbecue.Config.kinds
-    kinds = {
-      Text = ' ',
-      Method = ' ',
-      Function = ' ',
-      Constructor = ' ',
-      Field = ' ',
-      Variable = ' ',
-      Class = ' ',
-      Interface = ' ',
-      Module = ' ',
-      Property = ' ',
-      Unit = ' ',
-      Value = ' ',
-      Enum = ' ',
-      Keyword = ' ',
-      Snippet = ' ',
-      Color = ' ',
-      File = ' ',
-      Reference = ' ',
-      Folder = ' ',
-      EnumMember = ' ',
-      Constant = ' ',
-      Struct = ' ',
-      Event = ' ',
-      Operator = ' ',
-      TypeParameter = ' ',
-    },
+    kinds = require("ggelardi.icons")
   }
 }

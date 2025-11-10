@@ -1,6 +1,7 @@
 return {
   'onsails/lspkind-nvim', -- vscode style ui icons in hints
   config = function()
+    local icons = require('ggelardi.icons')
     require('lspkind').init({
       -- enables text annotations
       --
@@ -15,58 +16,8 @@ return {
       -- override preset symbols
       --
       -- default: {}
-      symbol_map = {
-        Text = ' ',
-        Method = ' ',
-        Function = ' ',
-        Constructor = ' ',
-        Field = ' ',
-        Variable = ' ',
-        Class = ' ',
-        Interface = ' ',
-        Module = ' ',
-        Property = ' ',
-        Unit = ' ',
-        Value = ' ',
-        Enum = ' ',
-        Keyword = ' ',
-        Snippet = ' ',
-        Color = ' ',
-        File = ' ',
-        Reference = ' ',
-        Folder = ' ',
-        EnumMember = ' ',
-        Constant = ' ',
-        Struct = ' ',
-        Event = ' ',
-        Operator = ' ',
-        TypeParameter = ' ',
-        -- Text = "",
-        -- Method = "",
-        -- Function = "󰡱",
-        -- Constructor = "",
-        -- Field = "󰜢",
-        -- Variable = "󰀫",
-        -- Class = "󰠱",
-        -- Interface = "",
-        -- Module = "",
-        -- Property = "󰜢",
-        -- Unit = "󰑭",
-        -- Value = "󰫧", -- 󰎠
-        -- Enum = "",
-        -- Keyword = "󰌋",
-        -- Snippet = "",
-        -- Color = "",
-        -- File = "",
-        -- Reference = "󰈇",
-        -- Folder = "",
-        -- EnumMember = "",
-        -- Constant = "",
-        -- Struct = "󰏿",
-        -- Event = "",
-        -- Operator = "󰆕",
-        -- TypeParameter = ""
-      },
+      symbol_map = icons.kinds
     })
   end,
 }
+

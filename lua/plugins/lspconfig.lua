@@ -10,41 +10,27 @@ return {
     --
     local mason_status, mason = pcall(require, "mason")
     if (not mason_status) then return end
-    local mason_lspconfig, lspconfig = pcall(require, "mason-lspconfig")
-    if (not mason_lspconfig) then return end
-
-    local util = require 'lspconfig/util'
+    local mason_lspconfig_status, mason_lspconfig = pcall(require, "mason-lspconfig")
+    if (not mason_lspconfig_status) then return end
 
     mason.setup({})
 
-    lspconfig.setup {
-      single_file_support = true,
+    mason_lspconfig.setup {
       ensure_installed = {
         "lua_ls",
         "bashls",
-        "ts_ls",
+        "ts_ls", -- Updated from tsserver
         "rust_analyzer",
         "gopls",
         "yamlls",
       },
       automatic_installation = true,
-      ui = {
-        icons = {
-          package_installed = "✓",
-          package_pending = "➜",
-          package_uninstalled = "✗"
-        }
-      }
     }
 
     --
-    -- LSP setup
+    -- LSP setup using modern vim.lsp.config API
     --
-    local status, nvim_lsp = pcall(require, "lspconfig")
-    if (not status) then return end
-
-    local protocol = require('vim.lsp.protocol')
-
+    -- local lspconfig_util = require('lspconfig.util')
     local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
     local enable_format_on_save = function(_, bufnr)
       vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
@@ -60,47 +46,47 @@ return {
     -- Use an on_attach function to only map the following keys
     -- after the language server attaches to the current buffer
     local on_attach = function(client, bufnr)
-      local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-
       client.server_capabilities.semanticTokensProvider = nil -- disable semantic tokens -- might fix colors changing on windows
-      --Enable completion triggered by <c-x><c-o>
-      --local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
-      --buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-      -- Mappings.
-      local opts = { noremap = true, silent = true }
+      -- Mappings using modern vim.keymap.set API
+      local opts = { noremap = true, silent = true, buffer = bufnr }
 
       -- See `:help vim.lsp.*` for documentation on any of the below functions
-      buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-      buf_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-      buf_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-      buf_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-      -- buf_set_keymap({ 'n', 'v' }, '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+      vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+      vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+      vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+      vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+      -- vim.keymap.set({ 'n', 'v' }, '<leader>co', vim.lsp.buf.code_action, opts)
     end
 
     -- Set up completion using blink.cmp
     local capabilities = require('blink.cmp').get_lsp_capabilities()
     capabilities.textDocument.completion.completionItem.snippetSupport = false
-    -- capabilities.textDocument.completion = nil
-    -- capabilities.textDocument.completion.completionItem.insertTextMode = 1
 
-    nvim_lsp.flow.setup { on_attach = on_attach, capabilities = capabilities }
-    nvim_lsp.sourcekit.setup { on_attach = on_attach, capabilities = capabilities }
-    nvim_lsp.tailwindcss.setup { on_attach = on_attach, capabilities = capabilities } -- tailwind for life
-
-    nvim_lsp.ts_ls.setup {
+    -- Configure LSP servers using vim.lsp.config
+    vim.lsp.config('tailwindcss', {
+      cmd = { 'tailwindcss-language-server', '--stdio' },
+      filetypes = { 'html', 'css', 'scss', 'javascript', 'javascriptreact', 'typescript', 'typescriptreact' },
+      root_markers = { 'tailwind.config.js', 'tailwind.config.ts' },
       on_attach = on_attach,
-      filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-      cmd = { "typescript-language-server", "--stdio" },
-      root_dir = nvim_lsp.util.root_pattern("package.json"),
-      capabilities = capabilities
-    }
+      capabilities = capabilities,
+    })
 
-    nvim_lsp.gopls.setup {
+    vim.lsp.config('ts_ls', {
+      cmd = { 'typescript-language-server', '--stdio' },
+      filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact' },
+      root_markers = { 'package.json', 'tsconfig.json', 'jsconfig.json' },
+      on_attach = on_attach,
+      capabilities = capabilities,
+    })
+
+    vim.lsp.config('gopls', {
+      cmd = { 'gopls' },
+      filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+      root_markers = { 'go.work', 'go.mod', '.git' },
       single_file_support = true,
       capabilities = capabilities,
       on_attach = on_attach,
-      cmd = { "gopls" },
       settings = {
         gopls = {
           gofumpt = true,
@@ -110,19 +96,19 @@ return {
           }
         },
       },
-      flags = {
-        debounce_text_changes = 150,
-      },
-    }
+    })
 
-    nvim_lsp.rust_analyzer.setup {
+    vim.lsp.config('rust_analyzer', {
+      cmd = { 'rust-analyzer' },
+      filetypes = { 'rust' },
+      root_markers = { 'Cargo.toml', 'rust-project.json' },
       on_attach = on_attach,
       capabilities = capabilities,
       settings = {
-        ["rust-analyzer"] = {
+        ['rust-analyzer'] = {
           assist = {
-            importGranularity = "module",
-            importPrefix = "by_self",
+            importGranularity = 'module',
+            importPrefix = 'by_self',
           },
           cargo = {
             loadOutDirsFromCheck = true
@@ -132,10 +118,12 @@ return {
           },
         }
       },
-      filetypes = { "rust" },
-    }
+    })
 
-    nvim_lsp.lua_ls.setup {
+    vim.lsp.config('lua_ls', {
+      cmd = { 'lua-language-server' },
+      filetypes = { 'lua' },
+      root_markers = { '.luarc.json', '.luarc.jsonc', '.luacheckrc', '.stylua.toml', 'stylua.toml', 'selene.toml', 'selene.yml', '.git' },
       capabilities = capabilities,
       on_attach = function(client, bufnr)
         on_attach(client, bufnr)
@@ -144,7 +132,7 @@ return {
       settings = {
         Lua = {
           completion = {
-            callSnippet = "Replace"
+            callSnippet = 'Replace'
           },
           diagnostics = {
             -- Get the language server to recognize the `vim` global
@@ -152,73 +140,19 @@ return {
           },
           workspace = {
             -- Make the server aware of Neovim runtime files
-            library = vim.api.nvim_get_runtime_file("", true),
+            library = vim.api.nvim_get_runtime_file('', true),
             checkThirdParty = false
           },
         },
       },
-    }
+    })
 
-    nvim_lsp.eslint.setup {
+    vim.lsp.config('eslint', {
+      cmd = { 'vscode-eslint-language-server', '--stdio' },
+      filetypes = { 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx' },
+      root_markers = { '.eslintrc.js', '.eslintrc.json', '.eslintrc', 'package.json' },
       on_attach = on_attach,
       capabilities = capabilities,
-      filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
-      root_dir = util.root_pattern(".eslintrc.js", ".eslintrc.json", ".eslintrc", "package.json"),
-    }
-
-    vim.diagnostic.config({ virtual_text = false })
-    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
-      vim.lsp.diagnostic.on_publish_diagnostics, {
-        -- virtual_text = function(_, bufnr) -- Enable virtual text only for golang
-        --   return vim.api.nvim_buf_get_option(bufnr, 'ft') == 'go'
-        -- end,
-        signs = true,
-        underline = true,
-        update_in_insert = true, -- Update diagnostics insert mode
-        severity_sort = true,
-      }
-    )
-
-    -- Design
-    vim.cmd 'sign define LspDiagnosticsSignError text=E'
-    vim.cmd 'sign define LspDiagnosticsSignWarning text=W'
-    vim.cmd 'sign define LspDiagnosticsSignInformation text=I'
-    vim.cmd 'sign define LspDiagnosticsSignHint text=H'
-
-
-    -- Diagnostic symbols in the sign column (gutter)
-    local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-    for type, icon in pairs(signs) do
-      local hl = "DiagnosticSign" .. type
-      vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-    end
-
-    protocol.CompletionItemKind = {
-      Text = ' ',
-      Method = ' ',
-      Function = ' ',
-      Constructor = ' ',
-      Field = ' ',
-      Variable = ' ',
-      Class = ' ',
-      Interface = ' ',
-      Module = ' ',
-      Property = ' ',
-      Unit = ' ',
-      Value = ' ',
-      Enum = ' ',
-      Keyword = ' ',
-      Snippet = ' ',
-      Color = ' ',
-      File = ' ',
-      Reference = ' ',
-      Folder = ' ',
-      EnumMember = ' ',
-      Constant = ' ',
-      Struct = ' ',
-      Event = ' ',
-      Operator = ' ',
-      TypeParameter = ' ',
-    }
+    })
   end,
 }

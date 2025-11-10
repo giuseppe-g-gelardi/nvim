@@ -5,12 +5,12 @@ git:
   branchLogCmd: "git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium --oneline {{branchName}} --"
   commitPrefixes:
     my_project: # This is repository folder name
-      pattern: "^\\w+\\/(\\w+-\\w+).*"
-      replace: '[$1] '
-  paging:
-    colorArg: always
-    # pager: delta --dark --paging=never
-    # useConfig: use
+      - pattern: "^\\w+\\/(\\w+-\\w+).*"
+        replace: '[$1] '
+  pagers:
+    - colorArg: always
+      # pager: delta --dark --paging=never
+      # useConfig: use
   commit:
     signOff: false
   merging:
@@ -31,8 +31,9 @@ git:
   skipHookPrefix: WIP
   autoFetch: true
   autoRefresh: true
-  allBranchesLogCmd: 'git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium'
   overrideGpg: false # prevents lazygit from spawning a separate process when using GPG
   disableForcePushing: false
   parseEmoji: false
   diffContextSize: 3 # how many lines of context are shown around a change in diffs
+  allBranchesLogCmds:
+    - git log --graph --all --color=always --abbrev-commit --decorate --date=relative  --pretty=medium

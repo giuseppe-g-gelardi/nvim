@@ -7,9 +7,7 @@ return {
   },
   {
     'saghen/blink.cmp',
-    -- build = 'cargo +nightly build --release',
-    version = 'v0.*',
-
+    version = 'v1.*',
     opts = {
       keymap = {
         preset = 'enter',
@@ -19,43 +17,15 @@ return {
         ['<C-u>'] = { 'scroll_documentation_up', 'fallback' },
       },
       appearance = {
-        use_nvim_cmp_as_default = false,
+        use_nvim_cmp_as_default = true,
         nerd_font_variant = 'mono',
-        kind_icons = { -- VSCode Icons
-          Text = ' ',
-          Method = ' ',
-          Function = ' ',
-          Constructor = ' ',
-          Field = ' ',
-          Variable = ' ',
-          Class = ' ',
-          Interface = ' ',
-          Module = ' ',
-          Property = ' ',
-          Unit = ' ',
-          Value = ' ',
-          Enum = ' ',
-          Keyword = ' ',
-          Snippet = ' ',
-          Color = ' ',
-          File = ' ',
-          Reference = ' ',
-          Folder = ' ',
-          EnumMember = ' ',
-          Constant = ' ',
-          Struct = ' ',
-          Event = ' ',
-          Operator = ' ',
-          TypeParameter = ' ',
-        },
+        kind_icons = require('ggelardi.icons').kinds
       },
-
       completion = {
         trigger = {
           show_on_keyword = true
         },
         menu = {
-          -- menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end },
           draw = {
             columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
             components = {
@@ -63,10 +33,14 @@ return {
                 ellipsis = false,
                 text = function(ctx) return ctx.kind_icon .. ctx.icon_gap end,
                 highlight = function(ctx)
-                  -- return require('blink.cmp.completion.windows.render.tailwind').get_hl(ctx) or
-                  --     'BlinkCmpKind' .. ctx.kind
-                  return require('blink.cmp.completion.windows.render.tailwind').get_hl(ctx) or
-                      ('BlinkCmpKind' .. ctx.kind)
+                  local hl = ctx.kind_hl
+                  if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                    local dev_icon, dev_hl = require("onsails/lspkind-nvim").get_icon(ctx.label)
+                    if dev_icon then
+                      hl = dev_hl
+                    end
+                  end
+                  return hl
                 end,
               },
               label = {
@@ -74,9 +48,28 @@ return {
                   fill = true,
                 },
                 text = function(ctx) return ctx.label .. ctx.label_detail end,
+                highlight = function(ctx)
+                  -- label and label details
+                  local highlights = {
+                    { 0, #ctx.label, group = ctx.deprecated and 'BlinkCmpLabelDeprecated' or 'BlinkCmpLabel' },
+                  }
+                  if ctx.label_detail then
+                    table.insert(highlights,
+                      { #ctx.label, #ctx.label + #ctx.label_detail, group = 'BlinkCmpLabelDetail' })
+                  end
+
+                  -- characters matched on the label by the fuzzy matcher
+                  for _, idx in ipairs(ctx.label_matched_indices) do
+                    table.insert(highlights, { idx, idx + 1, group = 'BlinkCmpLabelMatch' })
+                  end
+
+                  return highlights
+                end,
               },
               label_description = {
+                -- width = { max = 30 },
                 text = function(ctx) return ctx.label_description end,
+                highlight = 'BlinkCmpLabelDescription',
               },
               source_name = {
                 text = function(ctx) return ctx.source_name or "" end, -- Display the source name
@@ -89,12 +82,9 @@ return {
       signature = { enabled = false },
       sources = {
         providers = {
-          buffer = { enabled = false },
+          buffer = { enabled = false }
         },
-        -- default = { 'lsp', 'path', 'buffer' },
         default = { 'lsp', 'path' },
-        cmdline = {},
-        -- default = {},
       },
     },
   },

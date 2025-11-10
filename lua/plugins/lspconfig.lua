@@ -31,6 +31,7 @@ return {
     -- LSP setup using modern vim.lsp.config API
     --
     -- local lspconfig_util = require('lspconfig.util')
+
     local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
     local enable_format_on_save = function(_, bufnr)
       vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
@@ -154,5 +155,9 @@ return {
       on_attach = on_attach,
       capabilities = capabilities,
     })
+
+    -- Enable all configured LSP servers
+    vim.lsp.enable({ 'tailwindcss', 'ts_ls', 'gopls', 'rust_analyzer', 'lua_ls', 'eslint' })
   end,
 }
+

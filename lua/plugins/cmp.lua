@@ -8,6 +8,7 @@ return {
   {
     'saghen/blink.cmp',
     version = 'v1.*',
+
     opts = {
       keymap = {
         preset = 'enter',
@@ -89,3 +90,4 @@ return {
     },
   },
 }
+

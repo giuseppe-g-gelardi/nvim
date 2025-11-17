@@ -19,10 +19,11 @@ return {
       ensure_installed = {
         "lua_ls",
         "bashls",
-        "ts_ls", -- Updated from tsserver
+        -- "ts_ls", -- Updated from tsserver
         "rust_analyzer",
         "gopls",
         "yamlls",
+        "vtsls"
       },
       automatic_installation = true,
     }
@@ -73,8 +74,16 @@ return {
       capabilities = capabilities,
     })
 
-    vim.lsp.config('ts_ls', {
-      cmd = { 'typescript-language-server', '--stdio' },
+    -- vim.lsp.config('ts_ls', {
+    --   cmd = { 'typescript-language-server', '--stdio' },
+    --   filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact' },
+    --   root_markers = { 'package.json', 'tsconfig.json', 'jsconfig.json' },
+    --   on_attach = on_attach,
+    --   capabilities = capabilities,
+    -- })
+
+    vim.lsp.config('vtsls', {
+      cmd = { 'vtsls', '--stdio' },
       filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact' },
       root_markers = { 'package.json', 'tsconfig.json', 'jsconfig.json' },
       on_attach = on_attach,
@@ -157,7 +166,7 @@ return {
     })
 
     -- Enable all configured LSP servers
-    vim.lsp.enable({ 'tailwindcss', 'ts_ls', 'gopls', 'rust_analyzer', 'lua_ls' })
+    -- vim.lsp.enable({ 'tailwindcss', 'ts_ls', 'gopls', 'rust_analyzer', 'lua_ls' })
+    vim.lsp.enable({ 'tailwindcss', 'vtsls', 'gopls', 'rust_analyzer', 'lua_ls' })
   end,
 }
-

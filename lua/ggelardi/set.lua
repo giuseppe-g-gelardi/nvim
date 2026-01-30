@@ -6,7 +6,7 @@ vim.opt.isfname:append("@-@")           -- allow @ in filenames, i think
 vim.opt.guicursor = ""                  -- fat cursor
 vim.opt.scrolloff = 8                   -- keep 8 lines above and below cursor
 vim.opt.smartindent = true              -- auto indent new lines after { } etc
-vim.opt.colorcolumn = "80"              -- set color column
+vim.opt.colorcolumn = "80,120"          -- set color columns at 80 and 120 -- was 80 only
 vim.opt.relativenumber = true           -- show relative line numbers
 vim.opt.wrap = false                    -- i think this is text wrap
 vim.wo.signcolumn = 'yes'               -- Keep signcolumn on by default

@@ -20,7 +20,8 @@ return {
         -- colors      = {
         --   normal_bg = '#002b36'
         -- },
-        kind        = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+        -- for catppuccin theme
+        -- kind        = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
       }
     })
 

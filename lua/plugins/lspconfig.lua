@@ -23,7 +23,7 @@ return {
         "rust_analyzer",
         "gopls",
         "yamlls",
-        "vtsls"
+        "vtsls",
       },
       automatic_installation = true,
     }
@@ -167,6 +167,7 @@ return {
 
     -- Enable all configured LSP servers
     -- vim.lsp.enable({ 'tailwindcss', 'ts_ls', 'gopls', 'rust_analyzer', 'lua_ls' })
-    vim.lsp.enable({ 'tailwindcss', 'vtsls', 'gopls', 'rust_analyzer', 'lua_ls' })
+    -- vim.lsp.enable({ 'tailwindcss', 'vtsls', 'gopls', 'rust_analyzer', 'lua_ls' })
+    vim.lsp.enable({ 'tailwindcss', 'vtsls', 'gopls', 'rust_analyzer', 'lua_ls', 'json_lsp' })
   end,
 }

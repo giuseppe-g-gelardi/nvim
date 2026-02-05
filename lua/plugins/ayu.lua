@@ -18,8 +18,8 @@ return {
         NonText = { fg = '#8a95a8' },                          -- Absolute line numbers (lighter grey)
         
         -- Variables and identifiers
-        ['@variable'] = { fg = '#73d0ff' },                    -- Regular variables (blue, matches @type)
-        ['@variable.member'] = { fg = '#cccac2' },             -- Member variables/properties (light grey)
+        ['@variable'] = { fg = '#cccac2' },                    -- Regular variables (white, matches @variable.member)
+        ['@variable.member'] = { fg = '#cccac2' },             -- Member variables/properties (white)
         ['@variable.parameter'] = { fg = '#dfbfff' },          -- Function parameters (purple)
         ['@variable.builtin'] = { fg = '#ffa659', italic = true }, -- Built-in variables like 'this', 'self' (orange, italic)
         
@@ -28,7 +28,7 @@ return {
         ['@function.method'] = { fg = '#ffcd66' },             -- Methods (yellow)
         ['@function.call'] = { fg = '#ffcd66' },               -- Function calls (yellow)
         ['@function.builtin'] = { fg = '#f28779' },            -- Built-in functions (coral)
-        ['@function.macro'] = { fg = '#d9be98' },              -- Macros (beige)
+        ['@function.macro'] = { fg = '#ffcd66' },              -- Macros like assert_eq! (yellow)
         
         -- Types and classes
         ['@type'] = { fg = '#73d0ff' },                        -- Types (blue)
@@ -39,12 +39,12 @@ return {
         -- Keywords and operators
         ['@keyword'] = { fg = '#ffa659' },                     -- Keywords (orange)
         ['@keyword.function'] = { fg = '#ffa659' },            -- Function keywords (orange)
-        ['@keyword.operator'] = { fg = '#ffa659' },            -- Operator keywords (orange)
+        ['@keyword.operator'] = { fg = '#f29e74' },            -- Operator keywords like -> (light orange)
         ['@keyword.return'] = { fg = '#ffa659' },              -- Return keyword (orange)
         ['@operator'] = { fg = '#f29e74' },                    -- Operators (light orange)
         
         -- Constants and literals
-        ['@constant'] = { fg = '#dfbfff' },                    -- Constants (purple)
+        ['@constant'] = { fg = '#cccac2' },                    -- Constants (white, matches @variable)
         ['@constant.builtin'] = { fg = '#dfbfff' },            -- Built-in constants (purple)
         ['@number'] = { fg = '#dfbfff' },                      -- Numbers (purple)
         ['@boolean'] = { fg = '#dfbfff' },                     -- Booleans (purple)

@@ -21,14 +21,14 @@ return {
         ['@variable'] = { fg = '#cccac2' },                    -- Regular variables (white, matches @variable.member)
         ['@variable.member'] = { fg = '#cccac2' },             -- Member variables/properties (white)
         ['@variable.parameter'] = { fg = '#dfbfff' },          -- Function parameters (purple)
-        ['@variable.builtin'] = { fg = '#ffa659', italic = true }, -- Built-in variables like 'this', 'self' (orange, italic)
+        ['@variable.builtin'] = { fg = '#ffa659', italic = true }, -- Built-in variables like 'self' (orange, italic)
         
         -- Functions and methods
         ['@function'] = { fg = '#ffcd66' },                    -- Functions (yellow)
         ['@function.method'] = { fg = '#ffcd66' },             -- Methods (yellow)
         ['@function.call'] = { fg = '#ffcd66' },               -- Function calls (yellow)
         ['@function.builtin'] = { fg = '#f28779' },            -- Built-in functions (coral)
-        ['@function.macro'] = { fg = '#ffcd66' },              -- Macros like assert_eq! (yellow)
+        ['@function.macro'] = { fg = '#73d0ff' },              -- Attribute macros like derive (blue)
         
         -- Types and classes
         ['@type'] = { fg = '#73d0ff' },                        -- Types (blue)
@@ -57,9 +57,9 @@ return {
         ['@field'] = { fg = '#f28779' },                       -- Fields (coral)
         
         -- Punctuation
-        ['@punctuation.delimiter'] = { fg = '#cccac2' },       -- Delimiters (grey)
+        ['@punctuation.delimiter'] = { fg = '#f29e74' },       -- Delimiters like :: (orange)
         ['@punctuation.bracket'] = { fg = '#cccac2' },         -- Brackets (grey)
-        ['@punctuation.special'] = { fg = '#f29e74' },         -- Special punctuation (light orange)
+        ['@punctuation.special'] = { fg = '#cccac2' },         -- Special punctuation like # (white)
         
         -- Comments
         ['@comment'] = { fg = '#6e7c8f', italic = true },      -- Comments (grey, italic)
@@ -71,7 +71,7 @@ return {
         
         -- Namespaces and modules
         ['@namespace'] = { fg = '#d5ff80' },                   -- Namespaces (green)
-        ['@module'] = { fg = '#73d0ff' },                      -- Modules (blue, matches @type)
+        ['@module'] = { fg = '#73d0ff' },                      -- Modules (blue)
         
         -- Decorators
         ['@attribute'] = { fg = '#d9be98' },                   -- Attributes/decorators (beige)

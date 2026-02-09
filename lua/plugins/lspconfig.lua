@@ -90,6 +90,21 @@ return {
       capabilities = capabilities,
     })
 
+    vim.lsp.config('denols', {
+      cmd = { 'deno', 'lsp' },
+      filetypes = { 'typescript', 'typescriptreact', 'typescript.tsx', 'javascript', 'javascriptreact' },
+      root_markers = { 'deno.json', 'deno.jsonc' },
+      on_attach = on_attach,
+      capabilities = capabilities,
+      settings = {
+        deno = {
+          enable = true,
+          lint = true,
+          unstable = true,
+        },
+      },
+    })
+
     vim.lsp.config('gopls', {
       cmd = { 'gopls' },
       filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
@@ -168,6 +183,6 @@ return {
     -- Enable all configured LSP servers
     -- vim.lsp.enable({ 'tailwindcss', 'ts_ls', 'gopls', 'rust_analyzer', 'lua_ls' })
     -- vim.lsp.enable({ 'tailwindcss', 'vtsls', 'gopls', 'rust_analyzer', 'lua_ls' })
-    vim.lsp.enable({ 'tailwindcss', 'vtsls', 'gopls', 'rust_analyzer', 'lua_ls', 'json_lsp' })
+    vim.lsp.enable({ 'tailwindcss', 'vtsls', 'denols', 'gopls', 'rust_analyzer', 'lua_ls', 'json_lsp' })
   end,
 }

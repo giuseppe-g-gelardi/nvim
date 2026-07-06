@@ -54,6 +54,9 @@ return {
         trigger = {
           show_on_keyword = true
         },
+        ghost_text = {
+          enabled = false,
+        },
         -- menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end },
         menu = {
           draw = {
@@ -107,7 +110,7 @@ return {
       signature = { enabled = false },
       -- signature = { enabled = true },
       sources = {
-        default = { 'lsp', 'path', 'buffer' },
+        default = { 'lsp', 'path' },
         cmdline = {}
       },
     },

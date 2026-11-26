@@ -26,6 +26,10 @@ return {
         trigger = {
           show_on_keyword = true
         },
+        ghost_text = {
+          enabled = false,
+        },
+        -- menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end },
         menu = {
           draw = {
             columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
@@ -82,12 +86,12 @@ return {
       },
       signature = { enabled = false },
       sources = {
+        default = { 'lsp', 'path' },
+        cmdline = {},
         providers = {
           buffer = { enabled = false }
         },
-        default = { 'lsp', 'path' },
       },
     },
   },
 }
-

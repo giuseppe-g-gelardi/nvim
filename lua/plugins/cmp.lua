@@ -29,8 +29,16 @@ return {
         ghost_text = {
           enabled = false,
         },
+        -- VSCode-style: automatically show the docs panel next to the
+        -- selected completion item
+        documentation = {
+          auto_show = true, -- turn this off if it starts to get annoying
+          auto_show_delay_ms = 200,
+          window = { border = 'rounded' },
+        },
         -- menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end },
         menu = {
+          border = 'rounded',
           draw = {
             columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
             components = {

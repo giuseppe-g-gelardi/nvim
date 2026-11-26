@@ -70,4 +70,3 @@ return {
 --- must add
 --- keybind = ctrl+/=text:\x1f
 --- to ghostty config, otherwise this will only work in a tmux session
-

@@ -10,6 +10,7 @@ vim.keymap.set('n', '<C-u>', '<C-u>zz', { desc = "Scroll half page [U]p" });    
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = "[f]ormat document" });                           -- format document with lsp -- consider using null-ls for this
 vim.keymap.set('n', '<leader>A', 'ggVG', { desc = "Select [A]ll" });                                            -- select all
 vim.keymap.set('n', '<leader>gs', '<cmd>lua Lazygit_toggle()<CR>', { silent = true, desc = "[g]it [s]tatus" }); -- toggle lazygit
+vim.keymap.set('n', '<leader>G', '<cmd>CodeDiff<CR>', { desc = "Code diff ([G]it)" });                          -- open codediff
 vim.keymap.set('n', 'Z', '<cmd>ZenMode<CR>', { desc = "[Z]en mode" });                                          -- toggle zen mode
 vim.keymap.set('n', 'CD', '<cmd>:Copilot disable<CR>', { desc = "[C]opilot [D]isable" });                       -- disable copilot
 vim.keymap.set('n', 'CE', '<cmd>:Copilot enable<CR>', { desc = "[C]opilot [E]nable" });                         -- enable copilot

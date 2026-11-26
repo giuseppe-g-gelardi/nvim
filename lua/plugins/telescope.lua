@@ -34,7 +34,7 @@ return {
       vim.keymap.set('n', '<leader>ls', function() -- local
         -- You can pass additional configuration to telescope to change theme, layout, etc.
         builtin.current_buffer_fuzzy_find(themes.get_dropdown {
-          winblend = 10,
+          winblend = 0,
           previewer = false,
         })
       end, { desc = '[L]ocal [S]earch' }),
@@ -45,6 +45,9 @@ return {
       -- vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' }),
       vim.keymap.set('n', '<leader>ps', builtin.live_grep, { desc = '[S]earch by [G]rep' }),
       vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' }),
+      -- command palette, like VSCode's Cmd+Shift+P
+      vim.keymap.set('n', '<leader>P', builtin.commands, { desc = 'Command [P]alette' }),
+      vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' }),
       -- vim.keymap.set('n', '<leader>sg',
       --   function() builtin.grep_string({ search = vim.fn.input('Grep For > ') }) end,
       --   { desc = '[S]earch [F]iles' }) -- global search

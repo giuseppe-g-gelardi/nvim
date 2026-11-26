@@ -25,13 +25,10 @@ return {
       }
     })
 
-    -- code action
+    -- code action (code_action() now handles visual mode too;
+    -- range_code_action was removed from lspsaga)
     local codeaction = require 'lspsaga.codeaction'
-    vim.keymap.set("n", "<leader>ca", function() codeaction:code_action() end, { silent = true })
-    vim.keymap.set("v", "<leader>ca", function()
-      vim.fn.feedkeys(vim.api.nvim_replace_termcodes("<C-U>", true, false, true))
-      codeaction:range_code_action()
-    end, { silent = true })
+    vim.keymap.set({ "n", "v" }, "<leader>ca", function() codeaction:code_action() end, { silent = true })
   end,
 
 }

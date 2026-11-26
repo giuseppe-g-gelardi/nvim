@@ -29,8 +29,16 @@ return {
         ghost_text = {
           enabled = false,
         },
+        -- VSCode-style: automatically show the docs panel next to the
+        -- selected completion item
+        documentation = {
+          auto_show = true, -- turn this off if it starts to get annoying
+          auto_show_delay_ms = 200,
+          window = { border = 'rounded' },
+        },
         -- menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end },
         menu = {
+          border = 'rounded',
           draw = {
             columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
             components = {
@@ -40,7 +48,7 @@ return {
                 highlight = function(ctx)
                   local hl = ctx.kind_hl
                   if vim.tbl_contains({ "Path" }, ctx.source_name) then
-                    local dev_icon, dev_hl = require("onsails/lspkind-nvim").get_icon(ctx.label)
+                    local dev_icon, dev_hl = require("nvim-web-devicons").get_icon(ctx.label)
                     if dev_icon then
                       hl = dev_hl
                     end
@@ -85,9 +93,9 @@ return {
         }
       },
       signature = { enabled = false },
+      cmdline = { enabled = false },
       sources = {
         default = { 'lsp', 'path' },
-        cmdline = {},
         providers = {
           buffer = { enabled = false }
         },

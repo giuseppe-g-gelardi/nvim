@@ -85,9 +85,9 @@ return {
         }
       },
       signature = { enabled = false },
+      cmdline = { enabled = false },
       sources = {
         default = { 'lsp', 'path' },
-        cmdline = {},
         providers = {
           buffer = { enabled = false }
         },

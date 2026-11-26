@@ -1,36 +1,38 @@
 return {
   'nvim-treesitter/nvim-treesitter', -- Highlight, edit, and navigate code
-  build = ":TSUpdate",
+  branch = 'main',
+  lazy = false,
+  build = ':TSUpdate',
   dependencies = {
-    'nvim-treesitter/nvim-treesitter-textobjects',
     'nvim-treesitter/nvim-treesitter-context',
   },
   config = function()
-    local configs = require('nvim-treesitter.configs')
+    local ts = require('nvim-treesitter')
     local context = require('treesitter-context')
-    configs.setup {
-      -- A list of parser names, or "all" (the five listed parsers should always be installed)
-      ensure_installed = { -- c, vim, vimdoc, query, javascript
-        "lua",
-        "typescript",
-        "go",
-        "rust",
-        "zig",
-        "markdown_inline",
-      },
-      sync_install = false,
-      auto_install = true,
-      modules = {},
-      ignore_install = {},
-      highlight = {
-        enable = true,
-        -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-        -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-        -- Using this option may slow down your editor, and you may see some duplicate highlights.
-        -- Instead of true it can also be a list of languages
-        additional_vim_regex_highlighting = false,
-      },
+
+    -- Parsers to install (Neovim bundles c, lua, vim, vimdoc, query, markdown)
+    ts.install {
+      'lua',
+      'typescript',
+      'tsx',
+      'javascript',
+      'go',
+      'rust',
+      'zig',
+      'json',
+      'yaml',
+      'markdown',
+      'markdown_inline',
     }
+
+    -- Enable treesitter highlighting for every buffer that has a parser
+    vim.api.nvim_create_autocmd('FileType', {
+      group = vim.api.nvim_create_augroup('ggelardi.treesitter', { clear = true }),
+      callback = function(args)
+        pcall(vim.treesitter.start, args.buf)
+      end,
+    })
+
     context.setup {
       enable = true,            -- Enable this plugin (Can be enabled/disabled later via commands)
       max_lines = 1,            -- How many lines the window should span. Values <= 0 mean no limit.

@@ -8,19 +8,20 @@ return {
     local lspsaga = require 'lspsaga'
 
     lspsaga.setup({
-      code_action_prompt = {
-        enable = false,
-        sign = false,
-      },
+      -- code_action_prompt = {
+      --   enable = false,
+      --   sign = false,
+      -- },
       ui = {
         code_action = '..', -- wish i could figure out a way to turn this into undercurl instead of underline
         collapse    = '⊟',
-        winblend    = 10,
-        border      = 'rounded',
-        colors      = {
-          normal_bg = '#002b36'
-        },
-        kind        = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
+        -- winblend    = 10,
+        -- border      = 'rounded',
+        -- colors      = {
+        --   normal_bg = '#002b36'
+        -- },
+        -- for catppuccin theme
+        -- kind        = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
       }
     })
 

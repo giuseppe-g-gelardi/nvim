@@ -1,5 +1,4 @@
 return {
-
   {
     'github/copilot.vim',        -- Separate configuration for Copilot
     config = function()
@@ -8,7 +7,7 @@ return {
   },
   {
     'saghen/blink.cmp',
-    version = 'v0.*',
+    version = 'v1.*',
 
     opts = {
       keymap = {
@@ -21,35 +20,8 @@ return {
       appearance = {
         use_nvim_cmp_as_default = true,
         nerd_font_variant = 'mono',
-        kind_icons = { -- VSCode Icons
-          Text = ' ',
-          Method = ' ',
-          Function = ' ',
-          Constructor = ' ',
-          Field = ' ',
-          Variable = ' ',
-          Class = ' ',
-          Interface = ' ',
-          Module = ' ',
-          Property = ' ',
-          Unit = ' ',
-          Value = ' ',
-          Enum = ' ',
-          Keyword = ' ',
-          Snippet = ' ',
-          Color = ' ',
-          File = ' ',
-          Reference = ' ',
-          Folder = ' ',
-          EnumMember = ' ',
-          Constant = ' ',
-          Struct = ' ',
-          Event = ' ',
-          Operator = ' ',
-          TypeParameter = ' ',
-        },
+        kind_icons = require('ggelardi.icons').kinds
       },
-
       completion = {
         trigger = {
           show_on_keyword = true
@@ -60,15 +32,20 @@ return {
         -- menu = { auto_show = function(ctx) return ctx.mode ~= 'cmdline' end },
         menu = {
           draw = {
-            -- gap = 1,
             columns = { { 'kind_icon' }, { 'label', 'label_description', gap = 1 } },
             components = {
               kind_icon = {
                 ellipsis = false,
                 text = function(ctx) return ctx.kind_icon .. ctx.icon_gap end,
                 highlight = function(ctx)
-                  return (require('blink.cmp.completion.windows.render.tailwind').get_hl(ctx) or
-                    'BlinkCmpKind') .. ctx.kind
+                  local hl = ctx.kind_hl
+                  if vim.tbl_contains({ "Path" }, ctx.source_name) then
+                    local dev_icon, dev_hl = require("onsails/lspkind-nvim").get_icon(ctx.label)
+                    if dev_icon then
+                      hl = dev_hl
+                    end
+                  end
+                  return hl
                 end,
               },
               label = {
@@ -108,41 +85,13 @@ return {
         }
       },
       signature = { enabled = false },
-      -- signature = { enabled = true },
       sources = {
         default = { 'lsp', 'path' },
-        cmdline = {}
+        cmdline = {},
+        providers = {
+          buffer = { enabled = false }
+        },
       },
     },
   },
 }
-
-
-
-
-
--- Text = "",
--- Method = "",
--- Function = "󰡱",
--- Constructor = "",
--- Field = "󰜢",
--- Variable = "󰀫",
--- Property = "󰜢",
--- Class = "󰠱",
--- Interface = "",
--- Struct = "󰏿",
--- Module = "",
--- Unit = "󰑭",
--- Value = "󰫧", -- 󰎠
--- Enum = "",
--- EnumMember = "",
--- Keyword = "󰌋",
--- Constant = "",
--- Snippet = "",
--- Color = "",
--- File = "",
--- Reference = "󰈇",
--- Folder = "",
--- Event = "",
--- Operator = "󰆕",
--- TypeParameter = ""

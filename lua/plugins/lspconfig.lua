@@ -24,8 +24,12 @@ return {
         "gopls",
         "yamlls",
         "vtsls",
+        "jsonls",
       },
-      automatic_installation = true,
+      -- mason-lspconfig v2.0 enables every installed server by default,
+      -- which caused ts_ls/eslint/etc. to attach alongside vtsls.
+      -- Keep enabling servers explicitly via vim.lsp.enable() below.
+      automatic_enable = false,
     }
 
     --
@@ -183,6 +187,6 @@ return {
     -- Enable all configured LSP servers
     -- vim.lsp.enable({ 'tailwindcss', 'ts_ls', 'gopls', 'rust_analyzer', 'lua_ls' })
     -- vim.lsp.enable({ 'tailwindcss', 'vtsls', 'gopls', 'rust_analyzer', 'lua_ls' })
-    vim.lsp.enable({ 'tailwindcss', 'vtsls', 'denols', 'gopls', 'rust_analyzer', 'lua_ls', 'json_lsp' })
+    vim.lsp.enable({ 'tailwindcss', 'vtsls', 'denols', 'gopls', 'rust_analyzer', 'lua_ls', 'jsonls' })
   end,
 }

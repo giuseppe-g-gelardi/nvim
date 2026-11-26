@@ -34,7 +34,7 @@ return {
       vim.keymap.set('n', '<leader>ls', function() -- local
         -- You can pass additional configuration to telescope to change theme, layout, etc.
         builtin.current_buffer_fuzzy_find(themes.get_dropdown {
-          winblend = 10,
+          winblend = 0,
           previewer = false,
         })
       end, { desc = '[L]ocal [S]earch' }),
